@@ -112,3 +112,26 @@ form.quote button { justify-self: start; border: 0; cursor: pointer; font: inher
   .foot-grid ul { columns: 1; }
 }
 .region a span, .card a[href^="tel:"] { white-space: nowrap; }
+
+/* Header menu: every content page is linked from the Cities panel */
+.site-header { position: relative; z-index: 20; }
+.menu { position: static; }
+.menu summary { list-style: none; cursor: pointer; color: #e5f2ec; font-size: .95rem; padding: 4px 0; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary::after { content: " ▾"; font-size: .8em; }
+.menu[open] summary { color: #fff; text-decoration: underline; }
+.mega { position: absolute; left: 0; right: 0; top: 100%; background: #fff; color: var(--ink); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+.mega-grid { max-width: var(--max); margin: 0 auto; padding: 20px 16px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px 24px; }
+.mega-region p { margin: 0 0 6px; font-weight: 700; color: var(--brand); font-size: .9rem; }
+.mega-region ul { list-style: none; margin: 0; padding: 0; }
+.mega-region li { padding: 2px 0; font-size: .95rem; }
+.mega-region a { color: var(--link); text-decoration: none; }
+.mega-region a:hover { text-decoration: underline; }
+.nav [aria-current="page"] { color: #fff; font-weight: 700; font-size: .95rem; }
+.mega [aria-current="page"] { color: var(--ink); }
+.site-footer { padding: 20px 0; }
+.foot-note { margin: 0; border: 0; padding: 0; }
+@media (max-width: 600px) {
+  .mega { max-height: 70vh; overflow-y: auto; }
+  .mega-grid { grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+}

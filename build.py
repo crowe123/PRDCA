@@ -77,23 +77,40 @@ DISCLOSURE = (
 
 # ---------------------------------------------------------------- shell
 
-def footer_links(current):
-    cities = "".join(
-        f'<li><a href="/{c["slug"]}/">{c["name"]}</a></li>' for c in CITIES if f'/{c["slug"]}/' != current)
-    guides = [("/", "California pool removal directory"), ("/cost/", "Pool removal cost"),
-              ("/faq/", "Pool fill-in questions"), ("/about/", "About This Site"),
-              ("/contact/", "Request contractor referrals")]
-    guide_items = "".join(f'<li><a href="{u}">{t}</a></li>' for u, t in guides if u != current)
+CONTENT_PAGES = ["/"] + [f'/{c["slug"]}/' for c in CITIES] + ["/cost/", "/faq/", "/about/"]
+
+
+def menu_link(href, text, current):
+    if href == current:
+        return f'<span aria-current="page">{text}</span>'
+    return f'<a href="{href}">{text}</a>'
+
+
+def header_nav(current):
+    """Header menu linking every content page: 32 cities, cost guide, FAQ and About (the logo links home)."""
+    regions = ""
+    for key, label in REGIONS:
+        links = "".join(f'<li>{menu_link("/" + c["slug"] + "/", c["name"], current)}</li>'
+                        for c in CITIES if c["region"] == key)
+        regions += f'<div class="mega-region"><p>{label}</p><ul>{links}</ul></div>'
+    guides = "".join(menu_link(u, t, current) for u, t in
+                     [("/cost/", "Costs"), ("/faq/", "Fill-in questions"), ("/about/", "About")])
+    cta = "" if current == "/contact/" else '<a class="btn" href="/contact/">Get referrals</a>'
     return (
-        '<footer class="site-footer"><div class="wrap"><div class="foot-grid">'
-        f'<div><h2>Pool removal by city</h2><ul>{cities}</ul></div>'
-        f'<div><h2>Guides</h2><ul style="columns:1">{guide_items}</ul></div>'
-        '</div><p class="foot-note">Permit facts come from official city documents read on 10 October 2026, and '
-        f'licence statuses from the <a href="{SRC["cslb_lookup"]}">Contractors State License Board</a> check of '
-        f'11 October 2026. {SITE_NAME} is a referral directory, not a contractor.</p></div></footer>')
+        '<nav class="nav" aria-label="Main">'
+        '<details class="menu"><summary>Cities</summary>'
+        f'<div class="mega"><div class="mega-grid">{regions}</div></div></details>'
+        f'{guides}{cta}</nav>')
 
 
-def page(path, title, description, body, crumbs=None, schema=None):
+FOOTER = (
+    '<footer class="site-footer"><div class="wrap"><p class="foot-note">Permit facts come from official city documents '
+    f'read on 10 October 2026, and licence statuses from the <a href="{SRC["cslb_lookup"]}">Contractors State License '
+    f'Board</a> check of 11 October 2026. {SITE_NAME} is a referral directory, not a contractor. '
+    '<a href="/about/">Referral disclosure</a>.</p></div></footer>')
+
+
+def page(path, title, description, body, crumbs=None, schema=None, index=True):
     crumb_html = ""
     if crumbs:
         parts = ['<a href="/">California</a>'] + [
@@ -108,6 +125,7 @@ def page(path, title, description, body, crumbs=None, schema=None):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{html.escape(description)}">
+{"" if index else '<meta name="robots" content="noindex">'}
 <link rel="canonical" href="{SITE_URL}{path}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
@@ -122,15 +140,14 @@ def page(path, title, description, body, crumbs=None, schema=None):
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="logo" href="/">Pool Removal <span>California</span></a>
-<nav class="nav" aria-label="Main">
-<a href="/#cities">Cities</a><a href="/cost/">Costs</a><a href="/faq/">Fill-in questions</a><a href="/about/">About</a>
-<a class="btn" href="/contact/">Get referrals</a>
-</nav></div></header>
+{header_nav(path)}
+</div></header>
 {crumb_html}
 <main id="main" class="wrap">
 {body}
 </main>
-{footer_links(path)}
+{FOOTER}
+<script>document.addEventListener("click",e=>{{const m=document.querySelector(".menu");if(m&&m.open&&!m.contains(e.target))m.open=false}});document.addEventListener("keydown",e=>{{if(e.key==="Escape")document.querySelector(".menu")?.removeAttribute("open")}});</script>
 </body>
 </html>
 """
@@ -680,25 +697,24 @@ def contact_page():
 </div>"""
     page("/contact/", "Request Pool Removal Contractor Referrals in California",
          "Ask for referrals to licensed pool removal contractors in California's 32 largest cities.",
-         body, crumbs=[(None, "Request referrals")])
+         body, crumbs=[(None, "Request referrals")], index=False)
     thanks = ('<div class="content"><h1>Referral Request Received</h1><p>Listed contractors serving the chosen city '
               'will be in touch by phone or email. The <a href="/cost/">cost guide</a> and '
               '<a href="/faq/">fill-in questions</a> help when comparing quotes.</p></div>')
-    page("/thanks/", "Referral Request Received", "Referral request received.", thanks)
+    page("/thanks/", "Referral Request Received", "Referral request received.", thanks, index=False)
 
 
 def not_found():
     body = ('<div class="content"><h1>Page Not Found</h1><p>The page may have moved. The '
             '<a href="/">California pool removal directory</a> links every city page.</p></div>')
-    page("/404.html", "Page Not Found | Pool Removal California", "Page not found.", body)
+    page("/404.html", "Page Not Found | Pool Removal California", "Page not found.", body, index=False)
 
 
 def sitemap():
-    paths = ["/"] + [f'/{c["slug"]}/' for c in CITIES] + ["/cost/", "/faq/", "/about/", "/contact/"]
-    urls = "".join(f"<url><loc>{SITE_URL}{p}</loc></url>" for p in paths)
+    urls = "".join(f"<url><loc>{SITE_URL}{p}</loc></url>" for p in CONTENT_PAGES)
     (OUT / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
-    (OUT / "robots.txt").write_text(f"User-agent: *\nDisallow: /thanks/\nSitemap: {SITE_URL}/sitemap.xml\n")
+    (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
 
 
 def main():
