@@ -1,7 +1,7 @@
 # Pool Removal California
 
 A static referral-directory site built from the *Pool Removal California: Site Structure* plan (10 Oct 2026):
-a state hub, 20 city pages, a cost guide, an FAQ and an About This Site page, plus a separate contact page for referral requests.
+a state hub, 32 city pages (the plan's 20 plus the fourth wave of cities 21 to 32), a cost guide, an FAQ and an About This Site page, plus a separate contact page for referral requests.
 
 ## Build
 
@@ -25,15 +25,22 @@ No dependencies beyond the Python standard library. `netlify.toml` builds and pu
 
 ## Contractor listings
 
-Export the workbook's Businesses and By city tabs to `data/businesses.csv` with these columns:
+Listings come from the businesses workbook. After updating it, regenerate the CSV and rebuild:
 
-`business, phone, website, base_city, licence_number, licence_status, licence_checked, status, site_says, cities`
+```
+pip install openpyxl
+python3 scripts/import_workbook.py path/to/pool_removal_california_businesses.xlsx   # writes data/listings.csv
+python3 build.py
+```
 
-- `status`: only rows marked `listed` are published. Hold back lead-gen, inactive-licence and unverified rows.
-- `licence_status`: a value starting with `Current` counts as active, and those listings sort first.
-- `cities`: city slugs separated by semicolons, for example `san-jose;fremont;oakland`.
+`data/listings.csv` has one row per city and business (the By city tab), joined with licence details from the Businesses tab. The build publishes only rows marked **Licence active**:
 
-City pages render contractor cards from this file. The page gets one ItemList JSON-LD block when it has listings, and no other schema, as the plan requires.
+- Rows marked *No licence number on site* or *Maps listing only* are held back until the phone check. Each city page shows how many are pending.
+- Rows marked *Likely lead-gen site* or *Licence not active* never appear.
+- Sites that share a licence number in the same city merge into one card ("Also trades as ...").
+- Cards sort by listing basis: city named on the site, then region named, then Google Maps.
+
+When you change a listing's status in the workbook (for example after a phone check), re-run the import. City pages get one ItemList JSON-LD block and no other schema, as the plan requires.
 
 ## Images
 

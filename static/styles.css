@@ -111,3 +111,4 @@ form.quote button { justify-self: start; border: 0; cursor: pointer; font: inher
   .nav { gap: 4px 14px; }
   .foot-grid ul { columns: 1; }
 }
+.region a span, .card a[href^="tel:"] { white-space: nowrap; }

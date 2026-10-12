@@ -72,6 +72,7 @@ REGIONS = [
     ("ie", "Inland Empire"),
     ("bay", "Bay Area"),
     ("cv", "Sacramento and the Central Valley"),
+    ("ven", "Ventura County"),
 ]
 
 # Regional cost paragraphs: published ranges only, never invented local figures.
@@ -114,13 +115,13 @@ REGION_COST = {
     ),
 }
 
-# The 20 cities, ranked by the 1 January 2026 population estimate.
+# Cities 1 to 20, ranked by the 1 January 2026 population estimate.
 # found = businesses found; active = active licence; searches = monthly searches.
 CITIES = [
     {
         "rank": 1, "name": "Los Angeles", "slug": "los-angeles", "region": "la", "cost": "la",
         "searches": "50", "found": 20, "active": 9, "wave": 1,
-        "dept": "Department of Building and Safety",
+        "dept": "Department of Building and Safety, Grading Division",
         "permit": "Grading permit", "fee": "Not published",
         "doc": "Bulletin P/BC 2026-111",
         "doc_url": "https://dbs.lacity.gov/sites/default/files/efs/forms/pc17/p-bc-2020-111-backfill-of-swimming-pools.pdf",
@@ -184,7 +185,7 @@ CITIES = [
     {
         "rank": 3, "name": "San Jose", "slug": "san-jose", "region": "bay", "cost": "bay",
         "searches": "30", "found": 34, "active": 19, "wave": 1,
-        "dept": "Development Services Permit Center",
+        "dept": "Building Division, Development Services Permit Center",
         "permit": "Building permit", "fee": "Not published; refundable debris deposit",
         "doc": "swimming pool demolition page (Bulletin #289)",
         "doc_url": "https://www.sanjoseca.gov/businesses/development-services-permit-center/start-your-project/swimming-pool-demolition",
@@ -212,7 +213,7 @@ CITIES = [
              "Valley Water pays $2 a square foot, up to $3,000, when a pool becomes low-water landscape, with approval before work begins."),
         ],
         "nearby": ["Santa Clara", "Campbell", "Milpitas", "Cupertino", "Los Gatos", "Saratoga"],
-        "note": "San Jose has the deepest contractor pool of the 20 cities.",
+        "note": "San Jose has the deepest contractor pool of the 32 cities.",
     },
     {
         "rank": 4, "name": "San Francisco", "slug": "san-francisco", "region": "bay", "cost": "bay",
@@ -249,13 +250,13 @@ CITIES = [
     {
         "rank": 5, "name": "Fresno", "slug": "fresno", "region": "cv", "cost": "none",
         "searches": "10", "found": 2, "active": 2, "wave": 3,
-        "dept": "Planning and Development Department",
+        "dept": "Building and Safety Services Division",
         "permit": "Swimming Pool Abandonment Permit", "fee": "$321 (2013 figure)",
         "doc": "Bulletin 13-02",
         "doc_url": "https://www.fresno.gov/wp-content/uploads/2023/02/SwimmingPoolAbandonment.pdf",
         "confidence": "Medium-high", "rules": "published",
         "permit_html": (
-            "Fresno issues a Swimming Pool Abandonment Permit through its Planning and Development Department, set out "
+            "Fresno issues a Swimming Pool Abandonment Permit through its Building and Safety Services Division, set out "
             "in {doc}. The bulletin's fee of $321 dates from 2013 and should be confirmed with the city before a job is "
             "priced. Fresno's rule is strict: the entire bottom must be broken out, and all backfill must be engineered "
             "to 90% compaction. Owner-builders may apply, and the bulletin names the C-12 and A licence classes."
@@ -279,7 +280,7 @@ CITIES = [
     {
         "rank": 6, "name": "Sacramento", "slug": "sacramento", "region": "cv", "cost": "sac",
         "searches": "20", "found": 11, "active": 5, "wave": 1,
-        "dept": "Community Development Department",
+        "dept": "Community Development Department, Building Division",
         "permit": "Unclear; demolition uses a wrecking permit", "fee": "Not found",
         "doc": "building forms page",
         "doc_url": "https://www.cityofsacramento.gov/community-development/building/building-forms",
@@ -310,7 +311,7 @@ CITIES = [
     {
         "rank": 7, "name": "Long Beach", "slug": "long-beach", "region": "la", "cost": "la",
         "searches": "10", "found": 20, "active": 6, "wave": 2,
-        "dept": "Development Services Building and Safety Bureau",
+        "dept": "Community Development Department, Building and Safety Bureau",
         "permit": "Grading permit", "fee": "Not published",
         "doc": "Information Bulletin IB-008",
         "doc_url": "https://www.longbeach.gov/globalassets/lbcd/media-library/documents/building--safety/information-bulletins/ib-008",
@@ -370,7 +371,7 @@ CITIES = [
     {
         "rank": 9, "name": "Bakersfield", "slug": "bakersfield", "region": "cv", "cost": "none",
         "searches": "10", "found": 5, "active": 2, "wave": 3,
-        "dept": "Development Services Building Division",
+        "dept": "Development Services Department, Building Division",
         "permit": "Unclear", "fee": "Not found",
         "doc": "building forms page",
         "doc_url": "https://www.bakersfieldcity.us/forms",
@@ -399,11 +400,11 @@ CITIES = [
     {
         "rank": 10, "name": "Anaheim", "slug": "anaheim", "region": "oc", "cost": "oc",
         "searches": "Under 10", "found": 20, "active": 10, "wave": 2,
-        "dept": "Planning and Building Department",
+        "dept": "Planning and Building Department, Building Division",
         "permit": "Building permit (general rule)", "fee": "Not found",
         "doc": "Handout B 804",
         "doc_url": "https://www.anaheim.net/DocumentCenter/View/41215",
-        "confidence": "Low-medium", "rules": "fee-less",
+        "confidence": "Low-medium", "rules": "none",
         "permit_html": (
             "Anaheim's {doc} states that a permit is required before any pool is removed, under the general building "
             "permit rule, but publishes no pool procedure or fee. The Planning and Building Department confirms the "
@@ -429,13 +430,13 @@ CITIES = [
     {
         "rank": 11, "name": "Stockton", "slug": "stockton", "region": "cv", "cost": "none",
         "searches": "10", "found": 12, "active": 10, "wave": 2,
-        "dept": "Community Development Department",
+        "dept": "Community Development Department, Building and Life Safety Division",
         "permit": "Building permit", "fee": "$97.25 (FY 2026-27)",
         "doc": "Form BLDG-0014",
         "doc_url": "https://www.stocktonca.gov/Documents/Business/Building%20%26%20Life%20Safety/Building%20Forms/BLDG-0014_SWIMMING%20POOL%20DEMOLITION%20REQUIREMENTS.pdf",
         "confidence": "High", "rules": "published",
         "permit_html": (
-            "Stockton has the best-documented pool permit of the 20 cities. The Community Development Department issues "
+            "Stockton has one of the best-documented pool permits in this directory. The Community Development Department issues "
             "a building permit priced at $97.25 for fiscal year 2026-27, and {doc} sets out two options. Option A leaves "
             "the shell with four holes in the bottom and the top two feet of wall removed. Option B removes the pool and "
             "replaces it with engineered fill. The form names the A, C-12 and C-53 licence classes, and owner-builders "
@@ -448,7 +449,7 @@ CITIES = [
         ),
         "faqs": [
             ("What does a Stockton pool removal permit cost?",
-             "$97.25 for fiscal year 2026-27, the lowest published pool permit of the 20 cities."),
+             "$97.25 for fiscal year 2026-27, a lower fee than any city except Elk Grove, which charges $85."),
             ("What is the difference between Stockton's Option A and Option B?",
              "Option A leaves the shell with four holes and the top two feet removed; Option B removes it with engineered fill."),
             ("Where does Stockton pool water go?",
@@ -460,7 +461,7 @@ CITIES = [
     {
         "rank": 12, "name": "Riverside", "slug": "riverside", "region": "ie", "cost": "none",
         "searches": "10", "found": 7, "active": 2, "wave": 2,
-        "dept": "Community and Economic Development Building and Safety Division",
+        "dept": "Building and Safety Division",
         "permit": "Demolition permit", "fee": "$125 plus $41 issuance (FY 2026-27, general line)",
         "doc": "pool demolition handout (2015)",
         "doc_url": "https://riversideca.gov/cedd/sites/riversideca.gov.cedd/files/pdf/building/forms_handouts/inspections/2019/SWIMMING-POOL-DEMOLITION.pdf",
@@ -489,15 +490,16 @@ CITIES = [
     {
         "rank": 13, "name": "Irvine", "slug": "irvine", "region": "oc", "cost": "oc",
         "searches": "50", "found": 17, "active": 8, "wave": 1,
-        "dept": "Community Development Building and Safety",
+        "dept": "Community Development Department, Building and Safety",
         "permit": "Building permit", "fee": "Minimum fees; amount not published",
         "doc": "pool removal page (Bulletin 217)",
         "doc_url": "https://cityofirvine.gov/building-permits-and-inspections/removing-single-family-residential-swimming-pool-or-spa",
         "confidence": "High", "rules": "published",
         "permit_html": (
             "Irvine's Building and Safety division issues a building permit at minimum fees, though the amount is not "
-            "published. The city's {doc} requires the plans to state whether the area becomes landscaping or a building "
-            "pad, and a soils engineer must supervise the backfill."
+            "published. The city's {doc} requires the plans to state whether the fill is non-structural (landscaping) or "
+            "structural (a building pad). Holes of at least 12 inches go through the bottom at six feet on centre, and a "
+            "soils engineer supervises the backfill to 90% and supplies a final compaction report."
         ),
         "method_html": (
             "Irvine asks the owner to choose at the plan stage: landscaping or building pad. A building pad needs full "
@@ -518,7 +520,7 @@ CITIES = [
     {
         "rank": 14, "name": "Santa Ana", "slug": "santa-ana", "region": "oc", "cost": "oc",
         "searches": "Under 10", "found": 16, "active": 8, "wave": 2,
-        "dept": "Planning and Building Agency",
+        "dept": "Planning and Building Agency, Building Safety Division",
         "permit": "Building, electrical and plumbing permits", "fee": "No pool line published",
         "doc": "Handout BLD-16",
         "doc_url": "https://santa-ana.gov/documents/abandoned-pools-bld-16/",
@@ -575,7 +577,7 @@ CITIES = [
     {
         "rank": 16, "name": "Fremont", "slug": "fremont", "region": "bay", "cost": "bay",
         "searches": "10", "found": 32, "active": 19, "wave": 2,
-        "dept": "Community Development Building Division",
+        "dept": "Community Development Department, Building and Safety",
         "permit": "Express building permit", "fee": "$252 flat (Nov 2024)",
         "doc": "permit types page",
         "doc_url": "https://www.fremont.gov/government/departments/community-development/planning-building-permit-services/planning-building-permits/permit-types",
@@ -634,7 +636,7 @@ CITIES = [
     {
         "rank": 18, "name": "San Bernardino", "slug": "san-bernardino", "region": "ie", "cost": "none",
         "searches": "Under 10", "found": 9, "active": 3, "wave": 3,
-        "dept": "Community and Economic Development Building and Safety",
+        "dept": "Community and Economic Development Department",
         "permit": "Treated as on-site grading", "fee": "Based on cubic yards of fill",
         "doc": "pool demolition handout (2017)",
         "doc_url": "https://www.sanbernardino.gov/DocumentCenter/View/518/Swimming-Pool-Demo-Req-PDF",
@@ -662,7 +664,7 @@ CITIES = [
     {
         "rank": 19, "name": "Modesto", "slug": "modesto", "region": "cv", "cost": "none",
         "searches": "10", "found": 10, "active": 8, "wave": 2,
-        "dept": "Community and Economic Development Building Safety",
+        "dept": "Community and Economic Development Department, Building Safety Division",
         "permit": "Demolition permit (inferred)", "fee": "$301 (FY 2026-27, general line)",
         "doc": "building fee schedule",
         "doc_url": "https://www.modestogov.com/3308/Building-Safety-Fees",
@@ -691,13 +693,13 @@ CITIES = [
     {
         "rank": 20, "name": "Fontana", "slug": "fontana", "region": "ie", "cost": "none",
         "searches": "Under 10", "found": 9, "active": 3, "wave": 3,
-        "dept": "Building and Safety Division",
+        "dept": "Department of Building and Safety",
         "permit": "Demolition permit", "fee": "$120 (2023 schedule)",
         "doc": "pool demolition handout (2026)",
         "doc_url": "https://www.fontanaca.gov/DocumentCenter/View/48412/Demolition-of-Swimming-Pool-or-Spa-PDF",
         "confidence": "High", "rules": "published",
         "permit_html": (
-            "Fontana's Building and Safety Division issues a demolition permit, priced at $120 on the 2023 schedule, "
+            "Fontana's Department of Building and Safety issues a demolition permit, priced at $120 on the 2023 schedule, "
             "which needs a recheck. The city's {doc} requires six 1-ft openings in the bottom and the top two feet of "
             "wall removed when the shell stays. The handout also states directly that building over the area needs "
             "the shell removed and the fill compacted and certified."
@@ -731,3 +733,399 @@ IMAGES = {
     "draining": "Pool being drained through a hose to a sewer clean-out before demolition",
     "permit-plans": "Building permit papers and a site plan for a pool removal on a clipboard",
 }
+
+# Cities 21 to 32 (fourth wave), from the workbook's Cities tab, checked 11 October 2026.
+# title_name adds "CA" where searches return other places with the same name.
+CITIES += [
+    {
+        "rank": 21, "name": "Moreno Valley", "slug": "moreno-valley", "region": "ie", "cost": "none",
+        "searches": "Under 10", "found": 8, "active": 2, "wave": 4,
+        "dept": "Community Development Department, Building and Safety Division",
+        "permit": "Demolition permit",
+        "fee": "$153 plan check plus $347 inspection (2026-27, general demolition line)", "fee_short": "$500",
+        "doc": "pool and spa demolition handout (2022)",
+        "doc_url": "https://moval.gov/city_hall/forms/building-safety/SwimmingPools-Spa-DemoRequirements.pdf",
+        "confidence": "High", "rules": "published",
+        "permit_html": (
+            "Moreno Valley's Building and Safety Division issues a demolition permit for pools and spas, and the city's "
+            "{doc} sets out two options. The general demolition fee line for 2026-27 is $153 for plan check and $347 for "
+            "inspection; the schedule has no pool-specific line. Option A leaves the shell: three holes of at least 2 ft "
+            "go through the bottom, at least 12 inches of #4 rock is placed, the coping and bond beam come off to at "
+            "least 18 inches below grade, and the fill is compacted to 90% under a geotechnical consultant. Option B "
+            "removes the whole shell and backfills with engineered fill in lifts of no more than 8 inches, with a "
+            "stamped geotechnical report. Every job has at least two inspections."
+        ),
+        "method_html": (
+            "Moreno Valley ties Option A to a signed acknowledgement: the owner agrees to keep the area as open space, "
+            "landscape or garden, and to disclose it on sale. Option B is required if anything will be built on the "
+            "area. Both options need a geotechnical consultant, so the engineering cost sits in every Moreno Valley job."
+        ),
+        "faqs": [
+            ("What does Moreno Valley require to leave a pool shell in place?",
+             "Three holes of at least 2 ft in the bottom, 12 inches of #4 rock, the bond beam removed to 18 inches below grade and 90% compaction."),
+            ("Does Moreno Valley record a filled-in pool?",
+             "The owner signs an acknowledgement limiting the area to open space, landscape or garden use and disclosing it on sale."),
+            ("What does the Moreno Valley demolition permit cost?",
+             "The general demolition line for 2026-27 is $153 for plan check plus $347 for inspection."),
+        ],
+        "nearby": ["Riverside", "Perris", "Beaumont", "Banning", "March Air Reserve Base area", "Lake Perris"],
+        "note": "Six of the listings found for Moreno Valley come only from a named region, so the city list is thin.",
+    },
+    {
+        "rank": 22, "name": "Oxnard", "slug": "oxnard", "region": "ven", "cost": "none",
+        "searches": "Under 10", "found": 5, "active": 4, "wave": 4,
+        "dept": "Community Development Department, Building and Engineering Division",
+        "permit": "General demolition permit (no pool rule)",
+        "fee": "$147 or $88.20 general demolition lines (July 2026)", "fee_short": "$88.20–$147",
+        "doc": "B100 development fee schedule",
+        "doc_url": "https://www.oxnard.gov/wp-content/uploads/b100-fees-charged-to-dev-7-18-2026.pdf",
+        "confidence": "Low", "rules": "none",
+        "permit_html": (
+            "Oxnard publishes no pool demolition or abandonment handout. Demolition work in the city needs a demolition "
+            "permit from the Building and Engineering Division, and the city's {doc}, effective 18 July 2026, lists a "
+            "$147 fee for building demolition inspections and $88.20 for accessory structures and similar items. Which "
+            "line applies to a pool is not stated, and no city document sets drainage holes, shell depth or compaction "
+            "rules."
+        ),
+        "method_html": (
+            "With no published rule, the Building and Engineering Division decides whether a partial fill-in is "
+            "accepted in Oxnard. Most California cities that allow one limit the area to landscaping, and Moreno "
+            "Valley and Santa Rosa both require a signed acknowledgement of that limit. Full removal with compacted, "
+            "engineer-certified fill is the safe choice where anything may be built later."
+        ),
+        "faqs": [
+            ("Does Oxnard publish pool removal rules?",
+             "No. Oxnard has no pool demolition handout; the Building and Engineering Division confirms the permit and fill standard."),
+            ("What does an Oxnard demolition permit cost?",
+             "The July 2026 schedule lists $147 for building demolition and $88.20 for accessory structures; the pool line is not stated."),
+            ("What does pool removal cost in Oxnard?",
+             "No Ventura County contractor publishes prices; statewide contractor ranges apply."),
+        ],
+        "nearby": ["Ventura", "Camarillo", "Port Hueneme", "El Rio", "Santa Paula", "Thousand Oaks"],
+        "note": "",
+    },
+    {
+        "rank": 23, "name": "Glendale", "title_name": "Glendale CA", "slug": "glendale", "region": "la", "cost": "la",
+        "searches": "Under 10", "found": 15, "active": 6, "wave": 4,
+        "dept": "Community Development Department, Building and Safety Section",
+        "permit": "Building demolition permit", "fee": "Not published",
+        "doc": "permit application guidance page",
+        "doc_url": "https://www.glendaleca.gov/government/departments/community-development/development-services/permit-guidance",
+        "confidence": "Low", "rules": "none",
+        "permit_html": (
+            "Glendale publishes no pool-specific permit. The city's {doc} says demolition permits are applied for as "
+            "\"Building Demo\" in the GlendalePermits portal, with a site plan, a renovation-demolition acknowledgement "
+            "form and a lead abatement acknowledgement. Pool backfill projects also need Design Review from Planning, "
+            "and the backfilled area must stay as landscaping under the city's water efficient landscape rules or meet "
+            "all zoning development standards. No fee line for pool demolition was found."
+        ),
+        "method_html": (
+            "Glendale's Design Review step applies to any pool backfill, so the Planning review sits on the schedule "
+            "whichever method is chosen. Glendale publishes no rules on holes, shell removal or compaction, so the "
+            "Building and Safety Section confirms what it expects. A backfilled area kept as landscaping must meet the "
+            "water efficient landscape rules."
+        ),
+        "faqs": [
+            ("Does Glendale require Design Review to fill in a pool?",
+             "Yes. Pool backfill projects need Design Review from Planning, and the area must stay landscaping or meet zoning standards."),
+            ("How is a Glendale pool demolition permit applied for?",
+             "As \"Building Demo\" in the GlendalePermits portal, with a site plan and the demolition and lead abatement acknowledgements."),
+            ("Is this Glendale, California or Glendale, Arizona?",
+             "Glendale, California, in Los Angeles County; searches often mix in Glendale, Arizona."),
+        ],
+        "nearby": ["Burbank", "Pasadena", "La Cañada Flintridge", "Montrose", "Eagle Rock", "Atwater Village"],
+        "note": "",
+    },
+    {
+        "rank": 24, "name": "Huntington Beach", "slug": "huntington-beach", "region": "oc", "cost": "oc",
+        "searches": "40", "found": 17, "active": 10, "wave": 4,
+        "dept": "Community Development Department, Building Division",
+        "permit": "Demolition permit",
+        "fee": "$41 processing plus valuation-based inspection (July 2026)", "fee_short": "$41 + inspection",
+        "doc": "pool demolition guidelines (2025)",
+        "doc_url": "https://www.huntingtonbeachca.gov/Documents/Departments/Community%20Development/Building%20Inspections/Permit%20Centre/Applications%20&%20Forms/Additional%20Information%20&%20Forms/Guidelines%20for%20Swimming%20Pool%20Demolition.pdf",
+        "confidence": "High", "rules": "published",
+        "permit_html": (
+            "Huntington Beach's Building Division issues a demolition permit for pools, and the city's {doc} set the "
+            "procedure. The application needs a plot plan and a preliminary report from a licensed soils engineer "
+            "describing how the pool will be demolished or abandoned. Holes go through the bottom, the decking and bond "
+            "beam come off to within 12 inches below grade, electrical conduit and gas lines are removed, at least 6 "
+            "inches of 3/4-inch gravel goes on the bottom, and the backfill is placed in 12-inch compacted lifts. A "
+            "soils compaction report showing at least 90% is required. The fee is the general $41 processing charge "
+            "plus inspection fees from the valuation table."
+        ),
+        "method_html": (
+            "Huntington Beach's guidelines describe leaving the shell bottom in place with drain holes and state no "
+            "use restriction. Because the soils engineer's report and 90% compaction apply either way, a full removal "
+            "adds mainly hauling and fill cost. Three inspections cover the bottom and bond beam removal, utility "
+            "disconnection, and final grade with the compaction report."
+        ),
+        "faqs": [
+            ("Does Huntington Beach require a soils engineer?",
+             "Yes. A preliminary soils report comes with the application and a compaction report showing at least 90% before final."),
+            ("How many inspections does a Huntington Beach pool demolition need?",
+             "Three: bottom and bond beam removal, utility disconnection, and final grade with the compaction report."),
+            ("What do Orange County contractors charge?",
+             "Frisch &amp; Sons publishes $12,000 to $20,000 partial and $18,000 to $30,000 or more for full removal."),
+        ],
+        "nearby": ["Fountain Valley", "Westminster", "Costa Mesa", "Seal Beach", "Newport Beach", "Sunset Beach"],
+        "note": "Huntington Beach has the joint-highest search demand of cities 21 to 32.",
+    },
+    {
+        "rank": 25, "name": "Elk Grove", "slug": "elk-grove", "region": "cv", "cost": "sac",
+        "searches": "Under 10", "found": 8, "active": 4, "wave": 4,
+        "dept": "Building Safety, Inspection and Permits",
+        "permit": "Demolition permit", "fee": "$85 pool and spa demolition (July 2026)",
+        "doc": "Policy B-26-41",
+        "doc_url": "https://elkgrove.gov/residential-pools-patio-covers-and-storage-sheds/residential-swimming-pool-demolition",
+        "confidence": "High", "rules": "published",
+        "permit_html": (
+            "Elk Grove is the only city in this directory with a pool-specific fee: $85 for pool and spa demolition, "
+            "including utility capping, in the July 2026 fee booklet. The city's {doc} sets the rules. A Public Works "
+            "encroachment permit at a flat $250 may be needed first, and a stormwater debris-tracking permit is "
+            "required. Full removal is required if a building will go over or within 5 feet of the pool, with backfill "
+            "under a soils engineer to at least 90% and a compaction report approved before final."
+        ),
+        "method_html": (
+            "Abandoning a pool in place in Elk Grove means removing the bond beam and shell to at least 18 inches deep, "
+            "capping drains, cutting two holes of at least 3 by 3 feet at the deep and shallow ends, and filling with "
+            "sandy soil in 6-inch compacted layers under city inspection. The city then places a building restriction on "
+            "the property: no construction in the pool area or within 5 feet. Full removal avoids that restriction."
+        ),
+        "faqs": [
+            ("What does an Elk Grove pool demolition permit cost?",
+             "$85 for pool and spa demolition including utility capping, in the July 2026 fee booklet."),
+            ("When does Elk Grove require full removal?",
+             "When a building will go over or within 5 feet of the pool."),
+            ("Does Elk Grove restrict building over an abandoned pool?",
+             "Yes. The city places a building restriction on the property covering the pool area and 5 feet around it."),
+        ],
+        "nearby": ["Sacramento", "Laguna", "Galt", "Rancho Murieta", "Wilton", "Florin"],
+        "note": "The city's permit page ranks first in Google for pool removal in Elk Grove.",
+    },
+    {
+        "rank": 26, "name": "Ontario", "title_name": "Ontario CA", "slug": "ontario", "region": "ie", "cost": "none",
+        "searches": "Under 10", "found": 10, "active": 2, "wave": 4,
+        "dept": "Building Department",
+        "permit": "Building permit", "fee": "Valuation-based; not pool-specific (July 2026)",
+        "doc": "Information Bulletin 111",
+        "doc_url": "https://ontarioca.gov/sites/default/files/Ontario-Files/Building/IB%20111%20%28demolition%20of%20swimming%20pool%20%26%20spa%20Requirements%29-eff%2010-16-2024.docx",
+        "confidence": "Medium", "rules": "published",
+        "permit_html": (
+            "Ontario's Building Department issues a building permit for pool and spa demolition through its Citizen "
+            "Portal, with plan review. {doc}, effective 16 October 2024, requires the entire shell removed along with "
+            "the above-ground equipment, gas lines capped and the electrical subpanel and conductors removed. The fill "
+            "is self-compacting material such as sand, or clean dirt compacted to at least 90%, shown on a to-scale "
+            "site plan. Fees follow the city's valuation-based building permit table."
+        ),
+        "method_html": (
+            "Ontario allows only one route: the whole shell comes out. Abandonment in place is not addressed in the "
+            "bulletin, so a partial fill-in is not an option without the Building Department's approval. Sand fill, "
+            "which compacts itself, can avoid compaction testing, a cost worth comparing against clean dirt."
+        ),
+        "faqs": [
+            ("Can a pool be filled in place in Ontario, California?",
+             "No. {doc} requires the entire shell removed; abandonment in place is not addressed."),
+            ("What fill does Ontario accept?",
+             "Self-compacting fill such as sand, or clean dirt compacted to at least 90%."),
+            ("Is this Ontario, California or Ontario, Canada?",
+             "Ontario, California, in San Bernardino County; searches often show Ontario, Canada."),
+        ],
+        "nearby": ["Rancho Cucamonga", "Upland", "Montclair", "Chino", "Fontana", "Eastvale"],
+        "note": "",
+    },
+    {
+        "rank": 27, "name": "Santa Rosa", "slug": "santa-rosa", "region": "bay", "cost": "bay",
+        "searches": "10", "found": 6, "active": 4, "wave": 4,
+        "dept": "Planning and Economic Development Department, Building Division",
+        "permit": "Building permit",
+        "fee": "$50.10 plan check plus $200.38 inspection (2026, minor demolition)", "fee_short": "$250.48",
+        "doc": "Policy 2.5.30",
+        "doc_url": "https://www.srcity.org/documentcenter/view/20379",
+        "confidence": "High", "rules": "published",
+        "permit_html": (
+            "Santa Rosa's Building Division issues a building permit for pool and spa removal, and {doc}, effective "
+            "20 April 2016, sets out two options. The 2026 fee schedule lists minor demolition at $50.10 for plan check "
+            "and $200.38 for inspection, and major demolition at $50.10 and $300.56; which category a pool falls under "
+            "is not stated. Pool water goes to the sanitary sewer, not the storm drain, and every job has at least two "
+            "inspections."
+        ),
+        "method_html": (
+            "Santa Rosa's Option A suits an area staying as landscape or open space: the shell stays below grade, at "
+            "least three 1-ft holes go through the bottom, 15 inches of drain rock goes in, the top 2 feet of shell "
+            "comes off, and the top 24 inches of fill is clean soil. The owner signs an acknowledgement to use the area "
+            "as open space only and to disclose it on sale. Option B, for anything built or paved there, removes the "
+            "whole shell with a geotechnical report and fill in 8-inch lifts compacted to at least 90%."
+        ),
+        "faqs": [
+            ("What does Santa Rosa require to leave a pool shell?",
+             "Three 1-ft holes, 15 inches of drain rock, the top 2 feet removed and a signed open-space acknowledgement."),
+            ("Where does Santa Rosa pool water go?",
+             "To the sanitary sewer, not the storm drain."),
+            ("What does a Santa Rosa pool removal permit cost?",
+             "Minor demolition is $50.10 plan check plus $200.38 inspection on the 2026 schedule; the pool category is not stated."),
+        ],
+        "nearby": ["Rohnert Park", "Windsor", "Sebastopol", "Healdsburg", "Petaluma", "Kenwood"],
+        "note": "",
+    },
+    {
+        "rank": 28, "name": "Lancaster", "title_name": "Lancaster CA", "slug": "lancaster", "region": "la", "cost": "none",
+        "searches": "Under 10", "found": 12, "active": 5, "wave": 4,
+        "dept": "Development Services, Building and Safety",
+        "permit": "General demolition permit (no pool rule)", "fee": "Not published",
+        "doc": "Building and Safety permits page",
+        "doc_url": "https://www.cityoflancasterca.org/our-city/departments-services/development-services/city-engineering/building-and-safety/permits",
+        "confidence": "Low", "rules": "none",
+        "permit_html": (
+            "Lancaster publishes no pool removal rule. The city's {doc} states that a demolition permit is needed to "
+            "demolish any structure that required a permit, and pools do. The demolition application asks for an "
+            "Antelope Valley Air Quality Management District demolition notification and a Desert Region asbestos "
+            "questionnaire along with the permit application. No fee line for pool removal was found."
+        ),
+        "method_html": (
+            "With no published pool rule, Building and Safety decides whether a partial fill-in is accepted in "
+            "Lancaster. Neighbouring Palmdale's code defines demolition to include filling the excavation, which "
+            "suggests the Antelope Valley cities treat the fill as part of the permitted work."
+        ),
+        "faqs": [
+            ("Does Lancaster publish pool removal rules?",
+             "No. A general demolition permit applies; Building and Safety confirms the fill standard."),
+            ("Does Lancaster pool demolition need an air district notice?",
+             "Yes. The demolition application includes an Antelope Valley AQMD notification and an asbestos questionnaire."),
+            ("Is this Lancaster, California?",
+             "Yes, in the Antelope Valley of Los Angeles County; national searches often show Lancaster, Pennsylvania."),
+        ],
+        "nearby": ["Palmdale", "Quartz Hill", "Rosamond", "Lake Los Angeles", "Antelope Acres", "Littlerock"],
+        "note": "Lancaster shares much of its contractor list with Palmdale.",
+    },
+    {
+        "rank": 29, "name": "Rancho Cucamonga", "slug": "rancho-cucamonga", "region": "ie", "cost": "none",
+        "searches": "Under 10", "found": 8, "active": 2, "wave": 4,
+        "dept": "Building and Safety Services Department",
+        "permit": "Pool demolition permit", "fee": "$490 (2026-27, general residential demolition line)",
+        "doc": "form BSF-0027",
+        "doc_url": "https://www.cityofrc.us/sites/default/files/2026-02/BSF-0027-Swimming%20Pool%20Demolition-E.pdf",
+        "confidence": "High", "rules": "published",
+        "permit_html": (
+            "Rancho Cucamonga's Building and Safety Services Department sets its pool procedure in {doc}, revised in "
+            "January 2026. The coping and 24 inches of wall come off all around, exposed steel is cut off, at least 40% "
+            "of the bottom is removed, and steps and any diving board slab come out. Backfill goes in 24-inch layers "
+            "after the inspector approves the preparation, with 90% compaction certified by a licensed geotechnical "
+            "engineer, or clean washed sand or 3/8-inch pea gravel with documentation, then a final 12 inches of fill. "
+            "The 2026-27 schedule lists residential demolition at $490."
+        ),
+        "method_html": (
+            "Rancho Cucamonga's published method is abandonment: the shell stays with 40% of the bottom removed. The "
+            "handout does not address full removal and says nothing about recording the area or making it "
+            "non-buildable. Sand or pea gravel fill can replace the engineer's compaction certificate, which changes the "
+            "cost comparison."
+        ),
+        "faqs": [
+            ("How much of the pool bottom must come out in Rancho Cucamonga?",
+             "At least 40%, along with the coping, 24 inches of wall, steps and any diving board slab."),
+            ("Can sand replace a compaction report in Rancho Cucamonga?",
+             "Yes. Clean washed sand or 3/8-inch pea gravel with documentation is accepted instead of certified compaction."),
+            ("What does the Rancho Cucamonga permit cost?",
+             "The 2026-27 schedule lists residential demolition at $490; whether that line applies to pools is not confirmed."),
+        ],
+        "nearby": ["Upland", "Ontario", "Fontana", "Alta Loma", "Etiwanda", "Claremont"],
+        "note": "",
+    },
+    {
+        "rank": 30, "name": "Oceanside", "slug": "oceanside", "region": "sd", "cost": "sd",
+        "searches": "10", "found": 15, "active": 9, "wave": 4,
+        "dept": "Development Services Department, Building Division",
+        "permit": "General demolition permit (no pool rule)", "fee": "$284.55 (2025-26, general demolition permit)",
+        "doc": "Informational Bulletin IB 116",
+        "doc_url": "https://www.ci.oceanside.ca.us/home/showpublisheddocument/17714/639046801719930000",
+        "confidence": "Low", "rules": "none",
+        "permit_html": (
+            "Oceanside publishes no pool-specific demolition handout. The city's building code requires a permit to "
+            "demolish or remove any building or structure, as {doc} on permits and exempted work reflects, and the "
+            "Building Division's fee schedule lists a demolition permit at $31.84 for plan check and $252.71 for "
+            "inspection, $284.55 in total for 2025-26. No city document sets drainage holes, shell depth or compaction "
+            "rules for pools."
+        ),
+        "method_html": (
+            "Without a published pool rule, the Building Division decides what Oceanside accepts. Many Oceanside "
+            "contractors also work in San Diego, where Information Bulletin 710 requires a soils compaction report for "
+            "pools deeper than five feet, and that standard is a reasonable starting point for a quote."
+        ),
+        "faqs": [
+            ("What does an Oceanside demolition permit cost?",
+             "$284.55 for 2025-26: $31.84 plan check plus $252.71 inspection, not pool-specific."),
+            ("Does Oceanside publish pool removal rules?",
+             "No. The Building Division confirms the fill standard and any engineering required."),
+            ("Do San Diego contractors work in Oceanside?",
+             "Yes. Most Oceanside listings also serve San Diego."),
+        ],
+        "nearby": ["Carlsbad", "Vista", "Fallbrook", "Bonsall", "San Marcos", "Camp Pendleton area"],
+        "note": "",
+    },
+    {
+        "rank": 31, "name": "Garden Grove", "slug": "garden-grove", "region": "oc", "cost": "oc",
+        "searches": "40", "found": 18, "active": 10, "wave": 4,
+        "dept": "Community and Economic Development, Building and Safety Division",
+        "permit": "Demolition permit", "fee": "Not published",
+        "doc": "Information Bulletin 26-012",
+        "doc_url": "https://ggcity.org/sites/default/files/swimming-pool-spa-demolition.pdf",
+        "confidence": "High", "rules": "published",
+        "permit_html": (
+            "Garden Grove requires a demolition permit for every pool and spa demolition, obtained through the "
+            "Development Access portal, and {doc} (2026) sets the method. At least two drainage openings of at least "
+            "12 inches go through the bottom, one at the lowest point, and the bottom passes inspection before "
+            "backfill. At least 12 inches of No. 4 rock goes in, then clean fill sand in moisture-conditioned lifts. "
+            "The fee schedule has no demolition line; only $81 electrical and plumbing pool lines appear. An older, "
+            "stricter 2020 policy is still online alongside the 2026 bulletin."
+        ),
+        "method_html": (
+            "Garden Grove's published method leaves the shell with drainage openings. Landscape-only areas need no "
+            "compaction testing, and the top 18 inches may be planting soil. Areas for future structures need 90% "
+            "relative compaction and a geotechnical compaction report, and no structure may be built on the fill "
+            "without a geotechnical foundation investigation."
+        ),
+        "faqs": [
+            ("Does Garden Grove require compaction testing?",
+             "Only where a structure may go; landscape-only areas need no compaction testing."),
+            ("How many drainage openings does Garden Grove require?",
+             "At least two of 12 inches or more, one at the lowest point, inspected before backfill."),
+            ("Which Garden Grove pool rule applies?",
+             "{doc} from 2026; an older 2020 policy is still online, so confirm with the Building and Safety Division."),
+        ],
+        "nearby": ["Westminster", "Anaheim", "Santa Ana", "Stanton", "Fountain Valley", "Orange"],
+        "note": "Garden Grove has the joint-highest search demand of cities 21 to 32.",
+    },
+    {
+        "rank": 32, "name": "Palmdale", "slug": "palmdale", "region": "la", "cost": "none",
+        "searches": "Under 10", "found": 13, "active": 5, "wave": 4,
+        "dept": "Building and Safety Division",
+        "permit": "General demolition permit (no pool rule)",
+        "fee": "$200 or $207.50 demolition inspection (2023 resolution)", "fee_short": "$200–$207.50",
+        "doc": "Building and Safety Development Guide",
+        "doc_url": "https://www.cityofpalmdaleca.gov/DocumentCenter/View/19916/Building-and-Safety-Development-Guide",
+        "confidence": "Low", "rules": "none",
+        "permit_html": (
+            "Palmdale publishes no pool-specific rule. The city's {doc}, updated January 2026, requires a demolition "
+            "permit for each structure demolished in part or whole, and the municipal code defines demolition to "
+            "include filling the excavation it leaves. Demolition permits need Antelope Valley Air Quality Management "
+            "District approval, a hazardous materials evaluation and a construction waste plan with deposit. The 2023 "
+            "fee resolution shows the demolition inspection as both $200 and $207.50."
+        ),
+        "method_html": (
+            "Without a published pool rule, the Building and Safety Division decides whether a partial fill-in is "
+            "accepted in Palmdale. Because the code counts the fill as part of the demolition, the inspector will "
+            "expect a compaction standard either way; full removal with certified compaction is the route for any "
+            "later structure."
+        ),
+        "faqs": [
+            ("Does Palmdale publish pool removal rules?",
+             "No. A general demolition permit applies, and the code counts filling the excavation as part of the demolition."),
+            ("What does a Palmdale demolition inspection cost?",
+             "$200 or $207.50; the 2023 fee resolution shows both figures."),
+            ("Do Lancaster contractors work in Palmdale?",
+             "Yes. Palmdale shares most of its Antelope Valley contractor list with Lancaster."),
+        ],
+        "nearby": ["Lancaster", "Quartz Hill", "Littlerock", "Acton", "Lake Los Angeles", "Leona Valley"],
+        "note": "",
+    },
+]

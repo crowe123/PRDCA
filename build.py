@@ -20,6 +20,10 @@ ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "public"
 REGION_NAME = dict(REGIONS)
 CITY_BY_SLUG = {c["slug"]: c for c in CITIES}
+N = len(CITIES)
+NO_RULE_COUNT = sum(c["rules"] == "none" for c in CITIES)
+HANDOUT_COUNT = sum(c["rules"] == "published" for c in CITIES)
+FEE_ONLY_COUNT = sum(c["rules"] == "fee-only" for c in CITIES)
 TOTAL_FOUND = 103  # businesses confirmed as offering in-ground pool removal (workbook)
 
 
@@ -143,39 +147,74 @@ def word_count(fragment):
 
 # ---------------------------------------------------------------- data
 
-def load_businesses():
-    path = ROOT / "data" / "businesses.csv"
-    rows = []
-    with path.open(newline="", encoding="utf-8") as f:
+BASIS = {
+    "City named on its site": "its own website names {city}",
+    "Region named on its site": "its website names the region {city} sits in",
+    "Google Maps result for this city": "Google Maps lists it for pool removal in {city}",
+}
+BASIS_ORDER = list(BASIS)
+
+
+def load_listings():
+    """Rows from data/listings.csv (scripts/import_workbook.py), grouped by city slug.
+
+    Only businesses whose licence was current and active at the state board are
+    published. Sites sharing one licence number in the same city merge into one card.
+    """
+    slug_by_name = {c["name"]: c["slug"] for c in CITIES}
+    by_city, held = {}, {}
+    with (ROOT / "data" / "listings.csv").open(newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            if not r.get("business") or r.get("status", "").strip().lower() != "listed":
+            slug = slug_by_name.get(r["city"])
+            if not slug:
                 continue
-            r["city_slugs"] = [s.strip() for s in r.get("cities", "").split(";") if s.strip()]
-            r["active"] = r.get("licence_status", "").strip().lower().startswith("current")
-            rows.append(r)
-    return rows
+            if r["status"] != "Licence active":
+                if r["status"] in ("No licence number on site", "Maps listing only, no website"):
+                    held[slug] = held.get(slug, 0) + 1
+                continue
+            cards = by_city.setdefault(slug, {})
+            key = r["licence_number"] or r["business"]
+            if key in cards:
+                card = cards[key]
+                card["aliases"].append(r["business"])
+                if BASIS_ORDER.index(r["basis"]) < BASIS_ORDER.index(card["basis"]):
+                    card["basis"] = r["basis"]
+            else:
+                cards[key] = dict(r, aliases=[])
+    listed = {slug: sorted(cards.values(), key=lambda b: (BASIS_ORDER.index(b["basis"]), b["business"].lower()))
+              for slug, cards in by_city.items()}
+    return listed, held
 
 
-def contractor_card(b):
+def contractor_card(b, city):
     name = html.escape(b["business"])
     if LINK_CONTRACTOR_SITES and b.get("website"):
         name = a(html.escape(b["website"]), name)
-    lic = ""
-    if b.get("licence_number"):
-        lic = (f'<p>Licence {html.escape(b["licence_number"])}: <span class="{"licence-ok" if b["active"] else ""}">'
-               f'{html.escape(b.get("licence_status", ""))}</span> at the state board, checked '
-               f'{html.escape(b.get("licence_checked", ""))}.</p>')
-    says = f'<p>{html.escape(b["site_says"])}</p>' if b.get("site_says") else ""
-    return (f'<article class="card"><h3>{name}</h3><p>Based in {html.escape(b.get("base_city", ""))} · '
-            f'{html.escape(b.get("phone", ""))}</p>{lic}{says}</article>')
+    aka = ""
+    if b["aliases"]:
+        aka = f'<p>Also trades as {html.escape(", ".join(b["aliases"]))}, under the same licence.</p>'
+    classes = f' ({html.escape(b["classifications"])})' if b["classifications"] else ""
+    lic = (f'<p>Licence {html.escape(b["licence_number"])}{classes}, held by {html.escape(b["licence_name"])}: '
+           f'<span class="licence-ok">{html.escape(b["licence_status"].lower())}</span> at the state board, '
+           'checked 11 October 2026.</p>')
+    offer = ("Its website has a dedicated pool removal page or section."
+             if b["clarity"].startswith("Dedicated") else "Its website lists pool removal among its services.")
+    says = b["site_says"].strip()
+    quote = ""
+    if len(says) > 60 and says[0].isupper() and " " in says and "|" not in says:
+        quote = f' The site says: &ldquo;{html.escape(says.rstrip(". "))}.&rdquo;'
+    basis = BASIS.get(b["basis"], "").format(city=city)
+    return (f'<article class="card"><h3>{name}</h3><p>Based in {html.escape(re.sub(r"\s*\(.*\)$", "", b["base_city"]))} · '
+            f'<a href="tel:{re.sub(r"[^0-9+]", "", b["phone"])}">{html.escape(b["phone"])}</a></p>{lic}{aka}'
+            f'<p>{offer}{quote} Listed for {city} because {basis}.</p></article>')
 
 
 # ---------------------------------------------------------------- city pages
 
-def city_page(c, businesses):
+def city_page(c, listings, held):
     name, slug = c["name"], c["slug"]
-    listed = sorted([b for b in businesses if slug in b["city_slugs"]],
-                    key=lambda b: (not b["active"], b["business"].lower()))
+    listed = listings.get(slug, [])
+    held_n = held.get(slug, 0)
     region = REGION_NAME[c["region"]]
     published = c["rules"] == "published"
 
@@ -192,7 +231,7 @@ def city_page(c, businesses):
         '<div class="facts">'
         f'<div class="fact"><b>{c["found"]}</b><span>businesses found for {name}</span></div>'
         f'<div class="fact"><b>{c["active"]}</b><span>with an active state licence</span></div>'
-        f'<div class="fact"><b>{c["fee"].split(" (")[0] if c["fee"][0] == "$" else "See below"}</b>'
+        f'<div class="fact"><b>{c.get("fee_short") or (c["fee"].split(" (")[0] if c["fee"][0] == "$" else "See below")}</b>'
         f'<span>published permit fee</span></div>'
         f'<div class="fact"><b>{c["confidence"]}</b><span>confidence in published city rules</span></div>'
         '</div>')
@@ -205,7 +244,11 @@ def city_page(c, businesses):
 
     # Contractors section
     if listed:
-        cards = "<div class=\"cards\">" + "".join(contractor_card(b) for b in listed) + "</div>"
+        cards = "<div class=\"cards\">" + "".join(contractor_card(b, name) for b in listed) + "</div>"
+        if held_n:
+            cards += (f'<p>Another {held_n} {"business shows" if held_n == 1 else "businesses show"} no licence '
+                      f'number or only a Google Maps listing for {name}. '
+                      f'{"It is" if held_n == 1 else "They are"} being checked by phone before being listed.</p>')
     else:
         cards = (
             f'<div class="notice"><p>The {c["found"]} businesses found for {name} are being confirmed before their '
@@ -236,8 +279,8 @@ def city_page(c, businesses):
     permit = (
         f'<h2>{name} Pool Removal Permit Rules</h2><p>{fill(c["permit_html"], c)}</p>{permit_rows}'
         + ('' if published else
-           f'<p>The {c["dept"]} is the office to call before any work starts. {name} is one of six cities among the '
-           '20 in this directory that publish nothing specific to pools, so the department\'s answer on the phone '
+           f'<p>The {c["dept"]} is the office to call before any work starts. {name} is one of {NO_RULE_COUNT} cities among the '
+           f'{len(CITIES)} in this directory that publish nothing specific to pools, so the department\'s answer on the phone '
            'decides the permit type, the fee and the fill standard.</p>')
         + '<p>Fees and requirements change at the start of each fiscal year, usually in July. The city document '
           'linked above is the record a contractor or inspector will work from.</p>')
@@ -333,7 +376,7 @@ def city_page(c, businesses):
                                 "areaServed": f"{name}, CA"}}
                       for i, b in enumerate(listed)]}
 
-    page(f"/{slug}/", f"Pool Removal {name}: Local Contractors and Permit Rules",
+    page(f"/{slug}/", f"Pool Removal {c.get('title_name', name)}: Local Contractors and Permit Rules",
          f"Pool removal contractors serving {name}, with the city's permit rules, published fees and the choice "
          f"between partial fill-in and full removal.",
          body, crumbs=[(None, name)], schema=schema)
@@ -356,13 +399,13 @@ def home():
         for c in CITIES if c["rules"] != "none")
 
     body = f"""<div class="content">
-<h1>Pool Removal Contractors Across California's 20 Largest Cities</h1>
-<p class="lead"><strong>{SITE_NAME} lists {TOTAL_FOUND} businesses confirmed as offering in-ground pool removal across California's 20 largest cities, and the <a href="{SRC["cslb_lookup"]}">Contractors State License Board</a> check of 11 October 2026 found 51 of the licence numbers they show current and active.</strong></p>
-<p>Each city page pairs the local contractor list with that city's own permit rules, taken from official building department documents. Coverage is uneven: Bay Area cities have about 30 businesses each, while Fresno has 2, Bakersfield 5 and Riverside 6. The 20 cities are ranked by the <a href="{SRC["dof_e1"]}">California Department of Finance population estimate for 1 January 2026</a>.</p>
+<h1>Pool Removal Contractors Across California's 32 Largest Cities</h1>
+<p class="lead"><strong>{SITE_NAME} lists {TOTAL_FOUND} businesses confirmed as offering in-ground pool removal across California's 32 largest cities, and the <a href="{SRC["cslb_lookup"]}">Contractors State License Board</a> check of 11 October 2026 found 51 of the licence numbers they show current and active.</strong></p>
+<p>Each city page pairs the local contractor list with that city's own permit rules, taken from official building department documents. Coverage is uneven: Bay Area cities have about 30 businesses each, while Fresno has 2, Oxnard and Bakersfield 5 each, and Riverside 7. The {N} cities are ranked by the <a href="{SRC["dof_e1"]}">California Department of Finance population estimate for 1 January 2026</a>.</p>
 {img_tag("home-hero", "hero-img", eager=True)}
-{cta("Homeowners can ask for referrals to listed contractors in any of the 20 cities.")}
+{cta("Homeowners can ask for referrals to listed contractors in any of the {N} cities.")}
 
-<h2 id="cities">Contractor counts for 20 cities in six regions</h2>
+<h2 id="cities">Contractor counts for {N} cities in {len(REGIONS)} regions</h2>
 <p>Every city page sits one click from here. The count beside each city is the number of businesses research found offering in-ground pool removal there; a business that serves several cities is counted under each. San Jose has the deepest list at 34, and Oakland and Fremont follow at 32 each.</p>
 {regions_html}
 {cta("Each referral request is matched to contractors who name the city on their own site.")}
@@ -378,7 +421,7 @@ def home():
 {cta("Comparing written quotes from licensed contractors is the surest way to price a specific pool.")}
 
 <h2>Permit names and fees by city</h2>
-<p>Every city that publishes a rule requires a permit, but the permit's name, the fee and what may stay in the ground all differ. Twelve of the 20 cities publish a pool-specific handout, two publish only a fee and six publish nothing specific. The table lists the 14 cities with a published rule or fee; the city pages cover the other six.</p>
+<p>Every city that publishes a rule requires a permit, but the permit's name, the fee and what may stay in the ground all differ. {HANDOUT_COUNT} of the {N} cities publish a pool-specific handout, {FEE_ONLY_COUNT} publish only a fee and {NO_RULE_COUNT} publish nothing specific. The table lists the {N - NO_RULE_COUNT} cities with a published rule or fee; the city pages cover the other {NO_RULE_COUNT}.</p>
 <div class="table-wrap"><table><thead><tr><th>City</th><th>Permit</th><th>Published fee</th><th>City document</th></tr></thead><tbody>{permit_rows}</tbody></table></div>
 <p>Fees for Fresno, Chula Vista, Fremont and Fontana come from older schedules, so a call to the city confirms the current amount.</p>
 
@@ -397,7 +440,7 @@ def home():
 {DISCLOSURE}
 </div>"""
     page("/", "Pool Removal California: Contractors, Costs and Permits",
-         "A directory of pool removal and demolition contractors across California's 20 largest cities, with local "
+         "A directory of pool removal and demolition contractors across California's 32 largest cities, with local "
          "permit rules and published price ranges.", body)
     return word_count(body)
 
@@ -450,7 +493,7 @@ def cost_page():
 <h2>Permit fees by city</h2>
 <p>Permit fees are a small share of the total but vary widely between cities. Stockton charges $97.25 for fiscal year 2026-27 under <a href="https://www.stocktonca.gov/Documents/Business/Building%20%26%20Life%20Safety/Building%20Forms/BLDG-0014_SWIMMING%20POOL%20DEMOLITION%20REQUIREMENTS.pdf">form BLDG-0014</a>, while San Diego charges $360.36 for plan check plus $332.48 for inspection. San Bernardino bases its fee on the cubic yards of fill, since it treats pool removal as on-site grading. San Jose takes a refundable debris deposit instead of a set pool fee.</p>
 <div class="table-wrap"><table><thead><tr><th>City</th><th>Permit</th><th>Published fee</th></tr></thead><tbody>{fee_rows}</tbody></table></div>
-<p>Los Angeles, Long Beach, Irvine, Santa Clarita and Santa Ana publish rules but no pool fee, and six cities publish nothing specific. The city pages link each city's own document. Fees for Fresno, Chula Vista, Fremont and Fontana come from older schedules and should be confirmed with the city before budgeting.</p>
+<p>Several cities, including Los Angeles, Long Beach, Irvine, Santa Clarita, Santa Ana and Garden Grove, publish rules but no pool fee, and {NO_RULE_COUNT} cities publish nothing specific to pools. The city pages link each city's own document. Fees for Fresno, Chula Vista, Fremont and Fontana come from older schedules and should be confirmed with the city before budgeting.</p>
 
 <h2>Timeline from permit to finished grade</h2>
 <p>A partial fill-in takes one to four days on site and a full removal three to seven, once the permit is in hand. Draining the pool adds a day or two, and must follow local discharge rules: the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater</a> allow the storm drain only for dechlorinated water within a set pH range, and Stockton and Riverside allow the sewer clean-out only.</p>
@@ -593,7 +636,7 @@ def faq_page():
 def about_page():
     body = f"""<div class="content">
 <h1>About This Site: Referral Disclosure and Listing Criteria</h1>
-<p class="lead"><strong>{SITE_NAME} is an independent referral directory of businesses that remove in-ground pools in California's 20 largest cities; it is not a contractor and does not perform any work.</strong></p>
+<p class="lead"><strong>{SITE_NAME} is an independent referral directory of businesses that remove in-ground pools in California's 32 largest cities; it is not a contractor and does not perform any work.</strong></p>
 
 <h2>Referral disclosure</h2>
 <p>The site makes money through referrals. When a homeowner asks for referrals through the <a href="/contact/">contact page</a>, the request goes to one or more listed contractors, and a contractor may pay {SITE_NAME} a fee for that introduction. Homeowners pay nothing to the site. Referral fees never change the order of listings or which businesses appear; the order is set by licence status. {SITE_NAME} offers no free inspections, giveaways or discounts, and makes no promise about any contractor's price or work. Homeowners should check every contractor's licence and insurance and get the scope, price and permit responsibility in a written contract.</p>
@@ -636,7 +679,7 @@ def contact_page():
 {DISCLOSURE}
 </div>"""
     page("/contact/", "Request Pool Removal Contractor Referrals in California",
-         "Ask for referrals to licensed pool removal contractors in California's 20 largest cities.",
+         "Ask for referrals to licensed pool removal contractors in California's 32 largest cities.",
          body, crumbs=[(None, "Request referrals")])
     thanks = ('<div class="content"><h1>Referral Request Received</h1><p>Listed contractors serving the chosen city '
               'will be in touch by phone or email. The <a href="/cost/">cost guide</a> and '
@@ -669,10 +712,10 @@ def main():
         '<path d="M6 20c3 0 3 2 6 2s3-2 6-2 3 2 6 2 2-1 2-1" stroke="#8fe0b8" stroke-width="2.5" fill="none"/>'
         '<path d="M8 10h16" stroke="#fff" stroke-width="2.5"/></svg>')
 
-    businesses = load_businesses()
+    listings, held = load_listings()
     counts = {"/": home(), "/cost/": cost_page(), "/faq/": faq_page()}
     for c in CITIES:
-        counts[f'/{c["slug"]}/'] = city_page(c, businesses)
+        counts[f'/{c["slug"]}/'] = city_page(c, listings, held)
     about_page()
     contact_page()
     not_found()
