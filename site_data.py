@@ -36,7 +36,7 @@ SRC = {
     "homeadvisor": "https://www.homeadvisor.com/cost/swimming-pools-hot-tubs-and-saunas/remove-and-fill-in-pool/",
     "fixr": "https://www.fixr.com/costs/fill-in-pool",
     "homeguide": "https://homeguide.com/costs/cost-to-fill-in-a-pool",
-    "baaqmd": "https://www.baaqmd.gov/permits/asbestos-demolition-renovation",
+    "baaqmd": "https://www.baaqmd.gov/permits/asbestos",
     "angi": "https://www.angi.com/articles/pool-removal-cost/ca/los-angeles",
     "frisch": "https://www.frischandsons.com/pool-demolition-cost-orange-county",
     "lapdc": "https://losangelespooldemo.com/",
@@ -289,8 +289,8 @@ CITIES = [
             "San Francisco publishes no rule specific to pool removal. The general requirement in {doc} applies: a permit "
             "is needed to remove any regulated structure, and a swimming pool is one. The Department of Building "
             "Inspection is the office to call for the permit type, the fee and any engineering it expects for the fill. "
-            f'Bay Area jobs also need a <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> notice for '
-            "demolition work."
+            f'The <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> asks for notice before demolitions '
+            "and confirms whether a pool-only job counts."
         ),
         "method_html": (
             "With no published pool rule, San Francisco owners should confirm with the Department of Building Inspection "
@@ -1607,7 +1607,7 @@ CITY_DEPTH = {
                 f'Vernon recycling facility does not take dirt, and its <a href="{SRC["bak_mtvernon"]}">facility '
                 "handout</a> points to the Bena Landfill on Neumarkel Road for concrete and demolition debris, priced on "
                 f'<a href="{SRC["kern_gate"]}">Kern County\'s gate fee list</a>, and to '
-                "Bowman Asphalt and Sturgeon & Son, which take concrete, asphalt and clean dirt at no charge.",
+                "Bowman Asphalt and Sturgeon &amp; Son, which take concrete, asphalt and clean dirt at no charge.",
                 "The city uses the state CW-1 construction waste management form, which carries the CALGreen target of "
                 "at least 65% diversion.",
             ]),
@@ -1626,7 +1626,7 @@ CITY_DEPTH = {
              "Only with the city engineer's specific authorization; the municipal code otherwise bars pool drainage "
              "from the public sewer."),
             ("Where does pool concrete go in Bakersfield?",
-             "The Bena Landfill accepts concrete and demolition debris, and Bowman Asphalt and Sturgeon & Son take "
+             "The Bena Landfill accepts concrete and demolition debris, and Bowman Asphalt and Sturgeon &amp; Son take "
              "concrete, asphalt and clean dirt."),
             ("What does pool removal cost in Bakersfield?",
              "No local prices are published; statewide contractor ranges run $3,500 to $12,000 partial and $8,000 to "
@@ -1639,3 +1639,443 @@ CITY_DEPTH = {
 
 for _c in CITIES:
     _c.update(CITY_DEPTH.get(_c["slug"], {}))
+
+
+# ---- Batch 2 (research of 12 October 2026) --------------------------------
+SRC.update({
+    "oak_moratorium": "https://www.oaklandca.gov/Planning-Building/Building-Construction-Permits-Inspections/Building-Inspections/Wet-Weather-Grading-Moratorium",
+    "oak_demo": "https://www.oaklandca.gov/My-Household/Building-and-Remodeling/Homeowner-Projects-Permits/Demolition-Permits",
+    "oak_cd": "https://www.oaklandca.gov/resources/construction-and-demolition-recycling-requirements",
+    "oak_discharge": "https://www.oaklandca.gov/services/apply-for-a-temporary-discharge-permit",
+    "acwp_pools": "https://www.cityofpleasantonca.gov/assets/our-government/public-works/clean-water-program/stormwater-pollution-prevention/pools-spas-and-fountains.pdf",
+    "fre_fees": "https://www.fremont.gov/home/showpublisheddocument/19579/639039838228900000",
+    "fre_cd": "https://fremont.gov/government/departments/environmental-services/construction-demolition-debris",
+    "usd_pools": "https://unionsanitary.ca.gov/residents/disposal-of-wastes/disposal-of-residential-pool-water/",
+    "ocs_fees": "https://www.ci.oceanside.ca.us/home/showpublisheddocument/10174/639257686213930000",
+    "ocs_ib108": "https://www.ci.oceanside.ca.us/home/showpublisheddocument/17993/639094220975370000",
+    "ocs_cd": "https://www.ci.oceanside.ca.us/government/development-services/building/construction-and-demolition-requirements",
+    "ocs_drain": "https://www.ci.oceanside.ca.us/home/showpublisheddocument/17651/639034692769670000",
+    "sdapcd": "https://www.sdapcd.org/content/dam/sdapcd/documents/compliance/Updated%20APCD%20Hazmat%20Submittal%20Process%20%2011-9-21.docx",
+    "scv_fees": "https://santaclarita.gov/finance/wp-content/uploads/sites/6/2026/07/Website-FINAL-Fee-Schedule-2026-27-FINAL.pdf",
+    "scv_cd": "https://greensantaclarita.com/construction-and-development/construction-and-demolition-recycling-ordinance/",
+    "scv_bins": "https://greensantaclarita.com/construction-and-development/temporary-and-rolloff-bins/",
+    "scv_drain": "https://santaclarita.gov/home/showpublisheddocument/9978/635950354435970000",
+    "scv_pools": "https://greensantaclarita.com/green-friendly-info/swimming-pools/",
+    "cv_fees": "https://www.chulavistaca.gov/home/showpublisheddocument/2416/638638971096170000",
+    "cv_cd": "https://chulavistaca.gov/departments/clean/environmental-services/construction-demolition-debris",
+    "cv_pools": "https://chulavistaca.gov/home/showpublisheddocument/11560/635875803445570000",
+    "sa_fees": "https://storage.googleapis.com/proudcity/santaanaca/2026/07/fy-26-27-miscellaneous-fees-4.0-adopted-w-hyperlinks_compressed_v2-87abc58b.pdf",
+    "sa_cd": "https://santa-ana.gov/construction-and-demolition-waste-services/",
+    "sa_republic": "https://www.republicservices.com/sites/default/files/legacy_documents/Muni/California/Santa-Ana/Construction-and-Demolition-Flyer.pdf",
+    "h2oc_pools": "https://h2oc.org/wp-content/uploads/2024/03/H2OC-Pools-and-Spa-Brochure-2024-02-26-WEB.pdf",
+})
+
+
+def _l(key, text):
+    return f'<a href="{SRC[key]}">{text}</a>'
+
+
+BATCH2 = {
+    "oakland": {
+        "compact": True,
+        "dept": "Planning &amp; Building Department",
+        "opening_extra": (" Oakland bars soil disturbance from 15 October to 15 April, so a pool job there has to finish "
+                          "in the dry season."),
+        "permit_html": (
+            "Oakland publishes no rule specific to pool removal, and its permit pages do not say which permit covers "
+            "one, so Planning &amp; Building on Frank H. Ogawa Plaza ((510) 238-3891) confirms the permit type and fee. "
+            "The city's {doc} sets the triggers that can apply to the fill: a grading permit is needed for more than 50 "
+            "cubic yards of fill where a slope exceeds 20% or the fill is more than 5 ft high, for more than 500 cubic "
+            "yards of cut and fill combined, for any land disturbance on ground steeper than 20%, and wherever the city "
+            "has information about land stability problems. Grading applications go through the Online Permit Center "
+            "with an Initial Statement of the Engineer for Grading."),
+        "method_html": (
+            "Oakland's calendar shapes the job more than the method. The city's "
+            + _l("oak_moratorium", "wet weather grading moratorium")
+            + " prohibits disturbing soil from 15 October to 15 April, with exceptions only for emergency stabilization "
+            "or an alternate methods request backed by a geotechnical engineer's letter, shoring plans and a schedule. "
+            "A pool on a lot steeper than 20% falls inside the grading permit rules, which bring in the grading "
+            "engineer's statement whichever method is used. On flatter ground, Planning &amp; Building confirms whether a "
+            "partial fill-in is accepted."),
+        "extra_after_permit": [
+            ("Air district notice in Oakland", [
+                "Oakland's " + _l("oak_demo", "demolition permit page") + " requires an asbestos demolition "
+                "acknowledgment letter and job number from the "
+                + _l("baaqmd", "Bay Area Air Quality Management District")
+                + " before a building demolition permit is issued. The district's rule defines demolition as removing "
+                "load-supporting members of a building or facility and does not mention pools, so the district or "
+                "Planning &amp; Building confirms whether a pool-only job needs the notice.",
+            ]),
+        ],
+        "cost_html": [
+            "No Oakland contractor publishes prices, but Bay Area firms do: " + _l("souza", "Souza &amp; Son's")
+            + " publishes $4,500 to $10,000 for a partial fill-in and $8,000 to $22,000 for a full removal, and "
+            + _l("walberg", "Walberg, Inc.") + " gives $5,000 to $12,000 and $12,000 to $30,000 for Northern "
+            "California. On a hillside lot, the grading engineer's statement and any grading permit add to those "
+            "figures.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Oakland", [
+                "Oakland's " + _l("oak_cd", "construction and demolition recycling rules") + " apply to all city "
+                "building permits: debris goes to facilities that recover 100% of inert material such as concrete, "
+                "asphalt and soil, and 65% of everything else, with a Waste Reduction and Recycling Plan filed online "
+                "through Green Halo before the permit and a summary report at the end. Anyone hauling the debris needs "
+                "a non-exclusive franchise from the city under Chapter 15.34 of the municipal code. Property owners are "
+                "exempt, and so are contractors hauling their own work's debris in their own fixed-body trucks, but that "
+                "exemption does not cover demolition contractors.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Oakland's "
+            + _l("oak_discharge", "temporary discharge permit page")
+            + " says only rainwater should enter the city's storm drains, and other water needs a temporary storm drain "
+            "or sanitary sewer discharge permit. The Alameda County "
+            + _l("acwp_pools", "Clean Water Program guidance for pools")
+            + " sends pool water to a sanitary sewer cleanout, prohibits draining water with residual chlorine or "
+            "copper algaecide to a storm drain, and names EBMUD at (510) 287-1651 for sewer approval in Oakland."),
+        "faqs": [
+            ("Does Oakland publish pool removal rules?",
+             "No. Planning &amp; Building at (510) 238-3891 confirms the permit type and fee."),
+            ("When can a pool be removed in Oakland?",
+             "Between 15 April and 15 October. The wet weather moratorium bars soil disturbance the rest of the year."),
+            ("Does an Oakland pool removal need a grading permit?",
+             "It can. More than 50 cubic yards of fill on a slope over 20% or over 5 ft high, more than 500 cubic "
+             "yards in total, or work on ground steeper than 20% needs one."),
+            ("Where can Oakland pool water be drained?",
+             "To a sanitary sewer cleanout with EBMUD's approval; chlorinated water may not go to the storm drain."),
+            ("Who can haul pool debris in Oakland?",
+             "A city-franchised hauler, the property owner, or a contractor hauling its own work in its own trucks; "
+             "demolition contractors need the franchise."),
+        ],
+    },
+    "fremont": {
+        "compact": True,
+        "fee": "$266 flat (schedule amended January 2026)",
+        "fee_short": "$266",
+        "doc": "fee schedule (amended January 2026)",
+        "doc_url": SRC["fre_fees"],
+        "lead": ("Pool removal in Fremont runs on an express building permit at a flat $266, with no plan review, and "
+                 "Pool Removal California found {found} businesses offering in-ground pool removal there, {active} "
+                 "with an active state licence."),
+        "permit_html": (
+            "Fremont's {doc} lists residential swimming pool demolition and removal as an express permit at a flat "
+            "$266, under a heading for permits with no plan review and inspection only. Extra inspections and "
+            "reinspections cost $133 each. The Building and Safety FAQ says a building permit is needed before "
+            "demolishing any structure, and the city publishes no technical rules for the holes, the wall or the "
+            "fill."),
+        "method_html": (
+            "With no published fill rules and no plan review, the inspection is where Fremont judges the method. An "
+            "owner planning to build over the area later should settle the compaction standard with Building and "
+            "Safety before the work starts, since the express permit leaves no plan on file that sets it."),
+        "extra_after_permit": [
+            ("Air district notice in Fremont", [
+                "The " + _l("baaqmd", "Bay Area Air Quality Management District") + " asks for notice at least 10 "
+                "business days before every demolition, regardless of asbestos content, with a 72-hour option for "
+                "residential buildings of four units or fewer. Its rule defines demolition as removing load-supporting "
+                "members of a building or facility and does not mention pools, so the district confirms whether a "
+                "pool-only job needs the notice.",
+            ]),
+        ],
+        "cost_html": [
+            "No Fremont contractor publishes prices, but East Bay firms do: " + _l("byebye", "Bye Bye Pool in Concord")
+            + " quotes $3,500 to $7,000 for a partial fill-in and $9,000 to $19,000 for a full removal, and "
+            + _l("souza", "Souza &amp; Son's") + " publishes $4,500 to $10,000 and $8,000 to $22,000. Fremont's own "
+            "charges are the $266 express permit and $133 for any extra inspection.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Fremont", [
+                "Fremont's " + _l("fre_cd", "construction and demolition page") + " lists all demolition among the "
+                "projects with recycling requirements: a Waste Handling Plan goes into Fremont Waste Tracking before the "
+                "permit is issued, and a Debris Disposal and Diversion Report closes the job. The city's plan form "
+                "requires 100% of asphalt, concrete and soil recycled, with a penalty of $1,000 for each ton that is "
+                "not. Republic Services is the only approved debris box hauler at construction sites, though separate "
+                "loads of clean soil, asphalt or concrete are exempt when each is no more than 10% garbage, and "
+                "contractors may self-haul to an approved facility.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. " + _l("usd_pools", "Union Sanitary District")
+            + ", which serves Fremont, warns that pool water drained to a storm drain flows to creeks and the San "
+            "Francisco Bay. The Clean Water Program guidance it links sends pool water to a sanitary sewer cleanout "
+            "and prohibits draining water with residual chlorine or copper algaecide to a storm drain, and the "
+            "district's number for sewer approval is (510) 477-7500."),
+        "faqs": [
+            ("What does a Fremont pool removal permit cost?",
+             "$266 flat for a residential pool demolition or removal, on the schedule amended in January 2026."),
+            ("Does a Fremont pool removal need plans?",
+             "No. The city lists it as an express permit with no plan review and inspection only."),
+            ("What happens to the concrete from a Fremont pool?",
+             "It must be 100% recycled, with a penalty of $1,000 a ton for any that is not."),
+            ("Who can supply a debris box in Fremont?",
+             "Republic Services, though separate loads of clean concrete, asphalt or soil are exempt."),
+            ("Where can Fremont pool water be drained?",
+             "To a sanitary sewer cleanout with Union Sanitary District approval; chlorinated water may not go to the "
+             "storm drain."),
+        ],
+    },
+    "oceanside": {
+        "compact": True,
+        "fee": "$284.55 general demolition permit (FY 2026-27)",
+        "fee_short": "$284.55",
+        "permit_html": (
+            "Oceanside publishes no pool-specific demolition handout. {doc}, based on the 2025 California codes, quotes "
+            "the building code's rule that anyone who demolishes a building or structure must first obtain a permit, "
+            "lists no exemption for pool removal, and notes that Building Division staff will not confirm an exemption "
+            "verbally. The city's " + _l("ocs_fees", "building fee schedule for 2026-27") + " lists a demolition permit "
+            "at $31.84 for plan check and $252.71 for inspection, $284.55 in total."),
+        "method_html": (
+            "No city document sets drainage holes, shell depth or fill rules for pools, so the Building Division decides "
+            "what Oceanside accepts. The city's grading code does set general standards for permitted controlled fill: "
+            "layers no thicker than 6 inches, compacted to at least 90% of maximum density. Grading outside the code's "
+            "exemptions needs a permit from the City Engineer, and a minor grading plan carries a $300 administrative "
+            "fee, so the depth of fill on a full removal decides whether Engineering is involved."),
+        "extra_after_permit": [
+            ("Soils reports and air district notice in Oceanside", [
+                "Oceanside's " + _l("ocs_ib108", "Information Bulletin 108") + " requires a geotechnical report for new "
+                "pools and wherever a grading plan is required. It says nothing about removing a pool, so the grading "
+                "question decides whether a removal needs one.",
+                "The " + _l("sdapcd", "San Diego County Air Pollution Control District") + " requires a demolition "
+                "notification whenever a load-bearing structure is wrecked, and an asbestos survey before the building "
+                "permit. The district does not say whether a pool shell counts, so the Building Division confirms it "
+                "with the permit.",
+            ]),
+        ],
+        "cost_html": [
+            "No Oceanside contractor publishes prices, but San Diego firms do: " + _l("demodiego", "Demo Diego")
+            + " quotes $5,000 to $9,000 for a partial fill-in and $9,000 to $15,000 for a full removal. Oceanside's own "
+            "charges are the $284.55 demolition permit and, where a minor grading plan is needed, the $300 "
+            "administrative fee.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Oceanside", [
+                "Oceanside's " + _l("ocs_cd", "construction and demolition requirements") + " call for a Waste "
+                "Management Plan before permits are issued and a signed affidavit at final inspection that the "
+                "diversion target was met. The plan form sets a minimum of 65% recycled or salvaged under CALGreen, "
+                "lists demolition among its project types and counts a Waste Management roll-off bin as one way to "
+                "comply; Waste Management is the city's franchise service provider. The city code requires all debris "
+                "removed within one week of the work finishing.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Oceanside's "
+            + _l("ocs_drain", "pool draining tips") + " say no permit is needed to drain a pool, but the water must "
+            "test below 1 part per million of chlorine, and the city suggests leaving it in the sun for at least three "
+            "days to get there. Filter backwash goes to the sewer, not the street, saltwater pools need total "
+            "dissolved solids below 500 ppm before draining to the street, and the Urban Runoff Hotline is "
+            "760-435-4500."),
+        "faqs": [
+            ("Does Oceanside publish pool removal rules?",
+             "No. A demolition permit is required, at $284.55 for 2026-27, and the Building Division sets the method."),
+            ("Does draining an Oceanside pool need a permit?",
+             "No, but the water must test below 1 part per million of chlorine before it reaches the street."),
+            ("Does an Oceanside pool removal need a Waste Management Plan?",
+             "The city requires one before permits are issued, with at least 65% of the debris recycled or salvaged."),
+            ("What does pool removal cost in Oceanside?",
+             "No local prices are published; San Diego firms quote $5,000 to $9,000 partial and $9,000 to $15,000 full."),
+        ],
+    },
+    "santa-clarita": {
+        "compact": True,
+        "doc": "pool abandonment bulletin (revised January 2020)",
+        "doc_url": "https://santaclarita.gov/home/showpublisheddocument/13292/637486509545530000",
+        "fee": "$38 issuance plus $95 for valuation up to $5,000 (FY 2026-27)",
+        "fee_short": "$38 + $95",
+        "lead": ("Pool removal in Santa Clarita needs a building permit from the city's Building and Safety Division, "
+                 "whether the pool is filled in place or removed, and Pool Removal California found {found} businesses "
+                 "offering in-ground pool removal there, {active} with an active state licence. A pool filled in place "
+                 "leaves the property permanently recorded as having an abandoned structure."),
+        "permit_html": (
+            "Santa Clarita's Building and Safety Division requires a permit whether a pool is filled in place or "
+            "removed completely, and its {doc} sets out the abandonment route. A building permit can be issued over the "
+            "counter once the application is complete and two site plans, on paper at least 11 by 17 inches, show the "
+            "property lines, adjacent streets and pool dimensions. The city's "
+            + _l("scv_fees", "2026-27 fee schedule") + " has no pool line; its general building permit fees are $38 "
+            "for issuance and $95 for work valued up to $5,000."),
+        "method_html": (
+            "The bulletin's catch is in its wording: a pool filled in place leaves the property permanently recorded as "
+            "having an abandoned structure, and the pool may have to be removed completely if a future structure is "
+            "proposed on or near it. Filling in place needs at least two 24-inch holes with the bottom broken up for "
+            "drainage, the bond beam cut at least 12 inches below grade, and the fill named on the plan as gravel, sand "
+            "or compacted earth. No compaction report is required unless a future structure is proposed."),
+        "extra_after_permit": [
+            ("Inspections and paperwork on a Santa Clarita job", [
+                "The site plan also notes that pool equipment is removed and the electrical, water and gas lines are "
+                "capped. The bulletin then sets two inspections:",
+                "<ol><li>A pre-fill inspection of the drainage holes and the broken bottom, before any fill goes in."
+                "</li><li>A final inspection confirming the pool was filled.</li></ol>",
+                "At the final, the inspector signs the inspection card, which the bulletin describes as the property "
+                "owner's record of the work, so owners should keep it with the property papers.",
+            ]),
+        ],
+        "cost_html": [
+            "No Santa Clarita contractor publishes prices, but Los Angeles firms do: "
+            + _l("lapdc", "Los Angeles Pool Demolition Contractors") + " starts at $10,500 for a partial fill-in and "
+            "$17,500 for a full removal, and " + _l("angi", "Angi's Los Angeles figures") + " run from $2,850 to "
+            "$11,350 and $4,550 to $18,200. Santa Clarita's own charges add the building permit, the demolition debris "
+            "deposit where it applies, and a compaction report only when a structure is planned.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Santa Clarita", [
+                "Santa Clarita's " + _l("scv_cd", "construction and demolition recycling ordinance") + " covers all "
+                "demolition projects and requires at least 65% of inert materials and 65% of everything else recycled. "
+                "A Construction and Demolition Materials Management Plan and a refundable deposit of 10% or $15,000, "
+                "whichever is less, are due before the building permit, and proof of diversion within 180 days of the "
+                "final inspection. Bins and roll-offs must come from one of the city's "
+                + _l("scv_bins", "franchised haulers") + ", which include Burrtec and Waste Management, and contractors "
+                "may self-haul only under a state licence covering that scope.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Santa Clarita's "
+            + _l("scv_drain", "pool drainage form") + " allows the sewer only through a 3-inch P-trap installed under "
+            "a city permit, never between 5 and 9 am on weekdays and never into a septic system. Water sent to the "
+            "street gutter needs notice to Environmental Services at 661-286-4098 and must be dechlorinated, "
+            "debrominated and pH neutral with no algaecides, and saltwater pools may not drain to the gutter or storm "
+            "drain at all. The city's " + _l("scv_pools", "pool guidance") + " limits the flow to one outlet no wider "
+            "than 2 inches."),
+        "faqs": [
+            ("Does a Santa Clarita pool filled in place stay on record?",
+             "Yes. The {doc} says the property will be permanently recorded as having an abandoned structure."),
+            ("Can a Santa Clarita homeowner build over a filled pool?",
+             "The pool may have to be removed completely if a structure is proposed on or near it."),
+            ("How many holes does Santa Clarita require?",
+             "At least two 24-inch holes, with the bottom broken up for drainage."),
+            ("Does Santa Clarita need a compaction report?",
+             "Only when a future structure is proposed."),
+            ("Can Santa Clarita pool water go to the street?",
+             "Only dechlorinated, debrominated, pH-neutral water, after notice to Environmental Services at 661-286-4098."),
+        ],
+    },
+    "chula-vista": {
+        "compact": True,
+        "fee": "$404 pool and spa demolition line (September 2024 schedule)",
+        "fee_short": "$404",
+        "permit_html": (
+            "Chula Vista's Development Services Department requires a demolition permit whenever a building or "
+            "structure is demolished. The city's {doc} asks for a New Construction Worksheet, the San Diego regional "
+            "hazardous materials questionnaire and utility disconnect notices for anything connected to a utility. The "
+            "city's " + _l("cv_fees", "Fee Bulletin 10-400") + ", from the September 2024 master fee schedule, has a "
+            "line for swimming pool, spa and hot tub demolition at $123 intake and $281 inspection, $404 in total, and "
+            "all fees are paid before the permit is issued."),
+        "method_html": (
+            "Chula Vista publishes no technical rule for pools, so Development Services confirms whether a partial "
+            "fill-in is accepted and what fill it expects. The pool demolition fee line carries no plan check charge, "
+            "only intake and inspection, so the method is settled with the department before work starts rather than "
+            "through a reviewed plan."),
+        "extra_after_permit": [
+            ("Air district notice in Chula Vista", [
+                "The " + _l("sdapcd", "San Diego County Air Pollution Control District") + " requires a demolition "
+                "notification whenever a load-bearing structure is wrecked, filed at least 10 working days ahead, and "
+                "an asbestos survey before the building permit. The district does not say whether a pool shell counts, "
+                "so Development Services confirms it with the permit.",
+            ]),
+        ],
+        "cost_html": [
+            "No Chula Vista contractor publishes prices, but San Diego firms do: " + _l("demodiego", "Demo Diego")
+            + " quotes $5,000 to $9,000 for a partial fill-in and $9,000 to $15,000 for a full removal, and "
+            + _l("villa", "Villa Demolition") + " quotes $12,000 to $30,000 and $45,000 to $60,000. Chula Vista's own "
+            "charges add the $404 permit and container rental.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Chula Vista", [
+                "Chula Vista's " + _l("cv_cd", "construction and demolition rules") + " require 100% of inert "
+                "materials such as concrete, and at least 65% of everything else, recycled. Environmental Services "
+                "must approve a Waste Management Report before a demolition permit is issued, which takes up to 10 "
+                "business days, and diversion records are due within 30 days after a demolition-only job finishes. "
+                "Republic Services is the city's franchise hauler and rents containers at 619-421-9400. The city also "
+                "takes a refundable performance deposit of 1.5% of valuation on most larger projects, so Environmental "
+                "Services confirms whether a pool job needs one.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Chula Vista's "
+            + _l("cv_pools", "pool maintenance guidance") + " sends it to the sanitary sewer, or slowly onto "
+            "landscaping with no runoff, and allows the storm drain only when chlorine tests below one part per "
+            "million, the pH is 7 to 8 and the water is free of colour, algae and debris. Large volumes to the sewer "
+            "need a call to Wastewater Engineering at (619) 691-5021 first, and saltwater pool water may not go to the "
+            "storm drain."),
+        "faqs": [
+            ("What does a Chula Vista pool demolition permit cost?",
+             "$404: $123 intake and $281 inspection on the September 2024 fee schedule."),
+            ("What does Chula Vista need before issuing the permit?",
+             "A New Construction Worksheet, the hazardous materials questionnaire, utility disconnect notices and an "
+             "approved Waste Management Report."),
+            ("What happens to the concrete from a Chula Vista pool?",
+             "All inert material, concrete included, must be recycled."),
+            ("Where can Chula Vista pool water be drained?",
+             "To the sanitary sewer or slowly onto landscaping; the storm drain only below 1 ppm chlorine at pH 7 to 8."),
+        ],
+    },
+    "santa-ana": {
+        "compact": True,
+        "doc": "Handout BLD-16 (revised March 2025)",
+        "doc_url": "https://storage.googleapis.com/proudcity/santaanaca/2022/07/BLD-16_Abandoned-Pools.pdf",
+        "fee": "Hourly: $294.06 demolition plan check, $212.11 inspection (FY 2026-27)",
+        "fee_short": "Hourly",
+        "lead": ("Pool removal in Santa Ana needs building, electrical and plumbing permits from the city's Planning and "
+                 "Building Agency, and Pool Removal California found {found} businesses offering in-ground pool "
+                 "removal there, {active} with an active state licence. Handout BLD-16 calls for five 3 ft by 3 ft "
+                 "holes in the floor and the bond beam removed."),
+        "permit_html": (
+            "Santa Ana's Planning and Building Agency requires three permits to abandon a pool: a building permit with "
+            "a site plan, an electrical permit and a plumbing permit, plus approvals from the Planning Department and "
+            "from Public Works for construction runoff. The city's " + _l("sa_fees", "2026-27 fee schedule")
+            + " bills demolition plan check at $294.06 an hour and inspection at $212.11 an hour, with an electrical "
+            "demolition fee of $64.15 and a 26% stormwater surcharge on building and plumbing permits."),
+        "method_html": (
+            "{doc} describes abandoning the pool in place. Crews jack hammer five holes, each 3 ft by 3 ft, four in the "
+            "deep end and one in the shallow end, remove the bond beam around the top, typically 12 to 18 inches deep, "
+            "and take out any built-in spa walls. The shell is filled with pea gravel up to the bond beam and finished "
+            "with clean soil, or filled with soil compacted to 90% of the laboratory standard, with a compaction report "
+            "at final inspection. An addition over the old pool needs a compaction report from a professional "
+            "engineer."),
+        "extra_after_permit": [
+            ("Inspections and paperwork on a Santa Ana job", [
+                "BLD-16 sets the inspection order, booked at (714) 667-2738 or online:",
+                "<ol><li>Electrical inspection, with every electrical connection terminated or disconnected.</li>"
+                "<li>Plumbing inspection, with every water supply and drain connection capped.</li><li>Building "
+                "inspection of the holes, which gives the go-ahead to backfill once electrical and plumbing have "
+                "passed.</li><li>Final inspection, where any compaction report goes to the inspector and is filed with "
+                "the finaled permit.</li></ol>",
+            ]),
+        ],
+        "cost_html": [
+            "No Santa Ana contractor publishes prices, but Orange County firms do: " + _l("frisch", "Frisch &amp; Sons")
+            + " publishes $12,000 to $20,000 for a partial fill-in and $18,000 to $30,000 or more for a full removal. "
+            "Santa Ana's own charges add hourly demolition plan check and inspection, the electrical and plumbing "
+            "permits, and the $204 debris plan review.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Santa Ana", [
+                "Santa Ana's " + _l("sa_cd", "construction and demolition page") + " names Republic Services for "
+                "temporary debris bins, reached at (657) 467-6220, and cites the CALGreen minimum of 65% recycled. "
+                "Republic's " + _l("sa_republic", "Santa Ana flyer") + " says a Waste Reduction and Recycling Plan must "
+                "be submitted before a permit is issued, lists concrete, rock and dirt as clean debris and caps roll-off "
+                "containers at 10 tons. The fee schedule charges $204 to review a residential debris recycling plan, "
+                "with a refundable deposit of $1.14 a square foot and a $250 minimum.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Santa Ana belongs to H2OC, the stormwater program "
+            "shared by all 34 Orange County cities, whose " + _l("h2oc_pools", "pool drainage brochure") + " asks for "
+            "pool water sent to the sanitary sewer when possible. The storm drain is allowed only for dechlorinated "
+            "water with no more than 0.1 mg/L of chlorine, a pH of 6.5 to 8.5 and no filter media or acid waste, and "
+            "saltwater pools may not use it. Santa Ana's storm drains carry water untreated to the ocean."),
+        "faqs": [
+            ("What permits does a Santa Ana pool removal need?",
+             "Building, electrical and plumbing permits, plus Planning and Public Works approval."),
+            ("How many holes does Santa Ana require?",
+             "Five holes, each 3 ft by 3 ft: four in the deep end and one in the shallow end."),
+            ("Can a Santa Ana homeowner build over a filled pool?",
+             "Yes, with a compaction report from a professional engineer, as {doc} requires for an addition."),
+            ("What does a Santa Ana pool removal permit cost?",
+             "Demolition plan check is $294.06 an hour and inspection $212.11 an hour on the 2026-27 schedule, plus "
+             "electrical and plumbing fees."),
+            ("Where can Santa Ana pool water be drained?",
+             "To the sanitary sewer when possible; the storm drain only below 0.1 mg/L chlorine at pH 6.5 to 8.5."),
+        ],
+    },
+}
+
+for _c in CITIES:
+    _c.update(BATCH2.get(_c["slug"], {}))

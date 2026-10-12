@@ -255,7 +255,9 @@ def city_page(c, listings, held):
                    f'offering in-ground pool removal there, {c["active"]} with an active state licence.{c.get("opening_extra", "")}</strong></p>')
 
     if c.get("lead"):
-        opening = f'<p class="lead"><strong>{fill(c["lead"], c)}</strong></p>'
+        opening = ('<p class="lead"><strong>'
+                   + fill(c["lead"], c).replace("{found}", str(c["found"])).replace("{active}", str(c["active"]))
+                   + '</strong></p>')
 
     facts = (
         '<div class="facts">'
@@ -559,7 +561,7 @@ def cost_page():
 
 <h2>Timeline from permit to finished grade</h2>
 <p>A partial fill-in takes one to four days on site and a full removal three to seven, once the permit is in hand. Draining the pool adds a day or two, and must follow local discharge rules: the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater</a> allow the storm drain only for dechlorinated water within a set pH range, and Stockton and Modesto allow the sewer only.</p>
-<p>Permits add one to three weeks in most cities. San Jose can issue in a single visit, and Fremont's express permit needs no plan review. Bay Area jobs also need an air district notice from the <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> before demolition, and Oakland bars grading from 15 October to 15 April, so jobs there need to be booked for the dry season.</p>
+<p>Permits add one to three weeks in most cities. San Jose can issue in a single visit, and Fremont's express permit needs no plan review. San Jose also asks for a job number from the <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> before demolition, and Oakland bars grading from 15 October to 15 April, so jobs there need to be booked for the dry season.</p>
 {figure("cost-landscape", "Many owners keep part of the deck as a patio, which lowers both the price and the hauling volume.")}
 
 <h2>Property tax and rebates after removal</h2>
@@ -649,7 +651,7 @@ def faq_page():
 <p>Often, yes. Many Orange County and Inland Empire subdivisions require association approval for changes to the yard, and Irvine's <a href="https://cityofirvine.gov/building-permits-and-inspections/removing-single-family-residential-swimming-pool-or-spa">pool removal page</a> asks the owner to state the area's new use on the plans. Association approval is separate from the city permit.</p>
 
 <h3>Does the air district need notice?</h3>
-<p>In the Bay Area, yes. San Jose's <a href="{SJ}">pool demolition page</a> requires a job number from the <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> before demolition starts, and Lancaster requires an air district demolition notice as well.</p>
+<p>In San Jose, yes. San Jose's <a href="{SJ}">pool demolition page</a> requires a job number from the <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> before demolition starts, and Lancaster requires an air district demolition notice as well. Elsewhere, the district's rules are written for load-bearing building demolition, so it confirms whether a pool-only job counts.</p>
 
 <h2>Cost and timing</h2>
 

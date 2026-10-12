@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-12T20:38:24+00:00",
+ "generated": "2026-10-12T20:56:58+00:00",
  "siteName": "Pool Removal California",
  "pages": 36,
  "cities": [
@@ -41,7 +41,7 @@
    "confidence": "Low",
    "listed": 17,
    "held": 11,
-   "words": 2060
+   "words": 2063
   },
   {
    "name": "Fresno",
@@ -81,7 +81,7 @@
    "confidence": "Low",
    "listed": 16,
    "held": 13,
-   "words": 1903
+   "words": 2089
   },
   {
    "name": "Bakersfield",
@@ -91,7 +91,7 @@
    "confidence": "Low",
    "listed": 2,
    "held": 3,
-   "words": 1239
+   "words": 1241
   },
   {
    "name": "Anaheim",
@@ -141,7 +141,7 @@
    "confidence": "High",
    "listed": 8,
    "held": 7,
-   "words": 1416
+   "words": 1581
   },
   {
    "name": "Chula Vista",
@@ -151,7 +151,7 @@
    "confidence": "Medium",
    "listed": 9,
    "held": 4,
-   "words": 1565
+   "words": 1621
   },
   {
    "name": "Fremont",
@@ -161,7 +161,7 @@
    "confidence": "Medium",
    "listed": 17,
    "held": 12,
-   "words": 1961
+   "words": 2012
   },
   {
    "name": "Santa Clarita",
@@ -171,7 +171,7 @@
    "confidence": "High",
    "listed": 4,
    "held": 6,
-   "words": 1227
+   "words": 1430
   },
   {
    "name": "San Bernardino",
@@ -301,7 +301,7 @@
    "confidence": "Low",
    "listed": 9,
    "held": 4,
-   "words": 1552
+   "words": 1619
   },
   {
    "name": "Garden Grove",
