@@ -61,26 +61,23 @@
 
   function render() {
     var d = state.data, ev = d.events || [], st = d.statuses || {};
-    var siteName = d.siteName;
     var calls = ev.filter(function (e) { return e.type === "call"; });
     var forms = ev.filter(function (e) { return e.type === "form"; });
-    var contractorCalls = calls.filter(function (e) { return e.target !== siteName; });
 
     // KPI tiles
     $("kpis").innerHTML = [
       [ev.length, "referrals in the last " + d.days + " days"],
       [forms.length, "contact form requests"],
-      [contractorCalls.length, "taps on a contractor's number"],
-      [calls.length - contractorCalls.length, "taps on the site's own number"],
+      [calls.length, "taps on the phone number"],
     ].map(function (k) { return '<div class="kpi"><b>' + k[0] + "</b><span>" + k[1] + "</span></div>"; }).join("");
 
-    $("by-contractor").innerHTML = bars(countBy(contractorCalls, function (e) { return e.target; }), "No contractor calls yet.");
+    $("calls-by-page").innerHTML = bars(countBy(calls, function (e) { return e.page; }), "No phone taps yet.");
     $("by-city").innerHTML = bars(countBy(ev, function (e) { return e.city || "Site-wide pages"; }), "No referrals yet.");
     $("forms-by-city").innerHTML = bars(countBy(forms, function (e) { return e.city; }), "No form requests yet.");
 
     var recent = ev.slice().sort(function (a, b) { return a.at < b.at ? 1 : -1; }).slice(0, 100);
     $("recent").innerHTML = recent.length ? recent.map(function (e) {
-      var what = e.type === "form" ? "Form: " + [e.poolType, e.method].filter(Boolean).join(", ") : "Call: " + e.target + " " + e.phone;
+      var what = e.type === "form" ? "Form: " + [e.poolType, e.method].filter(Boolean).join(", ") : "Phone tap: " + e.phone;
       return "<tr><td>" + esc(new Date(e.at).toLocaleString()) + "</td><td>" + (e.type === "form" ? "Form" : "Phone") +
         "</td><td>" + esc(e.city) + "</td><td>" + esc(what) + "</td><td>" + esc(e.page) + "</td></tr>";
     }).join("") : '<tr><td colspan="5" class="muted">No referral events recorded yet.</td></tr>';

@@ -135,3 +135,5 @@ form.quote button { justify-self: start; border: 0; cursor: pointer; font: inher
   .mega { max-height: 70vh; overflow-y: auto; }
   .mega-grid { grid-template-columns: 1fr 1fr; gap: 14px 16px; }
 }
+.phone-btn { background: #fff; color: var(--brand) !important; font-variant-numeric: tabular-nums; }
+.phone-btn:hover { filter: none; background: #e9f6ef; }

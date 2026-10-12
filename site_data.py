@@ -727,17 +727,6 @@ CITIES = [
     },
 ]
 
-# Images generated with kie.ai (scripts/generate_images.py). Pages use them when the file exists.
-IMAGES = {
-    "home-hero": "Excavator breaking up a concrete swimming pool in a California backyard",
-    "partial-fill": "Old pool shell with drainage holes broken through the bottom before backfill",
-    "full-removal": "Excavated hole after a pool shell has been fully removed",
-    "compaction": "Fill soil being compacted in layers where a pool was removed",
-    "after-landscape": "Drought-tolerant garden planted where a backyard pool used to be",
-    "debris-haul": "Truck loaded with broken pool concrete leaving a residential street",
-    "draining": "Pool being drained through a hose to a sewer clean-out before demolition",
-    "permit-plans": "Building permit papers and a site plan for a pool removal on a clipboard",
-}
 
 # Cities 21 to 32 (fourth wave), from the workbook's Cities tab, checked 11 October 2026.
 # title_name adds "CA" where searches return other places with the same name.

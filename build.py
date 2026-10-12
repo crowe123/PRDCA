@@ -14,13 +14,14 @@ import re
 import shutil
 from pathlib import Path
 
-from site_data import (CITIES, IMAGES, LINK_CONTRACTOR_SITES, PRICES, REGION_COST,
+from site_data import (CITIES, LINK_CONTRACTOR_SITES, PRICES, REGION_COST,
                        REGIONS, SITE_NAME, SITE_URL, SRC,
                        BUSINESS_ADDRESS, BUSINESS_PHONE, BUSINESS_PHONE_TEL)
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "public"
 REGION_NAME = dict(REGIONS)
+ALT = {k: v.get("alt", "") for k, v in json.loads((ROOT / "data" / "image_prompts.json").read_text()).items()}
 CITY_BY_SLUG = {c["slug"]: c for c in CITIES}
 N = len(CITIES)
 NO_RULE_COUNT = sum(c["rules"] == "none" for c in CITIES)
@@ -46,7 +47,7 @@ def img_tag(name, cls="", eager=False):
     path = ROOT / "static" / "img" / f"{name}.jpg"
     if not path.exists():
         return ""
-    alt = html.escape(IMAGES[name])
+    alt = html.escape(ALT.get(name, ""))
     load = 'fetchpriority="high"' if eager else 'loading="lazy"'
     return (f'<img src="/img/{name}.jpg" alt="{alt}" width="1600" height="900" '
             f'{load} decoding="async"{f" class={chr(34)}{cls}{chr(34)}" if cls else ""}>')
@@ -103,7 +104,9 @@ def header_nav(current):
         '<nav class="nav" aria-label="Main">'
         '<details class="menu"><summary>Cities</summary>'
         f'<div class="mega"><div class="mega-grid">{regions}</div></div></details>'
-        f'{guides}{cta}</nav>')
+        f'{guides}{cta}'
+        f'<a class="btn phone-btn" href="tel:{BUSINESS_PHONE_TEL}" data-track-call="{SITE_NAME}">{BUSINESS_PHONE}</a>'
+        '</nav>')
 
 
 FOOTER = (
@@ -228,9 +231,8 @@ def contractor_card(b, city):
     if len(says) > 60 and says[0].isupper() and " " in says and "|" not in says:
         quote = f' The site says: &ldquo;{html.escape(says.rstrip(". "))}.&rdquo;'
     basis = BASIS.get(b["basis"], "").format(city=city)
-    return (f'<article class="card"><h3>{name}</h3><p>Based in {html.escape(re.sub(r"\s*\(.*\)$", "", b["base_city"]))} · '
-            f'<a href="tel:{re.sub(r"[^0-9+]", "", b["phone"])}" data-track-call="{html.escape(b["business"])}">'
-            f'{html.escape(b["phone"])}</a></p>{lic}{aka}'
+    return (f'<article class="card"><h3>{name}</h3>'
+            f'<p>Based in {html.escape(re.sub(r"\s*\(.*\)$", "", b["base_city"]))}</p>{lic}{aka}'
             f'<p>{offer}{quote} Listed for {city} because {basis}.</p></article>')
 
 
@@ -325,9 +327,7 @@ def city_page(c, listings, held):
         'area to landscaping afterwards. A full removal hauls away every piece of the shell and replaces it with fill '
         'compacted in layers to 90%, which takes three to seven days and is the route for anyone planning a structure '
         'over the old pool.</p>'
-        + figure("full-removal" if c["rank"] % 2 else "partial-fill",
-                 "Full removal leaves an open excavation ready for compacted fill." if c["rank"] % 2 else
-                 "A partial fill-in breaks drainage holes through the pool floor before backfill."))
+        + figure(f"city-{slug}-work", ALT.get(f"city-{slug}-work", "") + "."))
 
     draining = (
         '<p>Pool water has to go somewhere before demolition starts. '
@@ -372,8 +372,7 @@ def city_page(c, listings, held):
                 items += f"<p><strong>{q}</strong><br>{ans}</p>"
         return f'<h2>Common {name} questions</h2>{items}'
 
-    hero = img_tag("permit-plans" if c["rank"] % 3 == 0 else ("home-hero" if c["rank"] % 3 == 1 else "debris-haul"),
-                   "hero-img", eager=True)
+    hero = img_tag(f"city-{slug}-hero", "hero-img", eager=True)
 
     def assemble(faq_html):
         return (
@@ -397,7 +396,7 @@ def city_page(c, listings, held):
                   "name": f"Pool removal contractors serving {name}",
                   "itemListElement": [
                       {"@type": "ListItem", "position": i + 1,
-                       "item": {"@type": "LocalBusiness", "name": b["business"], "telephone": b.get("phone", ""),
+                       "item": {"@type": "LocalBusiness", "name": b["business"],
                                 "areaServed": f"{name}, CA"}}
                       for i, b in enumerate(listed)]}
 
@@ -484,7 +483,7 @@ def cost_page():
 <h1>Published Pool Removal Prices From California Contractors</h1>
 <p class="lead"><strong>California contractors publish $3,500 to $12,000 for a partial fill-in and $8,000 to $30,000 for a full removal in Northern California, while <a href="{SRC["lapdc"]}">Los Angeles Pool Demolition Contractors</a> starts at $10,500 and $17,500 and <a href="{SRC["frisch"]}">Frisch &amp; Sons</a> quotes up to $30,000 or more in Orange County.</strong></p>
 <p>Those contractor figures run well above the national cost guides. <a href="{SRC["homeadvisor"]}">HomeAdvisor</a>, <a href="{SRC["fixr"]}">Fixr</a> and <a href="{SRC["homeguide"]}">HomeGuide</a> average prices across the whole country, where labour, dump fees and permit costs are lower, so their numbers work best as a floor for California budgets. Every price on this page is attributed to the contractor or guide that published it.</p>
-{img_tag("debris-haul", "hero-img", eager=True)}
+{img_tag("cost-hero", "hero-img", eager=True)}
 
 <h2>California prices run above the national guides</h2>
 <p>Three things push California prices up. Labour and equipment rates in the state's metro areas are among the highest in the country. Most California cities require engineering for a full removal, and a compaction report from a soils engineer adds $1,500 to $4,000. Dump fees for concrete and the cost of clean fill dirt are higher near the coast, where most pools are.</p>
@@ -523,7 +522,7 @@ def cost_page():
 <h2>Timeline from permit to finished grade</h2>
 <p>A partial fill-in takes one to four days on site and a full removal three to seven, once the permit is in hand. Draining the pool adds a day or two, and must follow local discharge rules: the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater</a> allow the storm drain only for dechlorinated water within a set pH range, and Stockton and Riverside allow the sewer clean-out only.</p>
 <p>Permits add one to three weeks in most cities. San Jose can issue in a single visit, and Fremont's express permit needs no plan review. Bay Area jobs also need an air district notice from the <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> before demolition, and Oakland bars grading from 15 October to 15 April, so jobs there need to be booked for the dry season.</p>
-{figure("draining", "Draining comes first, to the sewer clean-out or a storm drain where the city allows it.")}
+{figure("cost-landscape", "Many owners keep part of the deck as a patio, which lowers both the price and the hauling volume.")}
 
 <h2>Property tax and rebates after removal</h2>
 <p>Removing a pool can lower a property's assessed value. The <a href="{SRC["boe_8609"]}">Board of Equalization's letter 86/09</a> treats removal of an improvement as a reason to reduce assessed value, and the board's <a href="{SRC["boe_newcon"]}">new construction guidance</a> covers how improvements are added and removed. The reduction is tied to the pool's own assessed value, so for a pool built decades ago it may be small. The <a href="{SRC["sd_assessor"]}">San Diego County Assessor</a> handles such changes through its realty assessment division; no county publishes a step-by-step process for reporting a removal.</p>
@@ -538,7 +537,7 @@ def cost_page():
 <p>A written quote that lists each item makes two contractors' prices comparable. The scope line should name the method, partial fill-in or full removal, and how much of the wall and floor comes out. The permit line should say who pulls the permit, which permit it is and whether the fee is included. The fill line should give the cubic yards, the source of the fill and the compaction standard, normally 90%.</p>
 <p>The engineering line should say whether a soils engineer's compaction report is included, and at what price. Disposal, deck removal, utility disconnection, fence panel removal and final grading each belong on their own line. The quote should also carry the contractor's licence number, which the <a href="{SRC["cslb_lookup"]}">state licence board lookup</a> confirms, and the workers' compensation policy where the firm has employees.</p>
 <p>Payment terms matter too. California limits the down payment on a home improvement contract to 10% of the price or $1,000, whichever is less, and the contract should tie later payments to completed stages such as demolition, fill and final inspection.</p>
-{figure("after-landscape", "Low-water landscape on a former pool site, the use that qualifies for the Valley Water rebate.")}
+{figure("draining", "Draining comes first, to the sewer clean-out or a storm drain where the city allows it.")}
 {cta("Referrals are free to request and go to licensed contractors first.")}
 {DISCLOSURE}
 </div>"""
@@ -594,7 +593,7 @@ def faq_page():
 
 <h3>What fill goes into a pool?</h3>
 <p>Broken concrete from the walls usually goes in the bottom on a partial fill-in, with clean soil above it. Garden Grove's 2026 bulletin adds 12 inches of rock under the soil. A full removal takes 80 to 150 cubic yards of clean fill, placed in layers and compacted to 90%.</p>
-{figure("compaction", "Compaction to 90% is the standard most California cities set for buildable fill.")}
+{figure("faq-compaction", "Compaction to 90%, checked and certified, is the standard most California cities set for buildable fill.")}
 
 
 <h3>Can a pool be filled in with dirt alone?</h3>
@@ -631,7 +630,7 @@ def faq_page():
 
 <h3>Where can the pool water be drained?</h3>
 <p>The rule varies by city. Stockton and Riverside allow the sewer clean-out only. San Diego and Los Angeles allow the storm drain if the water is dechlorinated and within a set pH range, as the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater's guidance for pool owners</a> explain.</p>
-{figure("draining", "Pool water must be drained to the sewer clean-out or, where allowed, dechlorinated before it reaches a storm drain.")}
+{figure("faq-draining", "Pool water must be drained to the sewer clean-out or, where allowed, dechlorinated before it reaches a storm drain.")}
 
 <h3>Does removing a pool lower property tax in California?</h3>
 <p>Possibly, by a small amount. The <a href="{SRC["boe_8609"]}">Board of Equalization's letter 86/09</a> treats removal of an improvement as a reason to reduce assessed value, but the reduction is tied to the pool's own assessed value, so it may be small for an old pool. The <a href="{SRC["sd_assessor"]}">San Diego County Assessor</a> handles realty changes, though no county publishes how an owner reports a pool removal.</p>
@@ -798,11 +797,11 @@ def dashboard_page():
 <label>Period <select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">12 months</option></select></label></div>
 <div id="kpis" class="kpis"></div>
 <div class="dash-grid">
-<div class="panel"><h2>Calls by contractor</h2><div id="by-contractor"></div></div>
+<div class="panel"><h2>Phone taps by page</h2><div id="calls-by-page"></div></div>
 <div class="panel"><h2>Referrals by city</h2><div id="by-city"></div></div>
 <div class="panel"><h2>Form requests by city</h2><div id="forms-by-city"></div></div>
 </div>
-<div class="panel"><h2>Recent referral events</h2><p class="muted">Phone counts are taps on a phone link on the site; the call itself is not tracked. Form requests are copied to Formspree, which holds the visitor's contact details.</p>
+<div class="panel"><h2>Recent referral events</h2><p class="muted">Phone counts are taps on the site's phone number; the call itself is not tracked. Form requests are copied to Formspree, which holds the visitor's contact details.</p>
 <div class="table-wrap"><table><thead><tr><th>When</th><th>Type</th><th>City</th><th>Detail</th><th>Page</th></tr></thead><tbody id="recent"></tbody></table></div></div>
 </section>
 <section><h1>Site tracker</h1><p id="site-summary" class="muted"></p>

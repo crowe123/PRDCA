@@ -1,10 +1,382 @@
 {
-  "home-hero": {"size": "16:9", "prompt": "Photorealistic documentary photo of a small tracked excavator breaking up the concrete shell of an empty in-ground swimming pool in a sunny Southern California suburban backyard, stucco house, palm tree and wooden fence in background, broken concrete chunks and rebar, workers in hi-vis vests and hard hats at a safe distance, natural afternoon light, no text, no logos"},
-  "partial-fill": {"size": "3:2", "prompt": "Photorealistic photo looking down into an empty drained concrete swimming pool in a California backyard, the top of the pool wall has been broken off and several round drainage holes have been jackhammered through the pool floor exposing soil and gravel underneath, jackhammer resting on the pool floor, daylight, no people, no text"},
-  "full-removal": {"size": "3:2", "prompt": "Photorealistic photo of a large excavated dirt hole in a residential California backyard where a swimming pool shell has been completely removed, piles of broken concrete and rebar beside it, small excavator parked at the edge, clear blue sky, no text"},
-  "compaction": {"size": "3:2", "prompt": "Photorealistic photo of a construction worker using a plate compactor on a layer of fresh brown fill soil in a backyard where a pool was removed, a geotechnical technician with a nuclear density gauge and clipboard nearby, California suburban house, daylight, no text, no logos"},
-  "after-landscape": {"size": "3:2", "prompt": "Photorealistic photo of a beautiful drought-tolerant California backyard garden with native plants, succulents, decomposed granite path and a small patio, built where a swimming pool used to be, mid-century ranch house, golden hour light, no people, no text"},
-  "debris-haul": {"size": "3:2", "prompt": "Photorealistic photo of a dump truck loaded with broken concrete chunks and rebar from a demolished swimming pool, parked on a quiet California residential street with palm trees, a skid steer loader nearby, daylight, no text, no logos, no license plates"},
-  "draining": {"size": "3:2", "prompt": "Photorealistic close-up photo of a submersible pump hose draining a half-empty green swimming pool into a residential sewer clean-out pipe on the side of a California house, daylight, no people, no text"},
-  "permit-plans": {"size": "3:2", "prompt": "Photorealistic photo of a clipboard holding a building permit application and a hand-drawn residential site plan showing a backyard swimming pool outline, a hard hat, tape measure and pen on a patio table next to an empty pool, daylight, the paper text is illegible and blurred"}
+ "home-hero": {
+  "size": "16:9",
+  "prompt": "Photorealistic documentary photo of a small tracked excavator breaking up the concrete shell of an empty in-ground swimming pool in a sunny Southern California suburban backyard, stucco house, palm tree and wooden fence in background, broken concrete chunks and rebar, workers in hi-vis vests and hard hats at a safe distance, natural afternoon light, no text, no logos",
+  "alt": "Excavator breaking up a concrete swimming pool in a California backyard"
+ },
+ "partial-fill": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo looking down into an empty drained concrete swimming pool in a California backyard, the top of the pool wall has been broken off and several round drainage holes have been jackhammered through the pool floor exposing soil and gravel underneath, jackhammer resting on the pool floor, daylight, no people, no text",
+  "alt": "Old pool shell with drainage holes broken through the bottom before backfill"
+ },
+ "full-removal": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a large excavated dirt hole in a residential California backyard where a swimming pool shell has been completely removed, piles of broken concrete and rebar beside it, small excavator parked at the edge, clear blue sky, no text",
+  "alt": "Excavated hole after a pool shell has been fully removed"
+ },
+ "compaction": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a construction worker using a plate compactor on a layer of fresh brown fill soil in a backyard where a pool was removed, a geotechnical technician with a nuclear density gauge and clipboard nearby, California suburban house, daylight, no text, no logos",
+  "alt": "Fill soil being compacted in layers where a pool was removed"
+ },
+ "after-landscape": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a beautiful drought-tolerant California backyard garden with native plants, succulents, decomposed granite path and a small patio, built where a swimming pool used to be, mid-century ranch house, golden hour light, no people, no text",
+  "alt": "Drought-tolerant garden planted where a backyard pool used to be"
+ },
+ "debris-haul": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a dump truck loaded with broken concrete chunks and rebar from a demolished swimming pool, parked on a quiet California residential street with palm trees, a skid steer loader nearby, daylight, no text, no logos, no license plates",
+  "alt": "Truck loaded with broken pool concrete leaving a residential street"
+ },
+ "draining": {
+  "size": "3:2",
+  "prompt": "Photorealistic close-up photo of a submersible pump hose draining a half-empty green swimming pool into a residential sewer clean-out pipe on the side of a California house, daylight, no people, no text",
+  "alt": "Pool being drained through a hose to a sewer clean-out before demolition"
+ },
+ "permit-plans": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a clipboard holding a building permit application and a hand-drawn residential site plan showing a backyard swimming pool outline, a hard hat, tape measure and pen on a patio table next to an empty pool, daylight, the paper text is illegible and blurred",
+  "alt": "Building permit papers and a site plan for a pool removal on a clipboard"
+ },
+ "cost-hero": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a compact excavator loading broken swimming pool concrete and rebar into a dump truck parked in the driveway of a stucco California home, afternoon sun, workers in hi-vis vests, no text, no logos, no license plates",
+  "alt": "Excavator loading broken pool concrete into a dump truck in a California driveway"
+ },
+ "cost-landscape": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a California backyard where a pool was removed and replaced with a flagstone patio, gravel paths and low-water native plants, outdoor furniture, warm evening light, no people, no text",
+  "alt": "Former pool area turned into a patio and low-water garden"
+ },
+ "faq-compaction": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a city building inspector with a clipboard and a geotechnical technician with a soil density gauge checking compacted fill soil inside a filled-in former swimming pool area in a California backyard, daylight, no text, no logos",
+  "alt": "Inspector checking compacted fill in a former pool excavation"
+ },
+ "faq-draining": {
+  "size": "3:2",
+  "prompt": "Photorealistic photo of a nearly empty swimming pool with a submersible pump and a long blue discharge hose running across a concrete deck toward the side of a California house, daylight, no people, no text",
+  "alt": "Pump hose draining a pool before demolition"
+ },
+ "city-los-angeles-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Los Angeles backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a hillside Los Angeles home with Spanish tile roof, jacaranda trees and the hazy San Gabriel mountains behind. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-los-angeles-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Los Angeles",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a hillside Los Angeles home with Spanish tile roof, jacaranda trees and the hazy San Gabriel mountains behind. Daylight, no text, no logos, no signs."
+ },
+ "city-san-diego-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a San Diego backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a San Diego coastal-canyon neighborhood with white stucco, bougainvillea and palm trees under a bright marine sky. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-san-diego-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in San Diego",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a San Diego coastal-canyon neighborhood with white stucco, bougainvillea and palm trees under a bright marine sky. Daylight, no text, no logos, no signs."
+ },
+ "city-san-jose-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a San Jose backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a San Jose ranch-style 1960s home with a wooden fence, olive and citrus trees, dry golden hills in the distance. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-san-jose-work": {
+  "size": "3:2",
+  "alt": "Open excavation after a full pool removal in San Jose",
+  "prompt": "Photorealistic photo of a large open dirt excavation where a concrete swimming pool shell has been completely removed, broken concrete stacked beside it ready for haul-off, in a San Jose ranch-style 1960s home with a wooden fence, olive and citrus trees, dry golden hills in the distance. Daylight, no text, no logos, no signs."
+ },
+ "city-san-francisco-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a San Francisco backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a narrow San Francisco Bay Area hillside lot behind a tall wooden house, fog rolling over green hills. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-san-francisco-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in San Francisco",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a narrow San Francisco Bay Area hillside lot behind a tall wooden house, fog rolling over green hills. Daylight, no text, no logos, no signs."
+ },
+ "city-fresno-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Fresno backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Fresno Central Valley home with a big flat backyard, orange trees, hot dry summer light. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-fresno-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Fresno",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Fresno Central Valley home with a big flat backyard, orange trees, hot dry summer light. Daylight, no text, no logos, no signs."
+ },
+ "city-sacramento-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Sacramento backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Sacramento suburban home under large shade trees, valley oaks, warm late-afternoon light. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-sacramento-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Sacramento",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a Sacramento suburban home under large shade trees, valley oaks, warm late-afternoon light. Daylight, no text, no logos, no signs."
+ },
+ "city-long-beach-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Long Beach backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Long Beach bungalow backyard with palm trees, block wall fence and a clear coastal sky. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-long-beach-work": {
+  "size": "3:2",
+  "alt": "Open excavation after a full pool removal in Long Beach",
+  "prompt": "Photorealistic photo of a large open dirt excavation where a concrete swimming pool shell has been completely removed, broken concrete stacked beside it ready for haul-off, in a Long Beach bungalow backyard with palm trees, block wall fence and a clear coastal sky. Daylight, no text, no logos, no signs."
+ },
+ "city-oakland-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Oakland backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in an Oakland hills home on a sloped lot surrounded by eucalyptus and oak trees. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-oakland-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Oakland",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in an Oakland hills home on a sloped lot surrounded by eucalyptus and oak trees. Daylight, no text, no logos, no signs."
+ },
+ "city-bakersfield-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Bakersfield backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Bakersfield single-story home with a wide flat dusty yard, desert shrubs and bright heat haze. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-bakersfield-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Bakersfield",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Bakersfield single-story home with a wide flat dusty yard, desert shrubs and bright heat haze. Daylight, no text, no logos, no signs."
+ },
+ "city-anaheim-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Anaheim backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in an Anaheim tract home backyard with block walls, palm trees and terracotta roof tiles. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-anaheim-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Anaheim",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in an Anaheim tract home backyard with block walls, palm trees and terracotta roof tiles. Daylight, no text, no logos, no signs."
+ },
+ "city-stockton-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Stockton backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Stockton Central Valley home with a flat lawn, chain-link and wood fencing, sycamore trees. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-stockton-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Stockton",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Stockton Central Valley home with a flat lawn, chain-link and wood fencing, sycamore trees. Daylight, no text, no logos, no signs."
+ },
+ "city-riverside-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Riverside backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Riverside Inland Empire home with dry brown foothills and boulders behind the backyard. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-riverside-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Riverside",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a Riverside Inland Empire home with dry brown foothills and boulders behind the backyard. Daylight, no text, no logos, no signs."
+ },
+ "city-irvine-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Irvine backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in an Irvine master-planned community backyard with neat beige stucco homes, young trees and clean block walls. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-irvine-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Irvine",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in an Irvine master-planned community backyard with neat beige stucco homes, young trees and clean block walls. Daylight, no text, no logos, no signs."
+ },
+ "city-santa-ana-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Santa Ana backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Santa Ana older ranch home backyard with fruit trees, a block wall and a small tight side yard. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-santa-ana-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Santa Ana",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a Santa Ana older ranch home backyard with fruit trees, a block wall and a small tight side yard. Daylight, no text, no logos, no signs."
+ },
+ "city-chula-vista-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Chula Vista backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Chula Vista hillside subdivision backyard with a view of distant mesas and bright sun. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-chula-vista-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Chula Vista",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Chula Vista hillside subdivision backyard with a view of distant mesas and bright sun. Daylight, no text, no logos, no signs."
+ },
+ "city-fremont-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Fremont backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Fremont two-story home backyard with Mission Peak style green hills in the background. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-fremont-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Fremont",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a Fremont two-story home backyard with Mission Peak style green hills in the background. Daylight, no text, no logos, no signs."
+ },
+ "city-santa-clarita-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Santa Clarita backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Santa Clarita valley home on a gently sloped lot with chaparral-covered hills behind. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-santa-clarita-work": {
+  "size": "3:2",
+  "alt": "Open excavation after a full pool removal in Santa Clarita",
+  "prompt": "Photorealistic photo of a large open dirt excavation where a concrete swimming pool shell has been completely removed, broken concrete stacked beside it ready for haul-off, in a Santa Clarita valley home on a gently sloped lot with chaparral-covered hills behind. Daylight, no text, no logos, no signs."
+ },
+ "city-san-bernardino-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a San Bernardino backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a San Bernardino home backyard with the San Bernardino mountains rising behind, dry summer grass. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-san-bernardino-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in San Bernardino",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a San Bernardino home backyard with the San Bernardino mountains rising behind, dry summer grass. Daylight, no text, no logos, no signs."
+ },
+ "city-modesto-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Modesto backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Modesto home backyard with a large walnut tree, flat lot and farm fields nearby. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-modesto-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Modesto",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Modesto home backyard with a large walnut tree, flat lot and farm fields nearby. Daylight, no text, no logos, no signs."
+ },
+ "city-fontana-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Fontana backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Fontana newer tract home backyard with rock landscaping and mountains in the far distance. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-fontana-work": {
+  "size": "3:2",
+  "alt": "Open excavation after a full pool removal in Fontana",
+  "prompt": "Photorealistic photo of a large open dirt excavation where a concrete swimming pool shell has been completely removed, broken concrete stacked beside it ready for haul-off, in a Fontana newer tract home backyard with rock landscaping and mountains in the far distance. Daylight, no text, no logos, no signs."
+ },
+ "city-moreno-valley-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Moreno Valley backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Moreno Valley home backyard on the edge of rocky brown hills, desert landscaping. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-moreno-valley-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Moreno Valley",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Moreno Valley home backyard on the edge of rocky brown hills, desert landscaping. Daylight, no text, no logos, no signs."
+ },
+ "city-oxnard-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Oxnard backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in an Oxnard coastal plain home backyard with a low fence, strawberry fields and marine layer clouds in the distance. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-oxnard-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Oxnard",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in an Oxnard coastal plain home backyard with a low fence, strawberry fields and marine layer clouds in the distance. Daylight, no text, no logos, no signs."
+ },
+ "city-glendale-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Glendale backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Glendale hillside home backyard with Verdugo mountain slopes behind and mature pine trees. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-glendale-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Glendale",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Glendale hillside home backyard with Verdugo mountain slopes behind and mature pine trees. Daylight, no text, no logos, no signs."
+ },
+ "city-huntington-beach-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Huntington Beach backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Huntington Beach home backyard close to the coast, beach cruiser bikes against the wall, bright ocean light. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-huntington-beach-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Huntington Beach",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a Huntington Beach home backyard close to the coast, beach cruiser bikes against the wall, bright ocean light. Daylight, no text, no logos, no signs."
+ },
+ "city-elk-grove-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Elk Grove backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in an Elk Grove suburban backyard with wooden fences, young oak trees and a wide sky. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-elk-grove-work": {
+  "size": "3:2",
+  "alt": "Open excavation after a full pool removal in Elk Grove",
+  "prompt": "Photorealistic photo of a large open dirt excavation where a concrete swimming pool shell has been completely removed, broken concrete stacked beside it ready for haul-off, in an Elk Grove suburban backyard with wooden fences, young oak trees and a wide sky. Daylight, no text, no logos, no signs."
+ },
+ "city-ontario-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Ontario backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in an Ontario Inland Empire tract home backyard with block walls and snow-capped San Gabriel peaks in the distance. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-ontario-work": {
+  "size": "3:2",
+  "alt": "Open excavation after a full pool removal in Ontario",
+  "prompt": "Photorealistic photo of a large open dirt excavation where a concrete swimming pool shell has been completely removed, broken concrete stacked beside it ready for haul-off, in an Ontario Inland Empire tract home backyard with block walls and snow-capped San Gabriel peaks in the distance. Daylight, no text, no logos, no signs."
+ },
+ "city-santa-rosa-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Santa Rosa backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Santa Rosa Sonoma County ranch home backyard with oak trees and vineyard-covered hills behind. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-santa-rosa-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Santa Rosa",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Santa Rosa Sonoma County ranch home backyard with oak trees and vineyard-covered hills behind. Daylight, no text, no logos, no signs."
+ },
+ "city-lancaster-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Lancaster backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Lancaster Antelope Valley home backyard in the high desert with Joshua trees and wide open sky. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-lancaster-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Lancaster",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a Lancaster Antelope Valley home backyard in the high desert with Joshua trees and wide open sky. Daylight, no text, no logos, no signs."
+ },
+ "city-rancho-cucamonga-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Rancho Cucamonga backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Rancho Cucamonga foothill home backyard with the steep San Gabriel mountain front behind. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-rancho-cucamonga-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Rancho Cucamonga",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Rancho Cucamonga foothill home backyard with the steep San Gabriel mountain front behind. Daylight, no text, no logos, no signs."
+ },
+ "city-oceanside-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Oceanside backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in an Oceanside home backyard on a coastal hill with a distant ocean view and succulents. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-oceanside-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Oceanside",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in an Oceanside home backyard on a coastal hill with a distant ocean view and succulents. Daylight, no text, no logos, no signs."
+ },
+ "city-garden-grove-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Garden Grove backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Garden Grove 1960s ranch home backyard with a block wall, citrus tree and patio cover. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-garden-grove-work": {
+  "size": "3:2",
+  "alt": "Pool shell with drainage holes broken through the floor in Garden Grove",
+  "prompt": "Photorealistic photo of an empty concrete swimming pool with the top of the wall broken off and several drainage holes broken through the floor showing gravel underneath, a jackhammer lying on the pool floor, in a Garden Grove 1960s ranch home backyard with a block wall, citrus tree and patio cover. Daylight, no text, no logos, no signs."
+ },
+ "city-palmdale-hero": {
+  "size": "16:9",
+  "alt": "Pool demolition under way in a Palmdale backyard",
+  "prompt": "Photorealistic documentary photo of a small excavator with a hydraulic breaker demolishing an empty concrete swimming pool in a Palmdale high desert home backyard with rock landscaping, yucca plants and dry hills. Workers in hi-vis vests and hard hats stand at a safe distance. Natural light, no text, no logos, no signs."
+ },
+ "city-palmdale-work": {
+  "size": "3:2",
+  "alt": "Fill being compacted where a pool was removed in Palmdale",
+  "prompt": "Photorealistic photo of a worker running a plate compactor over fresh fill soil that fills a former swimming pool area, a small skid steer with a bucket of soil nearby, in a Palmdale high desert home backyard with rock landscaping, yucca plants and dry hills. Daylight, no text, no logos, no signs."
+ }
 }
