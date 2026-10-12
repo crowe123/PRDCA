@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-12T20:18:10+00:00",
+ "generated": "2026-10-12T20:38:24+00:00",
  "siteName": "Pool Removal California",
  "pages": 36,
  "cities": [
@@ -91,7 +91,7 @@
    "confidence": "Low",
    "listed": 2,
    "held": 3,
-   "words": 1122
+   "words": 1239
   },
   {
    "name": "Anaheim",
@@ -121,7 +121,7 @@
    "confidence": "Medium",
    "listed": 2,
    "held": 5,
-   "words": 1091
+   "words": 1312
   },
   {
    "name": "Irvine",
@@ -181,7 +181,7 @@
    "confidence": "Medium",
    "listed": 3,
    "held": 5,
-   "words": 1154
+   "words": 1367
   },
   {
    "name": "Modesto",
@@ -191,7 +191,7 @@
    "confidence": "Low",
    "listed": 8,
    "held": 1,
-   "words": 1460
+   "words": 1582
   },
   {
    "name": "Fontana",
@@ -201,7 +201,7 @@
    "confidence": "High",
    "listed": 3,
    "held": 6,
-   "words": 1152
+   "words": 1300
   },
   {
    "name": "Moreno Valley",
@@ -261,7 +261,7 @@
    "confidence": "Medium",
    "listed": 2,
    "held": 7,
-   "words": 1096
+   "words": 1259
   },
   {
    "name": "Santa Rosa",

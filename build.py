@@ -254,6 +254,9 @@ def city_page(c, listings, held):
                    f'{c["dept"]} confirms the permit, and {SITE_NAME} found {c["found"]} businesses '
                    f'offering in-ground pool removal there, {c["active"]} with an active state licence.{c.get("opening_extra", "")}</strong></p>')
 
+    if c.get("lead"):
+        opening = f'<p class="lead"><strong>{fill(c["lead"], c)}</strong></p>'
+
     facts = (
         '<div class="facts">'
         f'<div class="fact"><b>{c["found"]}</b><span>businesses found for {name}</span></div>'
@@ -284,8 +287,7 @@ def city_page(c, listings, held):
             'Lead-generation sites are left off, and Google Maps-only firms appear only after a phone check.</p>'
             '<p>Homeowners can request referrals now through the contact page.</p></div>')
     note = f'<p>{c["note"]}</p>' if c.get("note") else ""
-    contractors = (
-        f'<h2>Contractors serving {name}</h2>{cards}{note}'
+    licence_para = (
         f'<p>A contractor\'s licence classes matter on a pool job. {name} permits are generally issued to holders of '
         f'the A (general engineering), C-12 (earthwork and paving), C-21 (building moving and demolition) or C-53 '
         f'(swimming pool) classes described in the <a href="{SRC["cslb_classes"]}">state licence board\'s '
@@ -293,6 +295,13 @@ def city_page(c, listings, held):
         f'<a href="{SRC["cslb_2407"]}">Industry Bulletin 24-07</a> confirms that the $1,000 unlicensed-work exemption '
         'does not cover work that needs a permit, so a pool removal always needs a licensed contractor or an '
         'owner-builder permit.</p>')
+    if c.get("compact"):
+        licence_para = (
+            f'<p>A pool removal in {name} needs a licensed contractor or an owner-builder permit, because '
+            f'<a href="{SRC["cslb_2407"]}">Industry Bulletin 24-07</a> keeps permitted work outside the $1,000 '
+            f'unlicensed-work exemption. The <a href="{SRC["cslb_classes"]}">state classification guide</a> explains '
+            'the A, C-12, C-21 and C-53 classes most pool jobs use.</p>')
+    contractors = f'<h2>Contractors serving {name}</h2>{cards}{note}' + licence_para
 
     # Permit section — the only subheading carrying the full search phrase
     permit_rows = (
@@ -309,11 +318,18 @@ def city_page(c, listings, held):
            f'<p>The {c["dept"]} is the office to call before any work starts. {name} is one of {NO_RULE_COUNT} cities among the '
            f'{len(CITIES)} in this directory that publish nothing specific to pools, so the department\'s answer on the phone '
            'decides the permit type, the fee and the fill standard.</p>')
-        + '<p>Fees and requirements change at the start of each fiscal year, usually in July. The city document '
-          'linked above is the record a contractor or inspector will work from.</p>')
+        + ('' if c.get("compact") else
+           '<p>Fees and requirements change at the start of each fiscal year, usually in July. The city document '
+           'linked above is the record a contractor or inspector will work from.</p>'))
 
     cost_key = c["cost"]
-    cost = (
+    if c.get("cost_html"):
+        cost = (f'<h2>{c.get("cost_heading", "What a " + name + " job costs")}</h2>'
+                + "".join(f'<p>{fill(x, c)}</p>' for x in c["cost_html"])
+                + '<p>The <a href="/cost/">California pool removal cost guide</a> covers what moves a quote, from '
+                  'side-yard access to fill dirt and the compaction report.</p>')
+    else:
+      cost = (
         f'<h2>Published prices for {region}</h2><p>{REGION_COST[cost_key]}</p>'
         '<p>Four things move a quote more than anything else: equipment access (about $2,000 more where the side yard '
         'is under 6 ft wide), deck removal ($500 to $1,700), fill dirt (80 to 150 cubic yards for a full removal) and '
@@ -323,11 +339,14 @@ def city_page(c, listings, held):
 
     methods = (
         f'<h2>Partial fill-in or full removal in {name}</h2><p>{fill(c["method_html"], c)}</p>{diagram()}'
+        + ('<p>The <a href="/faq/">fill-in questions page</a> sets the two methods side by side, with typical '
+           'timelines of one to four days for a partial fill-in and three to seven for a full removal.</p>'
+           if c.get("compact") else
         '<p>A partial fill-in breaks drainage holes through the floor, removes the top of the wall and fills the shell '
         'with soil. The method costs less and finishes faster, usually in one to four days, but most cities limit the '
         'area to landscaping afterwards. A full removal hauls away every piece of the shell and replaces it with fill '
         'compacted in layers to 90%, which takes three to seven days and is the route for anyone planning a structure '
-        'over the old pool.</p>'
+        'over the old pool.</p>')
         + figure(f"city-{slug}-work", ALT.get(f"city-{slug}-work", "") + "."))
 
     if c["region"] == "la":
@@ -340,7 +359,10 @@ def city_page(c, listings, held):
         drain_src = (f'The <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and '
                      f'<a href="{SRC["la_storm"]}">LA Stormwater</a> both allow the storm drain only for dechlorinated '
                      'water within a set pH range')
-    draining = (
+    if c.get("drain_html"):
+        draining = f'<p>{fill(c["drain_html"], c)}</p>'
+    else:
+      draining = (
         '<p>Pool water has to go somewhere before demolition starts. '
         + ('Stockton and Riverside allow pool water to the sewer clean-out only, ' if c["slug"] in ("stockton", "riverside") else '')
         + (drain_src[0].lower() + drain_src[1:] if c["slug"] in ("stockton", "riverside") else drain_src)
@@ -364,7 +386,12 @@ def city_page(c, listings, held):
                 f'<figcaption>{name}, California. Listings cover the city and named neighbouring areas.</figcaption>'
                 '</figure>')
 
-    after = (
+    if c.get("compact"):
+        after = (f'<p>Sellers in {name} should keep the finaled permit, because the state\'s '
+                 f'<a href="{SRC["dre_re6"]}">seller disclosure form</a> asks about fill on the property and about '
+                 'unpermitted work.</p>')
+    else:
+      after = (
         f'<p>Removing a pool can lower the assessed value of a {name} property. The '
         f'<a href="{SRC["boe_8609"]}">Board of Equalization\'s letter 86/09</a> treats removal of an improvement as a '
         'reason to reduce assessed value, but the reduction is tied to the pool\'s own assessed value, so an older '
@@ -531,7 +558,7 @@ def cost_page():
 <p>Several cities, including Los Angeles, Long Beach, Irvine, Santa Clarita, Santa Ana and Garden Grove, publish rules but no pool fee, and {NO_RULE_COUNT} cities publish nothing specific to pools. The city pages link each city's own document. Fees for Fresno, Chula Vista, Fremont and Fontana come from older schedules and should be confirmed with the city before budgeting.</p>
 
 <h2>Timeline from permit to finished grade</h2>
-<p>A partial fill-in takes one to four days on site and a full removal three to seven, once the permit is in hand. Draining the pool adds a day or two, and must follow local discharge rules: the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater</a> allow the storm drain only for dechlorinated water within a set pH range, and Stockton and Riverside allow the sewer clean-out only.</p>
+<p>A partial fill-in takes one to four days on site and a full removal three to seven, once the permit is in hand. Draining the pool adds a day or two, and must follow local discharge rules: the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater</a> allow the storm drain only for dechlorinated water within a set pH range, and Stockton and Modesto allow the sewer only.</p>
 <p>Permits add one to three weeks in most cities. San Jose can issue in a single visit, and Fremont's express permit needs no plan review. Bay Area jobs also need an air district notice from the <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> before demolition, and Oakland bars grading from 15 October to 15 April, so jobs there need to be booked for the dry season.</p>
 {figure("cost-landscape", "Many owners keep part of the deck as a patio, which lowers both the price and the hauling volume.")}
 
@@ -638,7 +665,7 @@ def faq_page():
 <h2>Water, tax and selling</h2>
 
 <h3>Where can the pool water be drained?</h3>
-<p>The rule varies by city. Stockton and Riverside allow the sewer clean-out only. San Diego and Los Angeles allow the storm drain if the water is dechlorinated and within a set pH range, as the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater's guidance for pool owners</a> explain.</p>
+<p>The rule varies by city. Stockton allows the sewer clean-out only, and Modesto sends all pool water to the sewer, even when dechlorinated. Riverside prefers the sewer clean-out and allows the storm drain only below 0.1 mg/L of chlorine. San Diego and Los Angeles allow the storm drain if the water is dechlorinated and within a set pH range, as the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater's guidance for pool owners</a> explain.</p>
 {figure("faq-draining", "Pool water must be drained to the sewer clean-out or, where allowed, dechlorinated before it reaches a storm drain.")}
 
 <h3>Does removing a pool lower property tax in California?</h3>

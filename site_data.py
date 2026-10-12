@@ -1180,3 +1180,462 @@ CITIES += [
         "note": "",
     },
 ]
+
+
+# ---------------------------------------------------------------------------
+# City-specific depth for six pages (research of 12 October 2026, official
+# sources only). "compact" swaps the shared template paragraphs for one-line
+# summaries that link to the cost guide and FAQ, to cut repeated text.
+# ---------------------------------------------------------------------------
+SRC.update({
+    "riv_fees": "https://riversideca.gov/finance/PDF/Fees-and-Charges-as-of-July-1,-2026.pdf",
+    "riv_sewer": "https://riversideca.gov/publicworks/sewer/sewer-faq",
+    "riv_cd": "https://riversideca.gov/publicworks/trash-recycling/recycling/construction-demolition-0",
+    "fon_fees": "https://www.fontanaca.gov/DocumentCenter/View/48598/Fontana-User-Fees-2025-2026",
+    "fon_cwmp": "https://www.fontanaca.gov/DocumentCenter/View/36886/Construction-Waste-Management-Plan-CWMP",
+    "sbc_storm": "https://sbcountystormwater.org/residents/pool-owners/",
+    "sb_fees": "https://www.sanbernardino.gov/DocumentCenter/View/2597/Public-Works-Department---Schedule-of-Fees-2020-PDF",
+    "sb_cd": "https://www.sanbernardino.gov/1590/Construction-and-Demolition-CD",
+    "sb_storm": "https://www.sanbernardino.gov/DocumentCenter/View/3121/Storm-Water-Drainage-System-PDF",
+    "ont_fees": "https://www.ontarioca.gov/government/community-development/building/building-department-fees",
+    "ont_cdrp": "https://content.ontarioca.gov/sites/default/files/migrated-files/Ontario-Files/Ontario-WaterWise/Construction%2520%2526%2520Demolition%2520Recycling%2520Plan%2520Packet_0.pdf",
+    "ont_rates": "https://content.ontarioca.gov/sites/default/files/2026-07/IW%20Rate%20Sheet%207-1-2026%20-%20External.pdf",
+    "ont_pools": "https://content.ontarioca.gov/sites/default/files/2025-01/best_management_practices_for_pool_maintenance.pdf",
+    "mod_storm": "https://www.modestogov.com/2627/For-Home",
+    "valley_release": "https://valleyair.org/media/suqkle3j/demo_release_form.pdf",
+    "valley_8021": "https://ww2.valleyair.org/media/bhfgzedn/rule-8021.pdf",
+    "bak_fees": "https://content.civicplus.com/api/assets/ca-bakersfield/6037d14a-6da2-493e-a86d-85a3e3f77ec3",
+    "bak_rolloff": "https://content.civicplus.com/api/assets/ca-bakersfield/1e8d4959-59b3-4109-8f7f-b0d0914d6ad6",
+    "bak_mtvernon": "https://content.civicplus.com/api/assets/ca-bakersfield/4de286db-80bb-4fa9-b88c-9e0fbc64d982",
+    "bak_sewer": "https://bakersfield.municipal.codes/Code/14.12.220",
+    "bak_storm": "https://bakersfield.municipal.codes/Code/8.35.020",
+    "burrtec": "https://www.burrtec.com/",
+    "kern_gate": "https://www.kernpublicworks.com/services/solid-waste/new-gate-fees",
+})
+
+STATEWIDE = "about $3,500 to $12,000 for a partial fill-in and $8,000 to $30,000 for a full removal"
+
+CITY_DEPTH = {
+    "riverside": {
+        "compact": True,
+        "fee": "$125 plus $41 issuance, with a 14% surcharge on issuance (FY 2026-27)",
+        "fee_short": "$125 + $41",
+        "doc": "pool demolition handout (revised October 2015)",
+        "lead": ("Pool removal in Riverside needs a demolition permit from the city's Building and Safety Division, "
+                 "and Pool Removal California found 7 businesses offering in-ground pool removal there, 2 with an "
+                 "active state licence. The city's handout leaves the shell in place, with two 2 ft square holes in "
+                 "the floor, the top cut 12 inches below grade and fill compacted to 90%."),
+        "permit_html": (
+            "Riverside's Building and Safety Division requires a demolition permit to remove a gunite in-ground pool "
+            f'or spa. The city\'s <a href="{SRC["riv_fees"]}">fee schedule for 2026-27</a> lists residential '
+            "demolition at $125 per structure plus a $41 permit issuance fee, which carries a 14% surcharge, and has "
+            "no line written for pools. The city's {doc} asks for a site plan showing the pool and the other "
+            "structures on the lot, and it tells owners to consult a geotechnical engineer before starting."),
+        "method_html": (
+            "Riverside's handout covers one method, a partial removal. Crews break a 2 ft square section out of the "
+            "floor at the deepest point and another in the shallow end, or a 1 ft square on a spa, then remove the "
+            "coping, gunite and rebar around the whole perimeter to at least 12 inches below grade. The geotechnical "
+            "engineer approves the fill, and the engineer's report has to show 90% compaction or better. The handout "
+            "warns that following it does not guarantee a future addition will be allowed over the area, so anyone "
+            "planning to build there should ask Building and Safety about full removal first."),
+        "extra_after_permit": [
+            ("Inspections and paperwork on a Riverside job", [
+                "Riverside's handout sets the order of the job:",
+                "<ol><li>Approval from the Environmental Compliance Division at 951-351-6140 before the pool is "
+                "drained.</li><li>Drainage holes broken and the perimeter cut to 12 inches below grade.</li>"
+                "<li>Electrical conductors removed at the panel, conduits removed or capped, and the gas line to the "
+                "heater capped.</li><li>An inspection by the building inspector, who must authorize backfill before "
+                "any fill goes in.</li><li>Fill placed and compacted, with the geotechnical engineer's report showing "
+                "90% or better.</li><li>Drainage slopes re-established across the yard, then the final inspection."
+                "</li></ol>",
+                "The handout is dated October 2015 and does not appear on the city's current forms page, so a call to "
+                "Building and Safety confirms it is still the version inspectors use.",
+            ]),
+        ],
+        "cost_html": [
+            f"No contractor publishes Riverside prices, so statewide figures apply: {STATEWIDE}. Riverside's own "
+            "costs sit on top, starting with the $125 demolition fee and the $41 issuance fee. The geotechnical "
+            "engineer the handout requires adds a compaction report, which typically runs $1,500 to $4,000.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Riverside", [
+                f'Riverside\'s <a href="{SRC["riv_cd"]}">construction and demolition recycling page</a> says '
+                "recyclable building materials may not go in residential cans. It lists "
+                f'<a href="{SRC["burrtec"]}">Burrtec</a> on Agua Mansa Road as '
+                "taking clean dirt, concrete and asphalt, and Geo-Engelauf on Market Street as taking concrete and "
+                "asphalt. Projects inside the city's construction and demolition program must divert at least 65% of "
+                "their debris by weight and file hauler tickets before final inspection. The program ties residential "
+                "projects to new or added living space, so Building and Safety confirms whether a pool-only job is "
+                "included.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Riverside asks owners to call Environmental "
+            f'Compliance at 951-351-6140 before draining, and the city\'s <a href="{SRC["riv_sewer"]}">sewer FAQ</a> '
+            "names the home's sewer clean-out as the preferred route. Water may go to the storm drain only when its "
+            "chlorine residual is below 0.1 mg/L, and water with hazardous levels of algae or chemicals is pumped out "
+            "and hauled away."),
+        "faqs": [
+            ("What does a Riverside pool demolition permit cost?",
+             "$125 for residential demolition plus a $41 issuance fee with a 14% surcharge, on the 2026-27 schedule."),
+            ("How far down must a Riverside pool shell be cut?",
+             "At least 12 inches below grade around the whole perimeter, with two 2 ft square holes in the floor."),
+            ("Where can Riverside pool water be drained?",
+             "Call Environmental Compliance at 951-351-6140 first. The sewer clean-out is preferred, and the storm "
+             "drain is allowed only below 0.1 mg/L of chlorine."),
+            ("Does a Riverside pool removal need an engineer?",
+             "Yes. The {doc} tells owners to consult a geotechnical engineer, who approves the fill and signs the "
+             "compaction report."),
+            ("Can a Riverside homeowner build over a filled pool?",
+             "The handout gives no guarantee that a future addition will be allowed, so Building and Safety is the "
+             "office to ask about full removal before work starts."),
+        ],
+    },
+    "fontana": {
+        "compact": True,
+        "fee": "$210 per structure (fee list as of 1 January 2026)",
+        "fee_short": "$210",
+        "doc": "pool demolition handout (revised January 2026)",
+        "opening_extra": (" When the shell stays, the city's handout asks for at least six openings through the floor "
+                          "and the top two feet of wall removed."),
+        "permit_html": (
+            "Fontana's Department of Building and Safety issues a demolition permit for a pool or spa, applied for in "
+            "person at the counter Monday through Thursday, 8 AM to 5 PM. The city's "
+            f'<a href="{SRC["fon_fees"]}">fee list as of 1 January 2026</a> charges $210 per structure for a '
+            "demolition permit, with no separate pool line. The city's {doc} sets out the work for a shell that stays "
+            "in the ground and for one that comes out."),
+        "method_html": (
+            "When the shell stays, Fontana requires at least six openings through the floor, evenly spaced, each at "
+            "least one foot square and broken through until earth shows, so water drains away. The top two feet of "
+            "wall come off, leaving at least two feet of earth over what remains. When an addition is built, or may "
+            "be built later, over the area, the whole shell must come out and the fill must reach at least 90% of "
+            "maximum density, with a soils compaction report to certify it."),
+        "extra_after_permit": [
+            ("Inspections and paperwork on a Fontana job", [
+                "Before the inspector arrives, Fontana's handout requires all pool equipment and pool lights removed, "
+                "all electrical wire pulled from every conduit run, and the gas supply line capped at each end. The "
+                "job then has two inspections:",
+                "<ol><li>A pre-backfill inspection, in which a city inspector approves the openings or the removal "
+                "before any fill goes in. It is booked at (909) 350-7693.</li><li>A final inspection, booked at "
+                "(909) 350-7640 or 1 (800) 511-7691.</li></ol>",
+                "The handout does not mention plan check or engineered drawings. It does require the soils compaction "
+                "report on any full removal made for an addition.",
+            ]),
+        ],
+        "cost_html": [
+            f"No contractor publishes Fontana prices, so statewide figures apply: {STATEWIDE}. Fontana's own costs "
+            "sit on top: the $210 demolition permit, Burrtec's bin or haul charges, and on a full removal the soils "
+            "compaction report.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Fontana", [
+                f'Fontana routes construction and demolition hauling through <a href="{SRC["burrtec"]}">Burrtec</a>. The city\'s <a href="'
+                f'{SRC["fon_cwmp"]}">Construction Waste Management Plan form</a> says no permit is issued without an '
+                "approved plan, names Burrtec as the only hauler, requires at least 65% of the debris diverted from "
+                "landfill and asks for weigh tickets before final inspection. Residential projects may self-haul only "
+                "when the owner owns both the container and the truck. Building and Safety confirms whether a pool "
+                "demolition needs the full plan or the city's exemption form.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Fontana is a permittee of the "
+            f'<a href="{SRC["sbc_storm"]}">San Bernardino County Stormwater Program</a>, whose guidance for pool '
+            "owners asks for chlorine tested at zero after the water stands three to five days, a pH between 6.5 and "
+            "8.5 and water free of dirt and algae, with the flow controlled so it does not erode the yard or run onto "
+            "a neighbouring property."),
+        "faqs": [
+            ("What does a Fontana pool demolition permit cost?",
+             "$210 per structure on the city's fee list as of 1 January 2026; the list has no separate pool line."),
+            ("Can a Fontana homeowner build over a filled pool?",
+             "Only after the whole shell is removed and the fill compacted to at least 90% of maximum density, with a "
+             "soils compaction report, as the {doc} requires for an addition."),
+            ("What does Fontana require for a shell left in place?",
+             "At least six evenly spaced openings, each one foot square or larger, and the top two feet of wall "
+             "removed under at least two feet of earth."),
+            ("How many inspections does a Fontana pool demolition need?",
+             "Two: one before backfill, booked at (909) 350-7693, and a final, booked at (909) 350-7640."),
+            ("Who hauls pool debris in Fontana?",
+             "Burrtec, the city's construction and demolition hauler, unless the homeowner self-hauls in a truck and "
+             "container they own."),
+        ],
+    },
+    "san-bernardino": {
+        "compact": True,
+        "dept": "Public Works Department, Land Development Division",
+        "permit": "Land Development activity (grading fees)",
+        "fee": "Based on cubic yards; $397.80 plan check over 50 cu yd plus $225 inspection (2020 schedule)",
+        "fee_short": "By cubic yard",
+        "doc": "pool demolition handout (revised September 2017)",
+        "lead": ("Pool removal in San Bernardino is a Land Development activity handled by the Public Works "
+                 "Department's Land Development Division, and Pool Removal California found 9 businesses offering "
+                 "in-ground pool removal there, 3 with an active state licence. The city's handout leaves the shell "
+                 "in place, with 12-inch holes 6 ft apart each way and the top cut at least 2 ft below the surface."),
+        "permit_html": (
+            "San Bernardino treats a pool demolition as a Land Development activity, handled by the Land Development "
+            "Division of the Public Works Department on North E Street. The application needs a site plan giving the "
+            "pool's length, width and depth and its distance to existing structures. Fees are based on the cubic "
+            f'yards used to fill the pool, and the city\'s <a href="{SRC["sb_fees"]}">Public Works fee '
+            "schedule</a>, effective July 2020, lists grading plan check at $397.80 above 50 cubic yards and grading "
+            "inspection at $225 for up to 1,000 cubic yards."),
+        "method_html": (
+            "The {doc} describes one method, in which the shell stays. Crews punch 12-inch holes at 6 ft on center "
+            "each way across the bottom and cut the top of the pool down at least 2 ft below the surface. Owners who "
+            "want another method, including full removal, submit plans for it to plan check. The handout says nothing "
+            "about building over the filled area, so anyone planning a structure there should take that question to "
+            "the Land Development Division before choosing a method."),
+        "extra_after_permit": [
+            ("Choosing the fill in San Bernardino", [
+                "The handout gives two fill options, and the choice decides whether an engineer is needed:",
+                "<ol><li>Soil only: a soils engineer prepares a compaction report during backfill, and the report is "
+                "shown to the inspector at the site inspection.</li><li>Pea gravel (1/4 or 3/8 inch) or sand, with "
+                "the top 24 inches backfilled with soil: no compaction report is required.</li></ol>",
+                "The gravel or sand route removes the engineer's fee from the job, while soil fill keeps material "
+                "costs down, so contractors can price both. Because the fee follows the cubic yards, the fill volume "
+                "on the site plan also sets the permit cost.",
+            ]),
+        ],
+        "cost_html": [
+            f"No contractor publishes San Bernardino prices, so statewide figures apply: {STATEWIDE}. The city's own "
+            "charges come from the 2020 Public Works schedule, $397.80 for grading plan check above 50 cubic yards "
+            "and $225 for inspection, plus the soils engineer's report when the pool is filled with soil only.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in San Bernardino", [
+                f'San Bernardino\'s <a href="{SRC["sb_cd"]}">construction and demolition program</a> covers all '
+                "demolition projects regardless of value and requires 65% of the debris diverted from landfill. "
+                "Single-family projects and jobs under $100,000 still meet the 65% target but skip the deposit, the "
+                "administrative fee and the waste management plan. "
+                f'<a href="{SRC["burrtec"]}">Burrtec</a> holds the exclusive right to haul the '
+                "city's waste, and hiring a non-franchised hauler, including for bins, is prohibited. Self-hauling "
+                "needs approval, which takes one to two weeks, and the city's approved facilities include the Arcosa "
+                "crushed concrete site in Rialto for self-haul loads.",
+            ]),
+        ],
+        "drain_html": (
+            f'Pool water has to go somewhere before demolition starts. The city\'s <a href="{SRC["sb_storm"]}">storm '
+            "drain ordinance</a> bans draining pool water that contains chlorine or acids, and its list of allowed "
+            "discharges includes dechlorinated swimming pool water. The "
+            f'<a href="{SRC["sbc_storm"]}">San Bernardino County Stormwater Program</a> asks pool owners to let the '
+            "water stand three to five days, test the chlorine at zero, and drain only water with a pH between 6.5 "
+            "and 8.5 that is free of dirt and algae."),
+        "faqs": [
+            ("How is the San Bernardino pool permit fee set?",
+             "By the cubic yards of fill. The 2020 Public Works schedule lists $397.80 for grading plan check above 50 "
+             "cubic yards and $225 for inspection up to 1,000."),
+            ("What does San Bernardino require for a shell left in place?",
+             "12-inch holes at 6 ft on center each way across the bottom, and the top cut down at least 2 ft below "
+             "the surface."),
+            ("Does a San Bernardino pool fill need a compaction report?",
+             "Only for soil-only fill. Pea gravel or sand with 24 inches of soil on top needs none."),
+            ("Which office handles San Bernardino pool removal?",
+             "The Land Development Division of the Public Works Department, on North E Street."),
+            ("What does pool removal cost in San Bernardino?",
+             "No local prices are published; statewide contractor ranges apply."),
+        ],
+    },
+    "ontario": {
+        "compact": True,
+        "doc_url": ("https://content.ontarioca.gov/sites/default/files/2025-01/IB%20111%20%28demolition%20of%20"
+                    "swimming%20pool%20%26%20spa%20Requirements%29-eff%2010-16-2024.docx"),
+        "fee": "Valuation-based; plan check 80% of permit fee, $47.50 minimum",
+        "fee_short": "By valuation",
+        "opening_extra": (" Ontario requires the entire shell removed, so a partial fill-in is not an option without "
+                          "the Building Department's approval."),
+        "permit_html": (
+            "Ontario's Building Department requires a building permit to demolish or remove an in-ground pool or spa, "
+            "applied for through the Citizen Portal, which the city has required since July 2023. A homeowner, a B "
+            "general contractor, a C-53 pool contractor or a C-21 demolition contractor may apply. {doc}, effective "
+            "16 October 2024, asks for a site plan drawn to scale showing the pool's location, size and depth and its "
+            "clearances from property lines, nearby structures and retaining walls. The permit fee follows the "
+            f'valuation table on the city\'s <a href="{SRC["ont_fees"]}">building fee page</a>, with plan check at '
+            "80% of the permit fee and a minimum permit fee of $47.50."),
+        "method_html": (
+            "Ontario allows one route: the whole shell leaves the site. The bulletin does not address leaving a shell "
+            "in place, so a partial fill-in needs the Building Department's approval before anyone plans on it. The "
+            "fill can be self-compacting material such as sand, or clean fill dirt compacted to at least 90% under "
+            "the ASTM D1557 test, and the plan must show which."),
+        "extra_after_permit": [
+            ("Inspections and paperwork on an Ontario job", [
+                "The plan goes through a concurrent review by Building, Planning, Engineering, Landscape, OMUC "
+                "Environmental and Public Works, and a tracking number is assigned once the plan check fee is paid. A "
+                "resubmittal waits until every department has finished its review.",
+                "Before the final inspection, {doc} requires:",
+                "<ol><li>The shell removed completely from the site.</li><li>All above-ground pool plumbing, "
+                "including pumps and heaters, removed.</li><li>The gas line disconnected and capped at the meter and "
+                "at the equipment.</li><li>The electrical subpanel and conductors removed back to the service supply."
+                "</li><li>The fill placed as the plan shows.</li></ol>",
+                "The bulletin names one inspection, the final, which can be booked at (909) 395-2362 or online.",
+            ]),
+        ],
+        "cost_html": [
+            "No contractor publishes Ontario prices. Because Ontario allows only full removal, the statewide "
+            "full-removal range of about $8,000 to $30,000 is the one to plan around. The city's charges add the "
+            "valuation-based permit and plan check, plus hauling: a 7-day bin at $95 and $369.29 for each inert or "
+            "construction load on the July 2026 rate sheet.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Ontario", [
+                f'An approved <a href="{SRC["ont_cdrp"]}">Construction and Demolition Recycling Plan</a> is a '
+                "condition of any building or demolition permit in Ontario. The plan commits the job to divert at least "
+                "65% of its debris and to use the City of Ontario hauling service, unless the contractor self-hauls in "
+                "company-owned trucks and containers and keeps weight receipts, and it ends with a final compliance "
+                "report to Integrated Waste. The program carries no extra fee. On the city's "
+                f'<a href="{SRC["ont_rates"]}">July 2026 rate sheet</a>, a 7-day temporary bin rents for $95, an '
+                "inert or construction load adds $369.29 for disposal, and loads over 12 tons pay $115 a ton.",
+            ]),
+        ],
+        "drain_html": (
+            f'Pool water has to go somewhere before demolition starts. Ontario\'s <a href="{SRC["ont_pools"]}">pool '
+            "maintenance guidance</a> lists three routes: reuse the water on landscaping, send it to the sewer between "
+            "midnight and 6 am, or dechlorinate it to zero residual and wait 24 hours before draining to the street or "
+            "storm drain. Water treated with metal-based algaecides such as copper sulfate goes to the sewer, and the "
+            "city's stormwater rules ban chlorinated water and algae solids from the storm drain."),
+        "faqs": [
+            ("Can a pool be filled in place in Ontario, California?",
+             "No. {doc} requires the entire shell removed; leaving it in place is not addressed."),
+            ("What fill does Ontario accept?",
+             "Self-compacting fill such as sand, or clean fill dirt compacted to at least 90% under ASTM D1557."),
+            ("How is an Ontario pool demolition permit priced?",
+             "By project valuation on the city's building fee table, with plan check at 80% of the permit fee and a "
+             "$47.50 minimum."),
+            ("Who hauls pool debris in Ontario?",
+             "The City of Ontario hauling service, unless the contractor self-hauls in its own trucks and containers "
+             "and keeps weight receipts."),
+            ("Is this Ontario, California or Ontario, Canada?",
+             "Ontario, California, in San Bernardino County; searches often show Ontario, Canada."),
+        ],
+    },
+    "modesto": {
+        "compact": True,
+        "fee": "$301 demolition line; $550 pool line (FY 2026-27)",
+        "fee_short": "$301 or $550",
+        "permit_html": (
+            "Modesto publishes no rule specific to pool removal. The city's {doc} for July 2026 to June 2027 lists a "
+            "$301 demolition permit and a separate $550 line for swimming pools of all types, without saying which "
+            "covers a removal, so Building Safety on 10th Street (209-577-5232) confirms the permit before work "
+            "starts. Applications and inspection requests go through the city's eTRAKiT portal. The municipal code's "
+            "section on demolishing buildings requires a bond filed with the City Clerk and notice to the utilities "
+            "so gas, electric, sewer and water lines can be capped."),
+        "method_html": (
+            "Without a pool rule, the code's general demolition section is the closest guide: it requires excavations "
+            "filled with dirt or sand to street level within 10 days. A swimming pool covered by a valid building "
+            "permit needs no separate grading and erosion control permit. Owners should ask Building Safety whether "
+            "a partial fill-in is accepted and whether the area is then limited to landscaping, and nearby "
+            '<a href="/stockton/">Stockton\'s published options</a> show what a Central Valley inspector may expect.'),
+        "extra_after_permit": [
+            ("Air district and code rules in Modesto", [
+                "Modesto sits in the San Joaquin Valley Air Pollution Control District. The district's "
+                f'<a href="{SRC["valley_release"]}">Demolition Permit Release form</a> must be signed and returned to '
+                "the building department before a demolition permit is issued. The form is written for structures, "
+                "so Building Safety confirms whether a pool-only job needs it. The district's "
+                f'<a href="{SRC["valley_8021"]}">Rule 8021</a> on dust from demolition and excavation calls for a '
+                "dust control plan only on residential sites of 10 acres or more or on work moving over 2,500 cubic "
+                "yards a day, far above a backyard pool.",
+                "The municipal code also lists abandoned swimming pools and spas among attractive nuisances, so an "
+                "empty pool left open can be treated as a nuisance under the code.",
+            ]),
+        ],
+        "cost_html": [
+            f"No contractor publishes Modesto prices, so statewide figures apply: {STATEWIDE}. Modesto's own charges "
+            "add the $301 demolition or $550 pool permit on the 2026-27 schedule, and the city adds 2.4% to card "
+            "payments.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Modesto", [
+                "Modesto's municipal code counts rock, concrete, asphalt and dirt from permitted building or "
+                "demolition work as construction and demolition debris. The city holds exclusive service agreements "
+                "with Bertolotti Disposal Service and Gilton Solid Waste Management, and the code lets businesses doing "
+                "demolition or construction cleanup remove the rubbish and salvage their own work produces. The city "
+                "adopted the 2025 CALGreen code in June 2026, which sets a 65% diversion target on the projects it "
+                "covers.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. In Modesto it never goes to the street or storm "
+            f'drain, even when dechlorinated: the city\'s <a href="{SRC["mod_storm"]}">stormwater guidance</a> and '
+            "municipal code send it to the sanitary sewer through the yard's sewer cleanout, and Environmental "
+            "Services takes reports of illegal discharges at 209-577-6200."),
+        "faqs": [
+            ("Does Modesto publish pool removal rules?",
+             "No pool demolition handout exists. The 2026-27 schedule lists a $301 demolition permit and a $550 pool "
+             "permit, and Building Safety confirms which applies."),
+            ("Can Modesto pool water go to the storm drain?",
+             "No. Even dechlorinated pool water goes to the sanitary sewer, usually through the yard's sewer cleanout."),
+            ("Who hauls pool debris in Modesto?",
+             "Bertolotti Disposal Service and Gilton Solid Waste Management hold the city's service agreements, and "
+             "demolition firms may remove the debris their own work produces."),
+            ("What does pool removal cost in Modesto?",
+             "No local prices are published; statewide contractor ranges apply."),
+            ("Do Stockton contractors work in Modesto?",
+             "Several do; one named in the research serves Sacramento, Stockton and Modesto."),
+        ],
+    },
+    "bakersfield": {
+        "compact": True,
+        "fee": "$291 minimum plus project valuation (July 2026)",
+        "fee_short": "$291 minimum",
+        "doc": "building permit application",
+        "doc_url": "https://content.civicplus.com/api/assets/ca-bakersfield/755e6fba-fe20-4bba-9b9e-c44a8fa09756",
+        "permit_html": (
+            "Bakersfield publishes no rule specific to pool removal. The city's {doc} has separate boxes for pool and "
+            "spa work and for demolition, without saying which covers a removal, so the Development Services Building "
+            "Division on Chester Avenue (661-326-3720) confirms the permit type. The city's "
+            f'<a href="{SRC["bak_fees"]}">fee schedule of 1 July 2026</a> charges a building permit at $291 minimum '
+            "plus an amount based on project valuation, with no separate line for demolition or pools."),
+        "extra_after_permit": [
+            ("Air district rules in Bakersfield", [
+                "Bakersfield sits in the San Joaquin Valley Air Pollution Control District, which requires a "
+                f'<a href="{SRC["valley_release"]}">Demolition Permit Release form</a> from the district before a '
+                "building official issues a demolition permit, and asbestos notification at least 10 working days "
+                "ahead of demolition. Both are written for structures, so the Building Division confirms whether a "
+                f'pool-only job needs them. The district\'s <a href="{SRC["valley_8021"]}">Rule 8021</a> requires a '
+                "dust control plan only on residential sites of 10 acres or more or on work moving over 2,500 cubic "
+                "yards a day, far above a backyard pool.",
+            ]),
+        ],
+        "cost_html": [
+            f"No contractor publishes Bakersfield prices, so statewide figures apply: {STATEWIDE}. Bakersfield's own "
+            "charges add the $291 minimum building permit plus valuation and the haul: a city 15 cubic yard bin for "
+            "concrete or dirt costs $149 to deliver and $369.45 a haul before the county gate fee of $95.65 a ton.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Bakersfield", [
+                "Bakersfield limits waste collection to collectors licensed by city contract or franchise, and the "
+                "municipal code leaves contractors paid to remove debris out of its self-haul definition. The city's "
+                "roll-off service offers a 15 cubic yard bin for dirt, concrete, asphalt or heavy material, limited to "
+                f'10 tons a load, on the <a href="{SRC["bak_rolloff"]}">2026-27 rate sheet</a>. The city\'s Mount '
+                f'Vernon recycling facility does not take dirt, and its <a href="{SRC["bak_mtvernon"]}">facility '
+                "handout</a> points to the Bena Landfill on Neumarkel Road for concrete and demolition debris, priced on "
+                f'<a href="{SRC["kern_gate"]}">Kern County\'s gate fee list</a>, and to '
+                "Bowman Asphalt and Sturgeon & Son, which take concrete, asphalt and clean dirt at no charge.",
+                "The city uses the state CW-1 construction waste management form, which carries the CALGreen target of "
+                "at least 65% diversion.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Bakersfield's "
+            f'<a href="{SRC["bak_sewer"]}">sewer code</a> bars swimming pool drainage from the public sewer unless '
+            f'the city engineer specifically authorizes it, and its <a href="{SRC["bak_storm"]}">stormwater code</a> '
+            "bans unsanitary or harmful matter from the storm system. The city publishes no pool-draining guidance, so "
+            "the Building Division or the city engineer's office confirms the route before a pool is emptied."),
+        "faqs": [
+            ("Does Bakersfield publish pool removal rules?",
+             "No. The permit application has separate pool and demolition boxes, and the Building Division at "
+             "661-326-3720 confirms which applies."),
+            ("Can Bakersfield pool water go down the sewer?",
+             "Only with the city engineer's specific authorization; the municipal code otherwise bars pool drainage "
+             "from the public sewer."),
+            ("Where does pool concrete go in Bakersfield?",
+             "The Bena Landfill accepts concrete and demolition debris, and Bowman Asphalt and Sturgeon & Son take "
+             "concrete, asphalt and clean dirt."),
+            ("What does pool removal cost in Bakersfield?",
+             "No local prices are published; statewide contractor ranges run $3,500 to $12,000 partial and $8,000 to "
+             "$30,000 full."),
+            ("How many contractors serve Bakersfield?",
+             "Five businesses were found, two with an active state licence; more are being checked by phone."),
+        ],
+    },
+}
+
+for _c in CITIES:
+    _c.update(CITY_DEPTH.get(_c["slug"], {}))
