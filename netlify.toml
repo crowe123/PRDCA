@@ -1,8 +1,18 @@
+# The site is generated locally with `python3 build.py`; public/ and data/dashboard.json are committed.
 [build]
-  command = "python3 build.py"
+  command = ""
   publish = "public"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[headers]]
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/dashboard/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

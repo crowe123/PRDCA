@@ -8,7 +8,12 @@ workbook's Businesses and By city tabs.
 
 SITE_NAME = "Pool Removal California"
 # Set to the live domain before deploying; used for canonical URLs and the sitemap.
-SITE_URL = "https://www.poolremovalcalifornia.com"
+SITE_URL = "https://pool-removal-california.netlify.app"
+
+# Business contact details shown in the footer of every page.
+BUSINESS_ADDRESS = "1150 S Olive St, Los Angeles, CA 90015"
+BUSINESS_PHONE = "(213) 325-3273"
+BUSINESS_PHONE_TEL = "+12133253273"
 
 # Open item in the plan: whether contractor cards link to each contractor's site.
 LINK_CONTRACTOR_SITES = False

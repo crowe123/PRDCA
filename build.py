@@ -7,6 +7,7 @@ No dependencies beyond the Python standard library. Page plan, titles, H1s and
 rules come from the site structure document (10 October 2026).
 """
 import csv
+import datetime
 import html
 import json
 import re
@@ -14,7 +15,8 @@ import shutil
 from pathlib import Path
 
 from site_data import (CITIES, IMAGES, LINK_CONTRACTOR_SITES, PRICES, REGION_COST,
-                       REGIONS, SITE_NAME, SITE_URL, SRC)
+                       REGIONS, SITE_NAME, SITE_URL, SRC,
+                       BUSINESS_ADDRESS, BUSINESS_PHONE, BUSINESS_PHONE_TEL)
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "public"
@@ -25,6 +27,7 @@ NO_RULE_COUNT = sum(c["rules"] == "none" for c in CITIES)
 HANDOUT_COUNT = sum(c["rules"] == "published" for c in CITIES)
 FEE_ONLY_COUNT = sum(c["rules"] == "fee-only" for c in CITIES)
 TOTAL_FOUND = 103  # businesses confirmed as offering in-ground pool removal (workbook)
+FORMSPREE_URL = "https://formspree.io/f/mwlvnaqn"  # referral form endpoint
 
 
 def a(href, text):
@@ -104,13 +107,16 @@ def header_nav(current):
 
 
 FOOTER = (
-    '<footer class="site-footer"><div class="wrap"><p class="foot-note">Permit facts come from official city documents '
+    '<footer class="site-footer"><div class="wrap">'
+    f'<p class="foot-contact"><strong>{SITE_NAME}</strong><br>{BUSINESS_ADDRESS}<br>'
+    f'<a href="tel:{BUSINESS_PHONE_TEL}" data-track-call="{SITE_NAME}">{BUSINESS_PHONE}</a></p>'
+    '<p class="foot-note">Permit facts come from official city documents '
     f'read on 10 October 2026, and licence statuses from the <a href="{SRC["cslb_lookup"]}">Contractors State License '
     f'Board</a> check of 11 October 2026. {SITE_NAME} is a referral directory, not a contractor. '
     '<a href="/about/">Referral disclosure</a>.</p></div></footer>')
 
 
-def page(path, title, description, body, crumbs=None, schema=None, index=True):
+def page(path, title, description, body, crumbs=None, schema=None, index=True, city=""):
     crumb_html = ""
     if crumbs:
         parts = ['<a href="/">California</a>'] + [
@@ -136,7 +142,7 @@ def page(path, title, description, body, crumbs=None, schema=None, index=True):
 <meta property="og:image" content="{SITE_URL}/img/home-hero.jpg">
 {schema_html}
 </head>
-<body>
+<body data-city="{html.escape(city)}">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
 <a class="logo" href="/">Pool Removal <span>California</span></a>
@@ -148,6 +154,7 @@ def page(path, title, description, body, crumbs=None, schema=None, index=True):
 </main>
 {FOOTER}
 <script>document.addEventListener("click",e=>{{const m=document.querySelector(".menu");if(m&&m.open&&!m.contains(e.target))m.open=false}});document.addEventListener("keydown",e=>{{if(e.key==="Escape")document.querySelector(".menu")?.removeAttribute("open")}});</script>
+<script src="/track.js" defer></script>
 </body>
 </html>
 """
@@ -222,7 +229,8 @@ def contractor_card(b, city):
         quote = f' The site says: &ldquo;{html.escape(says.rstrip(". "))}.&rdquo;'
     basis = BASIS.get(b["basis"], "").format(city=city)
     return (f'<article class="card"><h3>{name}</h3><p>Based in {html.escape(re.sub(r"\s*\(.*\)$", "", b["base_city"]))} · '
-            f'<a href="tel:{re.sub(r"[^0-9+]", "", b["phone"])}">{html.escape(b["phone"])}</a></p>{lic}{aka}'
+            f'<a href="tel:{re.sub(r"[^0-9+]", "", b["phone"])}" data-track-call="{html.escape(b["business"])}">'
+            f'{html.escape(b["phone"])}</a></p>{lic}{aka}'
             f'<p>{offer}{quote} Listed for {city} because {basis}.</p></article>')
 
 
@@ -396,7 +404,7 @@ def city_page(c, listings, held):
     page(f"/{slug}/", f"Pool Removal {c.get('title_name', name)}: Local Contractors and Permit Rules",
          f"Pool removal contractors serving {name}, with the city's permit rules, published fees and the choice "
          f"between partial fill-in and full removal.",
-         body, crumbs=[(None, name)], schema=schema)
+         body, crumbs=[(None, name)], schema=schema, city=name)
     return word_count(body)
 
 
@@ -681,9 +689,9 @@ def contact_page():
     body = f"""<div class="content">
 <h1>Request Pool Removal Contractor Referrals</h1>
 <p class="lead">Referral requests go to listed contractors serving the city named below, with active-licence contractors first. Requests are free; contractors may pay {SITE_NAME} a referral fee, as the <a href="/about/">referral disclosure</a> explains.</p>
-<form class="quote" name="referral" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company">
-<input type="hidden" name="form-name" value="referral">
-<p hidden><label>Leave blank <input name="company"></label></p>
+<form class="quote" id="referral-form" method="POST" action="{FORMSPREE_URL}">
+<input type="hidden" name="_subject" value="New pool removal referral request">
+<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden>
 <label>Name<input name="name" required autocomplete="name"></label>
 <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
 <label>Email<input name="email" type="email" autocomplete="email"></label>
@@ -692,6 +700,7 @@ def contact_page():
 <label>Method<select name="method"><option>Not sure yet</option><option>Partial fill-in</option><option>Full removal</option></select></label>
 <label>Anything else contractors should know<textarea name="notes" rows="4" placeholder="Access width, deck, plans for the area afterwards"></textarea></label>
 <button class="btn" type="submit">Send referral request</button>
+<p class="form-status" role="status" hidden></p>
 </form>
 {DISCLOSURE}
 </div>"""
@@ -717,11 +726,112 @@ def sitemap():
     (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
 
 
+OPEN_ITEMS = [
+    "Phone the firms on the workbook's To verify by phone tab, starting with the five in Fresno",
+    "Decide whether the businesses with no licence number on their site are listed, listed lower, or held back",
+    "Decide whether listings link out to each contractor's website (LINK_CONTRACTOR_SITES)",
+    "Decide on limited-class licences: Bye Bye Pool / Bay Area Pool Demolition, Precision Excavation and Demolition, Beachfront Pools",
+    "Confirm two licence name mismatches by phone: A-1 Septic (American Choice Enterprises) and Bye Bye Pool (PCR Demo)",
+    "Re-check workers' compensation for Buendia Demolition and Optimal EarthWork",
+    "Fill the thin cities: Fresno, Bakersfield and Riverside",
+    "Call building departments in San Francisco, Sacramento, Oakland, Bakersfield, Anaheim and Modesto for pool rules",
+    "Call building departments in Oxnard, Glendale, Lancaster, Oceanside, Palmdale and Garden Grove for pool rules",
+    "Recheck permit fees from older schedules: Fresno, Chula Vista, Fremont and Fontana",
+    "Confirm the three flagged FAQ answers: licence classes, sale disclosure and property tax",
+    "Re-check each licence number at the state board before its page is updated",
+    "Re-run the city ranking check before each wave",
+    "Set SITE_URL in site_data.py to the live domain and connect it in Netlify",
+]
+
+
+def write_dashboard_data(counts, listings, held):
+    """data/dashboard.json: static tracker data bundled into the dashboard API function."""
+    pipeline = {}
+    with (ROOT / "data" / "listings.csv").open(newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            if r["status"] not in ("No licence number on site", "Maps listing only, no website"):
+                continue
+            b = pipeline.setdefault(r["business"], {
+                "business": r["business"], "phone": r["phone"], "base_city": r["base_city"],
+                "reason": r["status"], "website": r["website"], "cities": []})
+            if r["city"] not in b["cities"]:
+                b["cities"].append(r["city"])
+    data = {
+        "generated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+        "siteName": SITE_NAME,
+        "pages": len(CONTENT_PAGES),
+        "cities": [{
+            "name": c["name"], "slug": c["slug"], "region": REGION_NAME[c["region"]], "wave": c["wave"],
+            "confidence": c["confidence"], "listed": len(listings.get(c["slug"], [])), "held": held.get(c["slug"], 0),
+            "words": counts[f'/{c["slug"]}/'],
+        } for c in CITIES],
+        "openItems": OPEN_ITEMS,
+        "pipeline": sorted(pipeline.values(), key=lambda b: (b["reason"], b["business"].lower())),
+    }
+    (ROOT / "data" / "dashboard.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def dashboard_page():
+    html_doc = """<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Referral Dashboard</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/dashboard.css">
+</head>
+<body class="dash">
+<header class="site-header"><div class="wrap"><span class="logo">Pool Removal <span>California</span> · Dashboard</span>
+<nav class="nav"><button id="refresh" class="link-btn" type="button">Refresh</button><button id="logout" class="link-btn" type="button">Sign out</button></nav></div></header>
+<main class="wrap">
+<section id="login" hidden>
+<h1>Dashboard sign-in</h1>
+<form id="login-form" class="quote"><label>Dashboard key<input id="key" type="password" autocomplete="current-password" required></label>
+<button class="btn" type="submit">Open dashboard</button><p id="login-msg" class="muted"></p></form>
+</section>
+<p id="loading" class="muted" hidden>Loading…</p><p id="error" class="error"></p>
+<div id="app" hidden>
+<section><div class="dash-head"><h1>Referrals</h1>
+<label>Period <select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">12 months</option></select></label></div>
+<div id="kpis" class="kpis"></div>
+<div class="dash-grid">
+<div class="panel"><h2>Calls by contractor</h2><div id="by-contractor"></div></div>
+<div class="panel"><h2>Referrals by city</h2><div id="by-city"></div></div>
+<div class="panel"><h2>Form requests by city</h2><div id="forms-by-city"></div></div>
+</div>
+<div class="panel"><h2>Recent referral events</h2><p class="muted">Phone counts are taps on a phone link on the site; the call itself is not tracked. Form requests are copied to Formspree, which holds the visitor's contact details.</p>
+<div class="table-wrap"><table><thead><tr><th>When</th><th>Type</th><th>City</th><th>Detail</th><th>Page</th></tr></thead><tbody id="recent"></tbody></table></div></div>
+</section>
+<section><h1>Site tracker</h1><p id="site-summary" class="muted"></p>
+<div class="table-wrap"><table><thead><tr><th>City</th><th>Region</th><th>Wave</th><th>Listed</th><th>Held back</th><th>Permit confidence</th><th>Words</th><th>Referrals</th></tr></thead><tbody id="cities"></tbody></table></div>
+<h2>Open items from the site plan</h2>
+<div class="table-wrap"><table><tbody id="items"></tbody></table></div>
+</section>
+<section><div class="dash-head"><h1>Contractor pipeline</h1>
+<label>Show <select id="pipe-filter"><option value="">All</option><option>To call</option><option>No answer</option><option>Verified</option><option>Not offering pool removal</option><option>Listed</option><option>Rejected</option></select></label></div>
+<p class="muted">Businesses held back until a phone check. Mark a business Verified once confirmed, then set it to Licence active in the workbook and re-run the import to list it.</p>
+<p id="pipe-count" class="muted"></p>
+<div class="table-wrap"><table><thead><tr><th>Business</th><th>Phone</th><th>Base city</th><th>Cities</th><th>Status and note</th></tr></thead><tbody id="pipeline"></tbody></table></div>
+</section>
+</div>
+</main>
+<script src="/dashboard.js"></script>
+</body>
+</html>
+"""
+    (OUT / "dashboard").mkdir(parents=True, exist_ok=True)
+    (OUT / "dashboard" / "index.html").write_text(html_doc, encoding="utf-8")
+
+
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir()
-    shutil.copy(ROOT / "static" / "styles.css", OUT / "styles.css")
+    for name in ("styles.css", "dashboard.css", "track.js", "dashboard.js"):
+        shutil.copy(ROOT / "static" / name, OUT / name)
     shutil.copytree(ROOT / "static" / "img", OUT / "img")
     (OUT / "favicon.svg").write_text(
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#12372a"/>'
@@ -735,6 +845,8 @@ def main():
     about_page()
     contact_page()
     not_found()
+    dashboard_page()
+    write_dashboard_data(counts, listings, held)
     sitemap()
     for p, n in counts.items():
         print(f"{n:>5} words  {p}")

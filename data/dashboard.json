@@ -1,0 +1,864 @@
+{
+ "generated": "2026-10-12T19:08:04+00:00",
+ "siteName": "Pool Removal California",
+ "pages": 36,
+ "cities": [
+  {
+   "name": "Los Angeles",
+   "slug": "los-angeles",
+   "region": "Los Angeles County",
+   "wave": 1,
+   "confidence": "High",
+   "listed": 6,
+   "held": 9,
+   "words": 1537
+  },
+  {
+   "name": "San Diego",
+   "slug": "san-diego",
+   "region": "San Diego County",
+   "wave": 1,
+   "confidence": "Medium-high",
+   "listed": 10,
+   "held": 4,
+   "words": 1707
+  },
+  {
+   "name": "San Jose",
+   "slug": "san-jose",
+   "region": "Bay Area",
+   "wave": 1,
+   "confidence": "High",
+   "listed": 17,
+   "held": 13,
+   "words": 2099
+  },
+  {
+   "name": "San Francisco",
+   "slug": "san-francisco",
+   "region": "Bay Area",
+   "wave": 2,
+   "confidence": "Low",
+   "listed": 17,
+   "held": 11,
+   "words": 2124
+  },
+  {
+   "name": "Fresno",
+   "slug": "fresno",
+   "region": "Sacramento and the Central Valley",
+   "wave": 3,
+   "confidence": "Medium-high",
+   "listed": 2,
+   "held": 0,
+   "words": 1153
+  },
+  {
+   "name": "Sacramento",
+   "slug": "sacramento",
+   "region": "Sacramento and the Central Valley",
+   "wave": 1,
+   "confidence": "Low",
+   "listed": 5,
+   "held": 3,
+   "words": 1348
+  },
+  {
+   "name": "Long Beach",
+   "slug": "long-beach",
+   "region": "Los Angeles County",
+   "wave": 2,
+   "confidence": "High",
+   "listed": 5,
+   "held": 12,
+   "words": 1362
+  },
+  {
+   "name": "Oakland",
+   "slug": "oakland",
+   "region": "Bay Area",
+   "wave": 1,
+   "confidence": "Low",
+   "listed": 16,
+   "held": 13,
+   "words": 1965
+  },
+  {
+   "name": "Bakersfield",
+   "slug": "bakersfield",
+   "region": "Sacramento and the Central Valley",
+   "wave": 3,
+   "confidence": "Low",
+   "listed": 2,
+   "held": 3,
+   "words": 1153
+  },
+  {
+   "name": "Anaheim",
+   "slug": "anaheim",
+   "region": "Orange County",
+   "wave": 2,
+   "confidence": "Low-medium",
+   "listed": 8,
+   "held": 8,
+   "words": 1495
+  },
+  {
+   "name": "Stockton",
+   "slug": "stockton",
+   "region": "Sacramento and the Central Valley",
+   "wave": 2,
+   "confidence": "High",
+   "listed": 10,
+   "held": 0,
+   "words": 1600
+  },
+  {
+   "name": "Riverside",
+   "slug": "riverside",
+   "region": "Inland Empire",
+   "wave": 2,
+   "confidence": "Medium",
+   "listed": 2,
+   "held": 5,
+   "words": 1125
+  },
+  {
+   "name": "Irvine",
+   "slug": "irvine",
+   "region": "Orange County",
+   "wave": 1,
+   "confidence": "High",
+   "listed": 8,
+   "held": 8,
+   "words": 1454
+  },
+  {
+   "name": "Santa Ana",
+   "slug": "santa-ana",
+   "region": "Orange County",
+   "wave": 2,
+   "confidence": "High",
+   "listed": 8,
+   "held": 7,
+   "words": 1462
+  },
+  {
+   "name": "Chula Vista",
+   "slug": "chula-vista",
+   "region": "San Diego County",
+   "wave": 2,
+   "confidence": "Medium",
+   "listed": 9,
+   "held": 4,
+   "words": 1614
+  },
+  {
+   "name": "Fremont",
+   "slug": "fremont",
+   "region": "Bay Area",
+   "wave": 2,
+   "confidence": "Medium",
+   "listed": 17,
+   "held": 12,
+   "words": 2025
+  },
+  {
+   "name": "Santa Clarita",
+   "slug": "santa-clarita",
+   "region": "Los Angeles County",
+   "wave": 3,
+   "confidence": "High",
+   "listed": 4,
+   "held": 6,
+   "words": 1274
+  },
+  {
+   "name": "San Bernardino",
+   "slug": "san-bernardino",
+   "region": "Inland Empire",
+   "wave": 3,
+   "confidence": "Medium",
+   "listed": 3,
+   "held": 5,
+   "words": 1190
+  },
+  {
+   "name": "Modesto",
+   "slug": "modesto",
+   "region": "Sacramento and the Central Valley",
+   "wave": 2,
+   "confidence": "Low",
+   "listed": 8,
+   "held": 1,
+   "words": 1503
+  },
+  {
+   "name": "Fontana",
+   "slug": "fontana",
+   "region": "Inland Empire",
+   "wave": 3,
+   "confidence": "High",
+   "listed": 3,
+   "held": 6,
+   "words": 1189
+  },
+  {
+   "name": "Moreno Valley",
+   "slug": "moreno-valley",
+   "region": "Inland Empire",
+   "wave": 4,
+   "confidence": "High",
+   "listed": 2,
+   "held": 6,
+   "words": 1287
+  },
+  {
+   "name": "Oxnard",
+   "slug": "oxnard",
+   "region": "Ventura County",
+   "wave": 4,
+   "confidence": "Low",
+   "listed": 4,
+   "held": 0,
+   "words": 1338
+  },
+  {
+   "name": "Glendale",
+   "slug": "glendale",
+   "region": "Los Angeles County",
+   "wave": 4,
+   "confidence": "Low",
+   "listed": 4,
+   "held": 7,
+   "words": 1379
+  },
+  {
+   "name": "Huntington Beach",
+   "slug": "huntington-beach",
+   "region": "Orange County",
+   "wave": 4,
+   "confidence": "High",
+   "listed": 8,
+   "held": 6,
+   "words": 1559
+  },
+  {
+   "name": "Elk Grove",
+   "slug": "elk-grove",
+   "region": "Sacramento and the Central Valley",
+   "wave": 4,
+   "confidence": "High",
+   "listed": 4,
+   "held": 3,
+   "words": 1328
+  },
+  {
+   "name": "Ontario",
+   "slug": "ontario",
+   "region": "Inland Empire",
+   "wave": 4,
+   "confidence": "Medium",
+   "listed": 2,
+   "held": 7,
+   "words": 1131
+  },
+  {
+   "name": "Santa Rosa",
+   "slug": "santa-rosa",
+   "region": "Bay Area",
+   "wave": 4,
+   "confidence": "High",
+   "listed": 4,
+   "held": 1,
+   "words": 1357
+  },
+  {
+   "name": "Lancaster",
+   "slug": "lancaster",
+   "region": "Los Angeles County",
+   "wave": 4,
+   "confidence": "Low",
+   "listed": 4,
+   "held": 5,
+   "words": 1338
+  },
+  {
+   "name": "Rancho Cucamonga",
+   "slug": "rancho-cucamonga",
+   "region": "Inland Empire",
+   "wave": 4,
+   "confidence": "High",
+   "listed": 2,
+   "held": 5,
+   "words": 1201
+  },
+  {
+   "name": "Oceanside",
+   "slug": "oceanside",
+   "region": "San Diego County",
+   "wave": 4,
+   "confidence": "Low",
+   "listed": 9,
+   "held": 4,
+   "words": 1604
+  },
+  {
+   "name": "Garden Grove",
+   "slug": "garden-grove",
+   "region": "Orange County",
+   "wave": 4,
+   "confidence": "High",
+   "listed": 8,
+   "held": 6,
+   "words": 1528
+  },
+  {
+   "name": "Palmdale",
+   "slug": "palmdale",
+   "region": "Los Angeles County",
+   "wave": 4,
+   "confidence": "Low",
+   "listed": 4,
+   "held": 6,
+   "words": 1347
+  }
+ ],
+ "openItems": [
+  "Phone the firms on the workbook's To verify by phone tab, starting with the five in Fresno",
+  "Decide whether the businesses with no licence number on their site are listed, listed lower, or held back",
+  "Decide whether listings link out to each contractor's website (LINK_CONTRACTOR_SITES)",
+  "Decide on limited-class licences: Bye Bye Pool / Bay Area Pool Demolition, Precision Excavation and Demolition, Beachfront Pools",
+  "Confirm two licence name mismatches by phone: A-1 Septic (American Choice Enterprises) and Bye Bye Pool (PCR Demo)",
+  "Re-check workers' compensation for Buendia Demolition and Optimal EarthWork",
+  "Fill the thin cities: Fresno, Bakersfield and Riverside",
+  "Call building departments in San Francisco, Sacramento, Oakland, Bakersfield, Anaheim and Modesto for pool rules",
+  "Call building departments in Oxnard, Glendale, Lancaster, Oceanside, Palmdale and Garden Grove for pool rules",
+  "Recheck permit fees from older schedules: Fresno, Chula Vista, Fremont and Fontana",
+  "Confirm the three flagged FAQ answers: licence classes, sale disclosure and property tax",
+  "Re-check each licence number at the state board before its page is updated",
+  "Re-run the city ranking check before each wave",
+  "Set SITE_URL in site_data.py to the live domain and connect it in Netlify"
+ ],
+ "pipeline": [
+  {
+   "business": "Cal Core Demolition & Pool removal",
+   "phone": "(408) 963-9886",
+   "base_city": "Not shown",
+   "reason": "Maps listing only, no website",
+   "website": "",
+   "cities": [
+    "San Jose",
+    "Oakland",
+    "Fremont"
+   ]
+  },
+  {
+   "business": "Four Seasons Bobcat & Pool Removal",
+   "phone": "(408) 426-1131",
+   "base_city": "Not shown",
+   "reason": "Maps listing only, no website",
+   "website": "",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Irvine",
+    "Santa Ana",
+    "Fremont",
+    "Moreno Valley"
+   ]
+  },
+  {
+   "business": "Penaloza Demolition - Pool & Bathroom Demolition Experts",
+   "phone": "(626) 551-6745",
+   "base_city": "Not shown",
+   "reason": "Maps listing only, no website",
+   "website": "",
+   "cities": [
+    "Long Beach"
+   ]
+  },
+  {
+   "business": "Pool Demo",
+   "phone": "(800) 939-1671",
+   "base_city": "Mission Viejo",
+   "reason": "Maps listing only, no website",
+   "website": "",
+   "cities": [
+    "Long Beach",
+    "Anaheim",
+    "Irvine",
+    "Santa Ana",
+    "Huntington Beach",
+    "Ontario",
+    "Garden Grove"
+   ]
+  },
+  {
+   "business": "Ace Demolition",
+   "phone": "(818) 223-3366",
+   "base_city": "Sun Valley",
+   "reason": "No licence number on site",
+   "website": "https://acedemo.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Santa Clarita",
+    "Glendale",
+    "Palmdale"
+   ]
+  },
+  {
+   "business": "ACH Services (Aftermath Cleanup and Hauling)",
+   "phone": "(661) 518-4002",
+   "base_city": "Bakersfield",
+   "reason": "No licence number on site",
+   "website": "https://achservices.us/",
+   "cities": [
+    "Bakersfield"
+   ]
+  },
+  {
+   "business": "All Bay Pool Removal",
+   "phone": "(408) 592-9371",
+   "base_city": "San Jose",
+   "reason": "No licence number on site",
+   "website": "https://allbaypoolremoval.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Fremont",
+    "Modesto"
+   ]
+  },
+  {
+   "business": "All Los Angeles Demolition (Dependable Demolition)",
+   "phone": "(855) 713-6280",
+   "base_city": "Los Angeles (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://dependabledemolition.com/",
+   "cities": [
+    "Glendale"
+   ]
+  },
+  {
+   "business": "Bay Area Demo and Hauling",
+   "phone": "(408) 663-5865",
+   "base_city": "San Jose",
+   "reason": "No licence number on site",
+   "website": "https://bayareademoandhauling.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Fremont"
+   ]
+  },
+  {
+   "business": "Bayline Demolition",
+   "phone": "(408) 640-0524",
+   "base_city": "San Jose",
+   "reason": "No licence number on site",
+   "website": "https://baylinedemolition.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Fremont"
+   ]
+  },
+  {
+   "business": "Borquez Demolition Inc.",
+   "phone": "(510) 809-5105",
+   "base_city": "Oakland",
+   "reason": "No licence number on site",
+   "website": "https://borquezdemolition.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Fremont"
+   ]
+  },
+  {
+   "business": "CCU Demolition, Inc.",
+   "phone": "(661) 695-5788",
+   "base_city": "Bakersfield",
+   "reason": "No licence number on site",
+   "website": "https://ccudemolition.com/",
+   "cities": [
+    "Bakersfield"
+   ]
+  },
+  {
+   "business": "Clear Path Demolition",
+   "phone": "(949) 603-3366",
+   "base_city": "Mission Viejo",
+   "reason": "No licence number on site",
+   "website": "https://clearpathdemo.com/",
+   "cities": [
+    "Los Angeles",
+    "San Diego",
+    "Long Beach",
+    "Anaheim",
+    "Riverside",
+    "Irvine",
+    "Santa Ana",
+    "Chula Vista",
+    "Santa Clarita",
+    "San Bernardino",
+    "Fontana",
+    "Moreno Valley",
+    "Glendale",
+    "Huntington Beach",
+    "Ontario",
+    "Lancaster",
+    "Rancho Cucamonga",
+    "Oceanside",
+    "Garden Grove",
+    "Palmdale"
+   ]
+  },
+  {
+   "business": "Demo Diego",
+   "phone": "(760) 860-8080",
+   "base_city": "San Diego County (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://demodiego.com/",
+   "cities": [
+    "San Diego",
+    "Chula Vista",
+    "Oceanside"
+   ]
+  },
+  {
+   "business": "Demolition Los Angeles (DMLA)",
+   "phone": "(213) 559-1042",
+   "base_city": "Reseda",
+   "reason": "No licence number on site",
+   "website": "https://demolitionlosangelesca.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Santa Clarita",
+    "Glendale",
+    "Lancaster",
+    "Palmdale"
+   ]
+  },
+  {
+   "business": "Diablo Oasis Pools",
+   "phone": "(510) 919-0319",
+   "base_city": "East Bay (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://diablooasispools.com/",
+   "cities": [
+    "Oakland",
+    "Fremont"
+   ]
+  },
+  {
+   "business": "Dig This Inc.",
+   "phone": "(925) 260-0780",
+   "base_city": "Walnut Creek",
+   "reason": "No licence number on site",
+   "website": "https://dig-this-inc.com/",
+   "cities": [
+    "Oakland"
+   ]
+  },
+  {
+   "business": "Eastbay Demo",
+   "phone": "(650) 448-8659",
+   "base_city": "Fremont",
+   "reason": "No licence number on site",
+   "website": "https://eastbaydemo.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Fremont"
+   ]
+  },
+  {
+   "business": "EDYEAL Demolition",
+   "phone": "(323) 928-0433",
+   "base_city": "Los Angeles (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://edyealdemolition.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Irvine"
+   ]
+  },
+  {
+   "business": "Empire Demolition and Hauling",
+   "phone": "(916) 579-2533",
+   "base_city": "Orangevale",
+   "reason": "No licence number on site",
+   "website": "https://empiredemolitionandhauling.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Sacramento",
+    "Oakland",
+    "Fremont",
+    "Elk Grove"
+   ]
+  },
+  {
+   "business": "Golani Demolition",
+   "phone": "(818) 616-4119",
+   "base_city": "Los Angeles (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://golanidemolition.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Santa Clarita",
+    "Glendale",
+    "Lancaster",
+    "Palmdale"
+   ]
+  },
+  {
+   "business": "Green Sphere Demolition Inc",
+   "phone": "(619) 882-6745",
+   "base_city": "San Diego",
+   "reason": "No licence number on site",
+   "website": "https://greenspheredemolition.com/",
+   "cities": [
+    "San Diego",
+    "Chula Vista",
+    "Oceanside"
+   ]
+  },
+  {
+   "business": "J P & Sons, Inc.",
+   "phone": "(909) 205-0232",
+   "base_city": "Highland",
+   "reason": "No licence number on site",
+   "website": "https://jpsonsinc.com/",
+   "cities": [
+    "Anaheim",
+    "Riverside",
+    "San Bernardino",
+    "Fontana",
+    "Moreno Valley",
+    "Ontario",
+    "Rancho Cucamonga"
+   ]
+  },
+  {
+   "business": "J.B. Hauling",
+   "phone": "(760) 586-1152",
+   "base_city": "Vista",
+   "reason": "No licence number on site",
+   "website": "https://jbhaulingsd.com/",
+   "cities": [
+    "San Diego",
+    "Chula Vista",
+    "Oceanside"
+   ]
+  },
+  {
+   "business": "Legendary Demolition Los Angeles",
+   "phone": "(213) 799-4965",
+   "base_city": "Los Angeles",
+   "reason": "No licence number on site",
+   "website": "https://legendarydemolitionlosangeles.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Anaheim",
+    "Santa Clarita",
+    "Glendale",
+    "Lancaster",
+    "Palmdale"
+   ]
+  },
+  {
+   "business": "Master Demolition",
+   "phone": "(714) 280-2515",
+   "base_city": "Orange",
+   "reason": "No licence number on site",
+   "website": "https://masterdemolitionca.com/",
+   "cities": [
+    "Long Beach",
+    "Anaheim",
+    "Irvine",
+    "Santa Ana",
+    "Huntington Beach",
+    "Garden Grove"
+   ]
+  },
+  {
+   "business": "Noecon",
+   "phone": "(650) 630-5967",
+   "base_city": "Not shown",
+   "reason": "No licence number on site",
+   "website": "https://noecon.net/",
+   "cities": [
+    "San Jose"
+   ]
+  },
+  {
+   "business": "NorCal Earthworks",
+   "phone": "(916) 404-6158",
+   "base_city": "Roseville",
+   "reason": "No licence number on site",
+   "website": "https://norcalearthworks.com/",
+   "cities": [
+    "Sacramento",
+    "Elk Grove"
+   ]
+  },
+  {
+   "business": "Original Demolition Services",
+   "phone": "(661) 619-9626",
+   "base_city": "Bakersfield",
+   "reason": "No licence number on site",
+   "website": "https://originaldemolition.com/",
+   "cities": [
+    "Bakersfield"
+   ]
+  },
+  {
+   "business": "Prospects Demolition Inc",
+   "phone": "(661) 317-2650",
+   "base_city": "Southern California (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://prospectsdemolition.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Anaheim",
+    "Riverside",
+    "Irvine",
+    "Santa Ana",
+    "Santa Clarita",
+    "San Bernardino",
+    "Fontana",
+    "Moreno Valley",
+    "Glendale",
+    "Huntington Beach",
+    "Ontario",
+    "Lancaster",
+    "Rancho Cucamonga",
+    "Garden Grove",
+    "Palmdale"
+   ]
+  },
+  {
+   "business": "Richie Bobcat Pool Removal Service",
+   "phone": "(408) 409-4975",
+   "base_city": "San Jose",
+   "reason": "No licence number on site",
+   "website": "https://richiebobcatpoolremoval.net/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Fremont"
+   ]
+  },
+  {
+   "business": "Smart Demolition & Excavation",
+   "phone": "(415) 691-4220",
+   "base_city": "San Francisco",
+   "reason": "No licence number on site",
+   "website": "https://smartdemoexc.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco"
+   ]
+  },
+  {
+   "business": "SMI Demolition",
+   "phone": "(510) 806-6975",
+   "base_city": "Novato",
+   "reason": "No licence number on site",
+   "website": "https://smidemolitioninc.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Sacramento",
+    "Oakland",
+    "Fremont",
+    "Elk Grove",
+    "Santa Rosa"
+   ]
+  },
+  {
+   "business": "Socal Pool Construction",
+   "phone": "(951) 453-3951",
+   "base_city": "Fontana",
+   "reason": "No licence number on site",
+   "website": "https://socalpoolconstruction.com/",
+   "cities": [
+    "Riverside",
+    "San Bernardino",
+    "Fontana",
+    "Moreno Valley",
+    "Ontario",
+    "Rancho Cucamonga"
+   ]
+  },
+  {
+   "business": "South Coast Demolition",
+   "phone": "(714) 386-8859",
+   "base_city": "Orange",
+   "reason": "No licence number on site",
+   "website": "https://southcoastdemo.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Anaheim",
+    "Irvine",
+    "Santa Ana",
+    "Fontana",
+    "Huntington Beach",
+    "Ontario",
+    "Garden Grove"
+   ]
+  },
+  {
+   "business": "Sunset Demolition Experts Inc",
+   "phone": "(714) 658-0351",
+   "base_city": "Anaheim (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://sunsetdemolitionexpertsinc.com/",
+   "cities": [
+    "Los Angeles",
+    "Long Beach",
+    "Anaheim",
+    "Riverside",
+    "Irvine",
+    "Santa Ana",
+    "San Bernardino",
+    "Fontana",
+    "Moreno Valley",
+    "Huntington Beach",
+    "Ontario",
+    "Rancho Cucamonga",
+    "Garden Grove"
+   ]
+  },
+  {
+   "business": "Unique Pools",
+   "phone": "(925) 513-3800",
+   "base_city": "East Bay (address not shown)",
+   "reason": "No licence number on site",
+   "website": "https://uniquepool.com/",
+   "cities": [
+    "San Jose",
+    "San Francisco",
+    "Oakland",
+    "Fremont"
+   ]
+  }
+ ]
+}
