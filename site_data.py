@@ -168,11 +168,15 @@ CITIES = [
         "extra_after_permit": [
             ("Inspections and paperwork on a Los Angeles job", [
                 "The Department of Building and Safety sets out two versions of the same grading permit in {doc}, "
-                "revised in June 2026, and each version comes with three inspections: an initial meeting, a bottom "
-                "inspection and a final inspection. On a partial fill-in, the bottom inspection happens after the "
-                "drainage holes are broken and before any soil goes in. The bulletin requires at least one of those "
-                "holes at the deepest point of the shell, and the backfill must be clean soil or gravel, moistened and "
-                "compacted by tractor rolling or a mechanical tamper.",
+                "revised in June 2026, and each version comes with the same three inspections, called for as the "
+                "grading work reaches each stage:",
+                "<ol><li>Initial meeting and inspection.</li>"
+                "<li>Bottom inspection: on a partial fill-in, after the drainage holes are broken and before any soil "
+                "goes in; on a full removal, after the shell is out and before compacted fill is placed.</li>"
+                "<li>Final inspection, once the fill is complete.</li></ol>",
+                "On a partial fill-in, the bulletin requires at least one drainage hole at the deepest point of the "
+                "shell, and the backfill must be clean soil or gravel, moistened and compacted by tractor rolling or a "
+                "mechanical tamper.",
                 "A partial fill-in also needs a plot plan showing where the pool sits, its distance to every building "
                 "and property line, and a note that the fill is uncertified. That label matters later. Uncertified "
                 "fill cannot support a footing, so the area stays limited to planting.",

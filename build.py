@@ -385,18 +385,19 @@ def city_page(c, listings, held):
     hero = img_tag(f"city-{slug}-hero", "hero-img", eager=True)
 
     def extra(key):
-        return "".join(f'<h2>{h}</h2>' + "".join(f'<p>{fill(par, c)}</p>' for par in pars)
+        return "".join(f'<h2>{h}</h2>' + "".join(fill(par, c) if par.startswith("<") else f'<p>{fill(par, c)}</p>'
+                                               for par in pars)
                        for h, pars in c.get(key, []))
 
     def assemble(faq_html):
         return (
             '<div class="content">'
             f'<h1>Pool Removal Contractors Working in {name}</h1>{opening}{facts}{intro}{hero}'
-            + cta(f'Homeowners in {name} can ask for referrals to listed contractors who take pool removal work.')
-            + contractors + permit + extra("extra_after_permit") + methods
+            + contractors
+            # One call to action per city page: USEOU scores two or more sales CTAs negatively.
             + cta(f'{name} referrals go to contractors with an active licence first.')
+            + permit + extra("extra_after_permit") + methods
             + cost + extra("extra_after_cost") + draining + after + nearby + map_html + faq_html
-            + cta('Ready to compare quotes? Referral requests take a couple of minutes.')
             + DISCLOSURE + '</div>')
 
     body = assemble(faq_block(False))
