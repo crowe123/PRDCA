@@ -247,18 +247,18 @@ def city_page(c, listings, held):
 
     if published:
         opening = (f'<p class="lead"><strong>Pool removal in {name} needs a {c["permit"].lower()} from the city\'s '
-                   f'{c["dept"]}, and research for this directory found {c["found"]} businesses offering in-ground '
-                   f'pool removal there, {c["active"]} with an active state licence.</strong></p>')
+                   f'{c["dept"]}, and {SITE_NAME} found {c["found"]} businesses offering in-ground '
+                   f'pool removal there, {c["active"]} with an active state licence.{c.get("opening_extra", "")}</strong></p>')
     else:
         opening = (f'<p class="lead"><strong>Pool removal in {name} has no city handout of its own, so the '
-                   f'{c["dept"]} confirms the permit, and research for this directory found {c["found"]} businesses '
-                   f'offering in-ground pool removal there, {c["active"]} with an active state licence.</strong></p>')
+                   f'{c["dept"]} confirms the permit, and {SITE_NAME} found {c["found"]} businesses '
+                   f'offering in-ground pool removal there, {c["active"]} with an active state licence.{c.get("opening_extra", "")}</strong></p>')
 
     facts = (
         '<div class="facts">'
         f'<div class="fact"><b>{c["found"]}</b><span>businesses found for {name}</span></div>'
         f'<div class="fact"><b>{c["active"]}</b><span>with an active state licence</span></div>'
-        f'<div class="fact"><b>{c.get("fee_short") or (c["fee"].split(" (")[0] if c["fee"][0] == "$" else "See below")}</b>'
+        f'<div class="fact"><b>{c.get("fee_short") or (c["fee"].split(" (")[0] if c["fee"][0] == "$" else ("Not published" if c["fee"].startswith("Not published") else "See below"))}</b>'
         f'<span>published permit fee</span></div>'
         f'<div class="fact"><b>{c["confidence"]}</b><span>confidence in published city rules</span></div>'
         '</div>')
@@ -318,7 +318,8 @@ def city_page(c, listings, held):
         '<p>Four things move a quote more than anything else: equipment access (about $2,000 more where the side yard '
         'is under 6 ft wide), deck removal ($500 to $1,700), fill dirt (80 to 150 cubic yards for a full removal) and '
         'the engineer\'s compaction report ($1,500 to $4,000). The <a href="/cost/">California pool removal cost '
-        'guide</a> sets out every published price by region and pool type.</p>')
+        'guide</a> sets out every published price by region and pool type.</p>'
+        + (f'<p>{fill(c["cost_extra"], c)}</p>' if c.get("cost_extra") else ''))
 
     methods = (
         f'<h2>Partial fill-in or full removal in {name}</h2><p>{fill(c["method_html"], c)}</p>{diagram()}'
@@ -329,13 +330,22 @@ def city_page(c, listings, held):
         'over the old pool.</p>'
         + figure(f"city-{slug}-work", ALT.get(f"city-{slug}-work", "") + "."))
 
+    if c["region"] == "la":
+        drain_src = (f'<a href="{SRC["la_storm"]}">LA Stormwater</a> allows the storm drain only for dechlorinated '
+                     'water within a set pH range')
+    elif c["region"] == "sd":
+        drain_src = (f'The <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> allows the storm drain '
+                     'only for dechlorinated water within a set pH range')
+    else:
+        drain_src = (f'The <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and '
+                     f'<a href="{SRC["la_storm"]}">LA Stormwater</a> both allow the storm drain only for dechlorinated '
+                     'water within a set pH range')
     draining = (
         '<p>Pool water has to go somewhere before demolition starts. '
         + ('Stockton and Riverside allow pool water to the sewer clean-out only, ' if c["slug"] in ("stockton", "riverside") else '')
-        + f'The <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and '
-          f'<a href="{SRC["la_storm"]}">LA Stormwater</a> both allow the storm drain only for dechlorinated water '
-          f'within a set pH range, and {name} contractors generally follow the same practice. The '
-          f'{c["dept"]} confirms the local rule.</p>')
+        + (drain_src[0].lower() + drain_src[1:] if c["slug"] in ("stockton", "riverside") else drain_src)
+        + f', and {name} contractors generally follow the same practice. The '
+          f'{c["dept"]} is the office to ask about the local rule.</p>')
 
     nearby = (
         '<h2>Nearby areas</h2>'
@@ -374,14 +384,18 @@ def city_page(c, listings, held):
 
     hero = img_tag(f"city-{slug}-hero", "hero-img", eager=True)
 
+    def extra(key):
+        return "".join(f'<h2>{h}</h2>' + "".join(f'<p>{fill(par, c)}</p>' for par in pars)
+                       for h, pars in c.get(key, []))
+
     def assemble(faq_html):
         return (
             '<div class="content">'
             f'<h1>Pool Removal Contractors Working in {name}</h1>{opening}{facts}{intro}{hero}'
             + cta(f'Homeowners in {name} can ask for referrals to listed contractors who take pool removal work.')
-            + contractors + permit + methods
+            + contractors + permit + extra("extra_after_permit") + methods
             + cta(f'{name} referrals go to contractors with an active licence first.')
-            + cost + draining + after + nearby + map_html + faq_html
+            + cost + extra("extra_after_cost") + draining + after + nearby + map_html + faq_html
             + cta('Ready to compare quotes? Referral requests take a couple of minutes.')
             + DISCLOSURE + '</div>')
 
@@ -427,7 +441,7 @@ def home():
 <p class="lead"><strong>{SITE_NAME} lists {TOTAL_FOUND} businesses confirmed as offering in-ground pool removal across California's 32 largest cities, and the <a href="{SRC["cslb_lookup"]}">Contractors State License Board</a> check of 11 October 2026 found 51 of the licence numbers they show current and active.</strong></p>
 <p>Each city page pairs the local contractor list with that city's own permit rules, taken from official building department documents. Coverage is uneven: Bay Area cities have about 30 businesses each, while Fresno has 2, Oxnard and Bakersfield 5 each, and Riverside 7. The {N} cities are ranked by the <a href="{SRC["dof_e1"]}">California Department of Finance population estimate for 1 January 2026</a>.</p>
 {img_tag("home-hero", "hero-img", eager=True)}
-{cta("Homeowners can ask for referrals to listed contractors in any of the {N} cities.")}
+{cta(f"Homeowners can ask for referrals to listed contractors in any of the {N} cities.")}
 
 <h2 id="cities">Contractor counts for {N} cities in {len(REGIONS)} regions</h2>
 <p>Every city page sits one click from here. The count beside each city is the number of businesses research found offering in-ground pool removal there; a business that serves several cities is counted under each. San Jose has the deepest list at 34, and Oakland and Fremont follow at 32 each.</p>

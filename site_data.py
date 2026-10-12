@@ -16,7 +16,7 @@ BUSINESS_PHONE = "(213) 325-3273"
 BUSINESS_PHONE_TEL = "+12133253273"
 
 # Open item in the plan: whether contractor cards link to each contractor's site.
-LINK_CONTRACTOR_SITES = False
+LINK_CONTRACTOR_SITES = True
 
 # Official and published sources, linked inside the sentences that use them.
 SRC = {
@@ -46,6 +46,7 @@ SRC = {
     "byebye": "https://byebyepools.com/partial-vs-full-pool-removal-cost-may/",
     "norcal": "https://norcalearthworks.com/blog/pool-removal-before-adu-sacramento",
     "walberg": "https://www.walberginc.com/blog/swimming-pool-removal-cost-northern-california",
+    "la_cd": "https://sanitation.lacity.gov/san/faces/home/portal/s-lsh-wwd/s-lsh-wwd-s/s-lsh-wwd-s-r/s-lsh-wwd-s-r-cdr",
 }
 
 # Published prices from the cost table. Dates stay: they are facts about the sources.
@@ -151,9 +152,61 @@ CITIES = [
              "Only for landscaping use on ground sloping 10% or less, with 12-inch drainage holes every 8 ft across the bottom."),
             ("Where can Los Angeles pool water be drained?",
              "Dechlorinated water within the set pH range may go to the storm drain under the LA Stormwater guidance; other water goes to the sewer clean-out."),
+            ("How much does pool removal cost in Los Angeles?",
+             "Los Angeles Pool Demolition Contractors publishes prices from $10,500 for a partial fill-in and $17,500 for a full removal. Angi's Los Angeles figures run from $2,850 to $11,350 for a partial and $4,550 to $18,200 for a full removal."),
+            ("How long does a Los Angeles pool removal take?",
+             "The work takes one to four days for a partial fill-in and three to seven days for a full removal. The three city inspections, and on a full removal the approval of the compaction report, add time on top of that."),
+            ("Can an ADU be built over a filled pool in Los Angeles?",
+             "Only after a full removal. {doc} limits a shell left in place to landscaping, and no foundation work may start until the Grading Division approves the compaction report."),
+            ("Does removing a pool affect a Los Angeles home sale?",
+             "The state's seller disclosure form asks about fill on the property and about unpermitted work. Sellers should keep the finaled grading permit and, on a full removal, the approved compaction report to answer both questions."),
         ],
         "nearby": ["Burbank", "Glendale", "Pasadena", "Culver City", "Santa Monica", "Inglewood"],
         "note": "One contractor in the research trades under three different websites, so the listing merges them.",
+        "opening_extra": (" The one Los Angeles contractor that publishes prices starts at $10,500 for a partial "
+                          "fill-in and $17,500 for a full removal."),
+        "extra_after_permit": [
+            ("Inspections and paperwork on a Los Angeles job", [
+                "The Department of Building and Safety sets out two versions of the same grading permit in {doc}, "
+                "revised in June 2026, and each version comes with three inspections: an initial meeting, a bottom "
+                "inspection and a final inspection. On a partial fill-in, the bottom inspection happens after the "
+                "drainage holes are broken and before any soil goes in. The bulletin requires at least one of those "
+                "holes at the deepest point of the shell, and the backfill must be clean soil or gravel, moistened and "
+                "compacted by tractor rolling or a mechanical tamper.",
+                "A partial fill-in also needs a plot plan showing where the pool sits, its distance to every building "
+                "and property line, and a note that the fill is uncertified. That label matters later. Uncertified "
+                "fill cannot support a footing, so the area stays limited to planting.",
+                "A full removal asks for more paperwork. The grading permit states the total cubic yards of fill, the "
+                "shell leaves the site, and the excavation bottom is inspected before compacted fill goes in. All fill "
+                "must reach 90% relative compaction under the ASTM D1557 test, checked by a soil testing agency the "
+                "department approves, and the compaction report with its Certificate of Compliance goes to the Grading "
+                "Division for approval. No foundation work may start until that report is approved, which is the step "
+                "that clears the way for an accessory dwelling unit or an addition.",
+                "Two further documents apply to some full removals. A site inside a Hillside Grading Area needs a "
+                "Grading Pre-Inspection report, and the department can ask for a soil report from a licensed soils "
+                "engineer covering temporary excavation, grading specifications and allowable bearing pressures. Each "
+                "adds an engineer's fee and time to the schedule, so a quote for a Los Angeles hillside job should say "
+                "whether it includes them.",
+            ]),
+        ],
+        "cost_extra": (
+            "In Los Angeles, the city's own steps sit on top of those four. Compaction testing and the Certificate of "
+            "Compliance fall inside the engineer's report cost above, but a hillside lot can add a Grading "
+            "Pre-Inspection report and a soils engineer's report, and the grading permit fee depends on the cubic yards "
+            "shown on the plans. A quote that leaves out the permit, the testing or the engineering cannot be compared "
+            "fairly with one that includes them."
+        ),
+        "extra_after_cost": [
+            ("Hauling the old shell out of Los Angeles", [
+                "Concrete and gunite from a full removal count as construction and demolition waste. The city's "
+                f'<a href="{SRC["la_cd"]}">'
+                "Citywide Construction and Demolition Waste Recycling Ordinance</a>, approved in 2010, sends all mixed "
+                "construction and demolition waste generated inside city limits to a city-certified processor, and "
+                "anyone hauling it needs a Private Waste Hauler Permit from LA Sanitation. The city can fine up to "
+                "$5,000 for each load taken elsewhere. A contractor that hauls its own debris should hold that permit, "
+                "and a homeowner hiring a separate hauler can ask for the permit number before the first load leaves.",
+            ]),
+        ],
     },
     {
         "rank": 2, "name": "San Diego", "slug": "san-diego", "region": "sd", "cost": "sd",
