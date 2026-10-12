@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-12T20:56:58+00:00",
+ "generated": "2026-10-12T21:14:12+00:00",
  "siteName": "Pool Removal California",
  "pages": 36,
  "cities": [
@@ -41,7 +41,7 @@
    "confidence": "Low",
    "listed": 17,
    "held": 11,
-   "words": 2063
+   "words": 2114
   },
   {
    "name": "Fresno",
@@ -61,7 +61,7 @@
    "confidence": "Low",
    "listed": 5,
    "held": 3,
-   "words": 1308
+   "words": 1393
   },
   {
    "name": "Long Beach",
@@ -101,7 +101,7 @@
    "confidence": "Low-medium",
    "listed": 8,
    "held": 8,
-   "words": 1449
+   "words": 1393
   },
   {
    "name": "Stockton",
@@ -131,7 +131,7 @@
    "confidence": "High",
    "listed": 8,
    "held": 8,
-   "words": 1411
+   "words": 1539
   },
   {
    "name": "Santa Ana",
@@ -281,7 +281,7 @@
    "confidence": "Low",
    "listed": 4,
    "held": 5,
-   "words": 1290
+   "words": 1324
   },
   {
    "name": "Rancho Cucamonga",
@@ -321,7 +321,7 @@
    "confidence": "Low",
    "listed": 4,
    "held": 6,
-   "words": 1299
+   "words": 1296
   }
  ],
  "openItems": [

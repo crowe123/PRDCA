@@ -2079,3 +2079,425 @@ BATCH2 = {
 
 for _c in CITIES:
     _c.update(BATCH2.get(_c["slug"], {}))
+
+
+# ---- Batch 3 (research of 12 October 2026) --------------------------------
+SRC.update({
+    "ana_b804": "https://www.anaheim.net/DocumentCenter/View/41215/B804-When-is-a-Permit-Required",
+    "ana_cd": "https://www.anaheim.gov/5390/C-D-Waste-Diversion",
+    "ana_cdlist": "https://www.anaheim.gov/DocumentCenter/View/71645/CD-INFORMATION-LIST-2026",
+    "ana_republic": "https://www.republicservices.com/sites/default/files/legacy_documents/Muni/California/Anaheim/Construction-and-Demolition-Flyer-2026.pdf",
+    "ana_drain": "https://codelibrary.amlegal.com/codes/anaheim/latest/anaheim_ca/0-0-0-57769",
+    "sac_fees": "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/Fees_And_Charges/FeatureServer/1/15/attachments/14",
+    "sac_pools": "https://www.cityofsacramento.gov/content/dam/portal/cdd/Building/Forms/CDD-0257_Swimming-Pool-Requirements.pdf",
+    "sac_aqmd": "https://www.airquality.org/StationarySources/Documents/Sac%20Metro%20Air%20District%20Asbestos%20Program%20FAQs.pdf",
+    "sac_wreckcd": "https://www.cityofsacramento.gov/public-works/recycling-solid-waste/Commercialwasteservices/construction---demolition-recycling/wreckingpermits",
+    "sac_cd": "https://www.cityofsacramento.gov/public-works/recycling-solid-waste/Commercialwasteservices/construction---demolition-recycling",
+    "sac_storm": "https://www.cityofsacramento.gov/content/dam/portal/dou/utilities/stormwater/stormwater-quality/documents/Sept2014_poolupdate.pdf",
+    "irv_fees": "https://www.cityofirvine.gov/sites/default/files/legacy-documents/schedule-ii-building-safety-and-grading-fees-august-15_2026-27.pdf",
+    "irv_page": "https://cityofirvine.gov/building-permits-and-inspections/removing-single-family-residential-swimming-pool-or-spa",
+    "irv_cd": "https://cityofirvine.gov/sites/default/files/alfresco_files/94f2aa2df1-CDRecyclingOrdinance.pdf",
+    "irv_haulers": "https://cityofirvine.gov/sites/default/files/legacy-documents/non-exclusive-franchise-hauler-list-2026_1.pdf",
+    "irv_wq": "https://cityofirvine.gov/sites/default/files/alfresco_files/981d2ab4b8-Water_Quality_Ordinance_10-06.pdf",
+    "pal_fees": "https://www.cityofpalmdaleca.gov/DocumentCenter/View/18919/FY-2026-Master-Schedule-of-Fees",
+    "pal_cd": "https://gocodebook.com/library/us/ca/palmdale/title-8-health-and-safety/chapter-8.06-recycling-and-diversion-of-construction-and-demolition-c-d-waste",
+    "pal_cdform": "https://www.cityofpalmdaleca.gov/DocumentCenter/View/13197/Construction-and-Demolition-Waste-Management-Plan-PDF",
+    "pal_swmp": "https://www.waterboards.ca.gov/water_issues/programs/stormwater/swmp/palmdale_swmp.pdf",
+    "av_1403": "https://avaqmd.ca.gov/files/64fe16843/AV1403+1994+08+Mar+reformatted.pdf",
+    "av_403": "https://avaqmd.ca.gov/files/b6046ee22/AV403+2010+20+Apr+reformatted.pdf",
+    "lan_fees": "https://www.cityoflancasterca.org/home/showpublisheddocument/46962/638965607205070000",
+    "lan_dust": "https://library.municode.com/ca/lancaster/codes/code_of_ordinances?nodeId=TIT8HESA_CH8.16DUCO",
+    "lan_wm": "https://www.cityoflancasterca.org/our-city/about-us/sustainability/green-practices/illegal-dumping-proper-waste-disposal/waste-management",
+    "lan_pools": "https://cityoflancasterca.org/home/showpublisheddocument/22602/635775792210230000",
+    "sf_fees": "https://codelibrary.amlegal.com/codes/san_francisco/latest/sf_building/0-0-0-92779",
+    "sf_s04": "https://SF.gov/sites/default/files/2022-08/IS%20S-04.pdf",
+    "sf_maher": "https://www.sf.gov/departments--site-mitigation/find-out-if-you-should-submit-an-application/",
+    "sf_cd": "https://www.sfenvironment.org/node/3922",
+    "sf_facilities": "https://www.sfenvironment.org/node/3828",
+    "sf_sewer": "https://www.sfpuc.gov/about-us/our-systems/sewer-system/our-combined-sewer",
+})
+
+BATCH3 = {
+    "anaheim": {
+        "compact": True, "rules": "fee-only",
+        "dept": "Planning Department, Building Division",
+        "permit": "Swimming Pool/Spa Permit (demolition)",
+        "fee": "$182 demolition, including utility capping (form B712, August 2025)",
+        "fee_short": "$182",
+        "doc": "Pool/Spa Permit Application B712 (August 2025)",
+        "doc_url": "https://www.anaheim.net/DocumentCenter/View/39707",
+        "lead": ("Pool removal in Anaheim runs on the city's Swimming Pool/Spa Permit, which covers demolition, at a "
+                 "$182 demolition fee that includes capping the utilities, and Pool Removal California found {found} "
+                 "businesses offering in-ground pool removal there, {active} with an active state licence."),
+        "permit_html": (
+            "Anaheim's {doc} covers the construction, alteration, demolition and repair of a pool or spa, and its "
+            "specification section has a demolition box for each. The form lists a $182 demolition fee that includes "
+            "capping the utilities, alongside a $182 minimum permit fee. The city's "
+            + _l("ana_b804", "Handout B804") + ", dated September 2014, confirms that a permit is required before any "
+            "structure is demolished. The Building Division is at 200 S. Anaheim Blvd., Suite 145, (714) 765-5153."),
+        "method_html": (
+            "Anaheim publishes no rule on drainage holes, wall removal or compaction, so the Building Division decides "
+            "what it accepts when the shell stays. The pool form adds two conditions that touch any job: excavated "
+            "material may not be spread on the lot without city approval, and its second page is a stormwater "
+            "self-exemption checklist that includes soil movement. Owners planning to build over the area should settle "
+            "the fill standard with the Building Division first."),
+        "cost_html": [
+            "No Anaheim contractor publishes prices, but Orange County firms do: " + _l("frisch", "Frisch &amp; Sons")
+            + ", based in Villa Park, publishes $12,000 to $20,000 for a partial fill-in and $18,000 to $30,000 or more "
+            "for a full removal. Anaheim's own charges start with the $182 demolition fee, which already includes "
+            "utility capping.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Anaheim", [
+                "Anaheim's " + _l("ana_cd", "construction and demolition page") + " applies the 65% diversion target "
+                "from state law and CALGreen and requires an application before a permit is issued. The city's "
+                + _l("ana_cdlist", "2026 information list") + " names Republic Services as the franchise hauler: using "
+                "its dumpster or transfer station meets the requirement with no further diversion reporting, while "
+                "self-haulers keep receipts and file updated forms before final inspection. "
+                + _l("ana_republic", "Republic's Anaheim flyer") + " caps roll-off dumpsters at 10 tons and lists "
+                "concrete, dirt and rock as clean debris.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Anaheim's "
+            + _l("ana_drain", "municipal code section 6.56.080") + " makes it unlawful to drain a pool onto any public "
+            "property other than into a sanitary sewer, or onto another person's property. The countywide "
+            + _l("h2oc_pools", "H2OC pool brochure") + " also asks for the sewer when possible and warns that some "
+            "cities bar storm drain disposal, so the sewer cleanout is the route to plan on in Anaheim."),
+        "faqs": [
+            ("Which permit covers pool removal in Anaheim?",
+             "The Swimming Pool/Spa Permit, which covers demolition as well as new pools."),
+            ("What does an Anaheim pool demolition permit cost?",
+             "$182, including utility capping, on form B712 from August 2025."),
+            ("Can Anaheim pool water go to the street?",
+             "No. City code allows draining onto public property only into a sanitary sewer."),
+            ("Who hauls pool debris in Anaheim?",
+             "Republic Services, the franchise hauler; self-haulers keep receipts and show at least 65% recycled."),
+        ],
+    },
+    "sacramento": {
+        "compact": True,
+        "permit": "Wrecking permit (likely; confirm)",
+        "fee": "$175 wrecking permit (fee detail effective July 2025)",
+        "fee_short": "$175",
+        "doc": "wrecking permit application CDD-0233 (revised September 2026)",
+        "doc_url": "https://www.cityofsacramento.gov/content/dam/portal/cdd/Building/Forms/CDD-0233_Application-for-Wrecking-Permit.pdf",
+        "permit_html": (
+            "Sacramento publishes no rule specific to pool removal. City Code chapter 15.44 requires a wrecking permit "
+            "from the building official before any demolition, and the city's " + _l("sac_pools", "pool requirements")
+            + " describe pools as structures, so the wrecking permit is the likely route; the Building Division "
+            "confirms it. The {doc} needs sign-off from Planning, Fire, Solid Waste and Utilities before issue and asks "
+            "whether excavations on the lot will be filled or fenced. The city's "
+            + _l("sac_fees", "building fee detail") + ", effective July 2025, sets the wrecking permit at $175, and "
+            "water taps cost $274 each to kill or $2,005 each to abandon."),
+        "method_html": (
+            "Without a pool rule, the city code's wrecking section is the closest guide: excavations must be filled "
+            "level with the adjoining grade within 10 days after the work, inorganic fill such as broken masonry is "
+            "allowed, and the top foot of fill must be clean earth. The city's pool requirements also warn that "
+            "expansive soils are likely at any Sacramento site, which is worth raising with the Building Division "
+            "before choosing between a partial fill-in and full removal."),
+        "extra_after_permit": [
+            ("Air district notice in Sacramento", [
+                "The " + _l("sac_aqmd", "Sacramento Metropolitan Air Quality Management District") + " treats "
+                "demolitions of any size as needing notification, with a 10-day notice period and a standard fee of "
+                "$435. Its rule defines demolition by load-supporting members of a facility, and its FAQ says "
+                "single-family homes are usually not regulated, so the district rules on whether a pool-only job "
+                "counts.",
+            ]),
+        ],
+        "cost_html": [
+            "Sacramento has published prices: " + _l("norcal", "NorCal Earthworks") + " prices full removal at $8,000 to "
+            "$15,000 for a concrete pool and $6,000 to $12,000 for fiberglass, and " + _l("walberg", "Walberg, Inc.")
+            + " publishes $5,000 to $12,000 for a partial fill-in and $12,000 to $30,000 for a full removal across "
+            "Northern California. City charges add the $175 wrecking permit, any water tap work and the debris "
+            "administration fee.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Sacramento", [
+                "Since 15 January 2026, Sacramento's " + _l("sac_wreckcd", "wrecking permit applicants") + " submit a "
+                "Waste Management Plan in Green Halo, upload disposal tickets and file a waste log within 30 days of "
+                "finishing. Debris may be hauled only by a franchised waste hauler or self-hauled, and mixed loads go "
+                "to a county-certified sorting facility such as GreenWaste Florin Perkins, L and D Landfill or Sierra "
+                "Waste. The city's " + _l("sac_cd", "recycling rules") + " require 65% diversion on all demolition "
+                "projects, with an administration fee of 0.04% of valuation, from $40 to $800.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. The "
+            + _l("sac_storm", "Sacramento Stormwater Quality Partnership pool guidance") + " hosted by the city sends "
+            "it to the sanitary sewer through a sewer cleanout or laundry sink, never an opened manhole, and allows the "
+            "storm drain only for water below 0.01 parts per million of chlorine, with a pH of 6.5 to 8.5, no debris "
+            "and no heat. Saltwater pools go to the sewer only, and Regional San at (916) 875-6470 handles sewer "
+            "questions."),
+        "faqs": [
+            ("Which permit covers a Sacramento pool removal?",
+             "Most likely the $175 wrecking permit under City Code chapter 15.44; the Building Division confirms it."),
+            ("How soon must a Sacramento pool be filled?",
+             "City code requires excavations filled level with the adjoining grade within 10 days, with the top foot "
+             "clean earth."),
+            ("Can Sacramento pool water go to the storm drain?",
+             "Only below 0.01 ppm chlorine at pH 6.5 to 8.5; the sewer cleanout is the preferred route."),
+            ("Who hauls pool debris in Sacramento?",
+             "A franchised waste hauler, or the contractor self-hauling, with a Waste Management Plan in Green Halo."),
+        ],
+    },
+    "irvine": {
+        "compact": True,
+        "permit": "Building permit with plan check and planning approval",
+        "fee": "No pool removal line; pool minimums $95.67 plan check, $107.63 inspection (FY 2026-27)",
+        "fee_short": "Minimum fees",
+        "doc": "Bulletin 217 (revised January 2015)",
+        "doc_url": "https://cityofirvine.gov/sites/default/files/legacy-documents/civica-13890-bulletin-217-revised-1-12-15.pdf",
+        "lead": ("Pool removal in Irvine needs a building permit, plan check and planning approval from the city's "
+                 "Building and Safety division, and Pool Removal California found {found} businesses offering "
+                 "in-ground pool removal there, {active} with an active state licence. Irvine's Bulletin 217 asks the "
+                 "owner to choose up front whether the fill will carry landscaping or a future building pad."),
+        "permit_html": (
+            "Irvine's {doc} requires a building permit to remove a pool or spa, subject to plan check and planning "
+            "approval, at minimum permit fees. The city's " + _l("irv_fees", "2026-27 fee schedule") + " has no line "
+            "for pool removal; its pool and spa minimums are $95.67 for plan check and $107.63 for inspection, plus a "
+            "$31.88 residential issuance fee. Applications go online through IrvineReady!, with about two business days "
+            "for the completeness check and two to four for the first plan check, and the city's "
+            + _l("irv_page", "pool removal page") + " notes that a homeowners association may have its own approval "
+            "process."),
+        "method_html": (
+            "Irvine's plans must carry one of two notes: landscaping and flatwork only, with the fill certified as "
+            "non-structural, or a possible building pad, with the fill certified as structural. Either way, the "
+            "inspector approves 12-inch holes, starting at the low point and spaced six feet on center, before any fill "
+            "goes in, and the registered soils engineer can prescribe more holes or complete removal. For a building "
+            "pad, the side walls come down at least 24 inches below finish grade. In both cases the soils engineer "
+            "supervises the backfill in lifts of no more than one foot to at least 90% relative density."),
+        "extra_after_permit": [
+            ("Inspections and paperwork on an Irvine job", [
+                "Bulletin 217 sets this order:",
+                "<ol><li>A pre-fill inspection, in which the city inspector approves the holes before any fill is "
+                "placed.</li><li>Backfill under the registered soils engineer's supervision, with the finished grade "
+                "sloping at least 2% away from buildings and no drainage across property lines.</li><li>A final "
+                "inspection, on or before which the soils engineer hands the inspector a wet-stamped final compaction "
+                "report.</li></ol>",
+                "Pools in apartment, condominium or association common areas need additional review at the Planning "
+                "Counter, 949-724-6308.",
+            ]),
+        ],
+        "cost_html": [
+            "No Irvine contractor publishes prices, but Orange County firms do: " + _l("frisch", "Frisch &amp; Sons")
+            + " publishes $12,000 to $20,000 for a partial fill-in and $18,000 to $30,000 or more for a full removal. "
+            "Irvine adds one cost many cities leave optional: a registered soils engineer supervises every backfill and "
+            "signs the compaction report, typically $1,500 to $4,000, whichever fill note the plans carry.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Irvine", [
+                "Irvine's " + _l("irv_cd", "construction and demolition ordinance") + " does not require a waste "
+                "management plan or deposit for projects involving single residential units, but every project must use "
+                "a city-authorized hauler. The city's " + _l("irv_haulers", "authorized hauler list") + ", revised "
+                "April 2026, names 22 companies, including WM of Orange County, CR&amp;R and Republic, and the Irvine "
+                "Recycle Hotline at 949-724-7669 answers questions.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Irvine's "
+            + _l("irv_wq", "water quality ordinance") + " allows dechlorinated pool water to the storm drain at 0.1 ppm "
+            "chlorine or less, pH-adjusted and flow-controlled, and bans cleaning wastewater and filter backwash. The "
+            "countywide " + _l("h2oc_pools", "H2OC brochure") + " asks for the sanitary sewer when possible and limits "
+            "saltwater pools to the sewer, landscaping or pervious ground."),
+        "faqs": [
+            ("Does Irvine require a soils engineer for pool removal?",
+             "Yes. {doc} requires a registered soils engineer to supervise the backfill and supply a wet-stamped final "
+             "compaction report."),
+            ("Can a pool be filled in place in Irvine?",
+             "Yes, with 12-inch holes six feet on center; for a building pad the walls also come down at least 24 "
+             "inches below grade."),
+            ("What does an Irvine pool removal permit cost?",
+             "No pool removal line exists; pool minimums are $95.67 plan check and $107.63 inspection, plus a $31.88 "
+             "issuance fee."),
+            ("Does an Irvine homeowners association need to approve?",
+             "The city notes that an association may have its own approval process."),
+            ("Who hauls pool debris in Irvine?",
+             "A city-authorized hauler from the April 2026 list."),
+        ],
+    },
+    "palmdale": {
+        "compact": True,
+        "fee": "$222 demolition inspection (FY 2026 schedule)",
+        "fee_short": "$222",
+        "permit_html": (
+            "Palmdale publishes no pool-specific rule. The city's {doc}, updated January 2026, requires a demolition "
+            "permit for each structure demolished in part or whole, and Palmdale Municipal Code section 8.04.200 "
+            "defines demolition to include filling the excavations it exposes. Demolition permits need approval from "
+            "outside agencies including the Antelope Valley Air Quality Management District, uploaded to Accela, and a "
+            "hazardous materials evaluation. The city's " + _l("pal_fees", "FY 2026 fee schedule") + ", effective "
+            "July 2025, sets the demolition inspection, including sewage system termination, at $222."),
+        "method_html": (
+            "Without a pool rule, the grading code is the closest standard: it calls for fill compacted to 90% of "
+            "maximum density under ASTM D1557, in lifts of 12 inches or less. The code does not tie that standard to "
+            "pools, so the Building and Safety Division confirms whether a partial fill-in is accepted and what "
+            "compaction it expects."),
+        "extra_after_permit": [
+            ("Air district rules in Palmdale", [
+                "The Antelope Valley Air Quality Management District's " + _l("av_1403", "Rule 1403") + " requires "
+                "notification at least 10 working days before any demolition of a facility, and defines demolition as "
+                "taking out a load-supporting structural member. The rule does not mention pools, so the district "
+                "confirms whether a pool-only job counts. Its " + _l("av_403", "Rule 403") + " on dust applies to every "
+                "site: no dust visible beyond the property line, and track-out cleaned up at the end of each workday.",
+            ]),
+        ],
+        "cost_html": [
+            "No Palmdale contractor publishes prices, but Los Angeles firms do: "
+            + _l("lapdc", "Los Angeles Pool Demolition Contractors") + " starts at $10,500 for a partial fill-in and "
+            "$17,500 for a full removal. Palmdale's own charges add the $222 demolition inspection, the $77.25 debris "
+            "plan fee and the refundable deposit of at least $1,000.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Palmdale", [
+                "Palmdale's " + _l("pal_cd", "construction and demolition chapter") + " requires at least 65% of debris "
+                "tonnage diverted, a waste management plan for every permitted demolition, and a deposit of 2% of the "
+                "estimated construction cost, between $1,000 and $100,000, plus a $77.25 application fee. Only the "
+                "city's franchised collector, WM, may haul the waste, unless a contractor carries its own debris in a "
+                "fixed-body truck, and the city's " + _l("pal_cdform", "plan form") + " names Lancaster WM as the "
+                "recycling facility. Deposit refunds need landfill and recycling receipts before the final inspection "
+                "is scheduled.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Palmdale's sewer code bars stormwater and surface "
+            "water from the public sewer, and the city's " + _l("pal_swmp", "stormwater management plan") + " lists "
+            "dechlorinated swimming pool water among allowed discharges. The city publishes no current pool-draining "
+            "guidance, so the Building and Safety Division confirms the route."),
+        "faqs": [
+            ("Does Palmdale count the fill as part of the demolition?",
+             "Yes. Municipal Code section 8.04.200 defines demolition to include filling the excavations it exposes."),
+            ("What does a Palmdale demolition permit cost?",
+             "$222 for the demolition inspection on the FY 2026 schedule, plus the debris plan fee and deposit."),
+            ("How much is the Palmdale debris deposit?",
+             "2% of the estimated construction cost, at least $1,000 and at most $100,000."),
+            ("Who hauls pool debris in Palmdale?",
+             "WM, the city's franchised collector, to the Lancaster WM facility; contractors may carry their own "
+             "debris in fixed-body trucks."),
+        ],
+    },
+    "lancaster": {
+        "compact": True,
+        "fee": "$240 single-family demolition line (schedule effective October 2025)",
+        "fee_short": "$240",
+        "permit_html": (
+            "Lancaster publishes no pool removal rule. The city's {doc} requires a demolition permit to demolish any "
+            "structure, or part of one, for which a permit is required, and in-ground pools need a permit with "
+            "engineer-stamped plans; only small prefabricated pools with walls entirely above grade, no taller than 24 "
+            "inches and holding 5,000 gallons or less, are exempt. A building demolition permit needs the application, "
+            "the Antelope Valley Air Quality Management District demolition notification form and a Desert Region "
+            "asbestos questionnaire. The " + _l("lan_fees", "citywide fee schedule") + " effective October 2025 lists "
+            "single-family demolition at $240, with no separate pool line."),
+        "method_html": (
+            "With no pool rule, Building and Safety decides whether a partial fill-in is accepted in Lancaster. The "
+            "city's building code ordinance treats land excavated, filled or compacted without a permit as unpermitted "
+            "grading, so the fill belongs on the permit whichever method is chosen."),
+        "extra_after_permit": [
+            ("Dust and air district rules in Lancaster", [
+                "Lancaster's " + _l("lan_dust", "dust control code") + " bans excavating or spreading soil without dust "
+                "protection; where water is used, the soil must stay moist to a depth of one inch, and a violation "
+                "carries a fine of up to $500. The Antelope Valley Air Quality Management District's "
+                + _l("av_403", "Rule 403") + " adds that dust may not be visible beyond the property line.",
+                "The district's " + _l("av_1403", "Rule 1403") + " requires notification at least 10 working days "
+                "before demolishing a facility, which includes residential structures. The rule does not mention pools, "
+                "so the district's checklist settles whether a pool-only job needs the form.",
+                "Lancaster's " + _l("lan_pools", "pool maintenance ordinance") + " also requires a pool to be kept "
+                "clean and circulating or fully drained and kept dry, with citations starting at $577.92.",
+            ]),
+        ],
+        "cost_html": [
+            "No Lancaster contractor publishes prices, but Los Angeles firms do: "
+            + _l("lapdc", "Los Angeles Pool Demolition Contractors") + " starts at $10,500 for a partial fill-in and "
+            "$17,500 for a full removal, and " + _l("angi", "Angi's Los Angeles figures") + " run from $2,850 to "
+            "$11,350 and $4,550 to $18,200. Lancaster's own charge is the $240 single-family demolition line.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Lancaster", [
+                "WM is Lancaster's " + _l("lan_wm", "exclusive waste and recycling collection provider") + ", so debris "
+                "bins come through WM. The city publishes no separate construction and demolition recycling ordinance; "
+                "it adopts CALGreen as chapter 15.34 of the municipal code, and Building and Safety confirms whether its "
+                "diversion rules apply to a pool removal.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Lancaster publishes no pool-draining guidance. "
+            "Los Angeles County Sanitation District No. 14 provides sewer service for most of the city, and Building "
+            "and Safety confirms whether pool water may go to the sewer or the street."),
+        "faqs": [
+            ("Does a Lancaster pool removal need a permit?",
+             "Yes. A demolition permit is needed for any structure that required a permit, and in-ground pools do."),
+            ("What does a Lancaster demolition permit cost?",
+             "$240 for single-family demolition on the fee schedule effective October 2025."),
+            ("What dust rules apply in Lancaster?",
+             "Soil must be kept moist to one inch where water is used, and no dust may be visible beyond the property "
+             "line."),
+            ("Can a neglected pool be left standing in Lancaster?",
+             "No. City code requires a pool kept clean and circulating, or fully drained and kept dry."),
+        ],
+    },
+    "san-francisco": {
+        "compact": True,
+        "permit": "Demolition permit (form confirmed by DBI)",
+        "fee": "$724 demolition permit (Table 1A-G, July 2026)",
+        "fee_short": "$724",
+        "permit_html": (
+            "San Francisco publishes no rule specific to pool removal. {doc} requires a separate permit before any "
+            "regulated building or structure is removed or demolished, and section 106A.1.5 requires a permit for "
+            "demolishing any structure. The only pools on the exemption list are small prefabricated ones with walls "
+            "entirely above grade, so an in-ground pool needs a permit. The "
+            + _l("sf_fees", "Building Code fee tables") + ", amended in July 2026, set the demolition permit fee at "
+            "$724 and standard inspection at $519 an hour, and grading or fill is valued separately by the volume of "
+            "material handled."),
+        "method_html": (
+            "The Department of Building Inspection's " + _l("sf_s04", "demolition information sheet") + " sends a full "
+            "building demolition through Form 6 and partial demolition through Form 3/8, and says nothing about pools, "
+            "so DBI confirms which form a pool removal uses and whether a partial fill-in is accepted. Full removal with "
+            "compacted fill is the route to discuss on any lot where something may be built later."),
+        "extra_after_permit": [
+            ("Air district and soil rules in San Francisco", [
+                "The " + _l("baaqmd", "Bay Area Air Quality Management District") + " asks for notice at least 10 "
+                "business days before every demolition, with a 72-hour option for homes of four units or fewer. Its "
+                "rule defines demolition by load-supporting members of a building or facility and does not mention "
+                "pools, so the district confirms whether a pool-only job counts.",
+                "Two city health code rules can reach a pool job. Article 22A, the Maher Ordinance, applies in mapped "
+                "areas where a project disturbs 50 cubic yards of soil or more, and Article 22B construction dust "
+                "control applies to projects over half an acre. The " + _l("sf_maher", "site mitigation page")
+                + " shows whether a lot falls in the Maher area.",
+            ]),
+        ],
+        "cost_html": [
+            "No San Francisco contractor publishes prices, but Bay Area firms do: " + _l("souza", "Souza &amp; Son's")
+            + " publishes $4,500 to $10,000 for a partial fill-in and $8,000 to $22,000 for a full removal, and "
+            + _l("byebye", "Bye Bye Pool in Concord") + " quotes $3,500 to $7,000 and $9,000 to $19,000. San "
+            "Francisco's own charges run higher than most cities: the $724 demolition permit, inspection billed at $519 "
+            "an hour, and grading fees valued by volume.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in San Francisco", [
+                "San Francisco's " + _l("sf_cd", "construction and demolition rules") + " require debris recycled or "
+                "reused, with no landfill disposal. Since January 2022, mixed debris may be hauled only by a transporter "
+                "holding an Environment Department permit for each box or vehicle, unless an owner hauls in their own "
+                "vehicle, and it must go to a " + _l("sf_facilities", "registered facility") + " such as Recology San "
+                "Francisco on Tunnel Avenue. Covered projects recycle at least 65%, or 75% for a full demolition on "
+                "Form 6, and file a plan through Green Halo, with fines of up to $1,000 a day.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. San Francisco is the only coastal city in "
+            "California with a " + _l("sf_sewer", "combined sewer system") + ", so most drains carry stormwater and "
+            "sewage together to treatment. The SFPUC issues batch wastewater discharge permits for occasional and "
+            "temporary discharges, and it confirms the route and any permit before a pool is emptied."),
+        "faqs": [
+            ("Does San Francisco require a permit to remove a pool?",
+             "Yes. The Building Code requires a permit to demolish any structure, and in-ground pools are not exempt."),
+            ("What does a San Francisco demolition permit cost?",
+             "$724 on the Building Code fee table amended in July 2026."),
+            ("Where does the concrete from a San Francisco pool go?",
+             "To a registered facility; the city bars landfill disposal of construction and demolition debris."),
+            ("Who can haul pool debris in San Francisco?",
+             "A transporter with an Environment Department permit, or the owner in their own vehicle."),
+        ],
+    },
+}
+
+for _c in CITIES:
+    _c.update(BATCH3.get(_c["slug"], {}))
