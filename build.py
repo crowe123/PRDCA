@@ -442,7 +442,6 @@ def home():
 <p class="lead"><strong>{SITE_NAME} lists {TOTAL_FOUND} businesses confirmed as offering in-ground pool removal across California's 32 largest cities, and the <a href="{SRC["cslb_lookup"]}">Contractors State License Board</a> check of 11 October 2026 found 51 of the licence numbers they show current and active.</strong></p>
 <p>Each city page pairs the local contractor list with that city's own permit rules, taken from official building department documents. Coverage is uneven: Bay Area cities have about 30 businesses each, while Fresno has 2, Oxnard and Bakersfield 5 each, and Riverside 7. The {N} cities are ranked by the <a href="{SRC["dof_e1"]}">California Department of Finance population estimate for 1 January 2026</a>.</p>
 {img_tag("home-hero", "hero-img", eager=True)}
-{cta(f"Homeowners can ask for referrals to listed contractors in any of the {N} cities.")}
 
 <h2 id="cities">Contractor counts for {N} cities in {len(REGIONS)} regions</h2>
 <p>Every city page sits one click from here. The count beside each city is the number of businesses research found offering in-ground pool removal there; a business that serves several cities is counted under each. San Jose has the deepest list at 34, and Oakland and Fremont follow at 32 each.</p>
@@ -457,7 +456,6 @@ def home():
 <h2>What pool removal costs in California</h2>
 <p>California contractors publish higher prices than the national cost guides. Northern California firms quote $3,500 to $12,000 for a partial fill-in and $8,000 to $30,000 for full removal, according to published price lists from <a href="{SRC["souza"]}">Souza &amp; Son's</a>, <a href="{SRC["byebye"]}">Bye Bye Pool</a> and <a href="{SRC["walberg"]}">Walberg, Inc.</a> Los Angeles and Orange County firms start higher: <a href="{SRC["lapdc"]}">Los Angeles Pool Demolition Contractors</a> lists prices from $10,500 for a partial and $17,500 for a full removal. The <a href="/cost/">pool removal cost guide</a> lists every published price with its source.</p>
 {figure("debris-haul", "Hauling broken concrete is a large part of a full removal's cost.")}
-{cta("Comparing written quotes from licensed contractors is the surest way to price a specific pool.")}
 
 <h2>Permit names and fees by city</h2>
 <p>Every city that publishes a rule requires a permit, but the permit's name, the fee and what may stay in the ground all differ. {HANDOUT_COUNT} of the {N} cities publish a pool-specific handout, {FEE_ONLY_COUNT} publish only a fee and {NO_RULE_COUNT} publish nothing specific. The table lists the {N - NO_RULE_COUNT} cities with a published rule or fee; the city pages cover the other {NO_RULE_COUNT}.</p>
@@ -475,7 +473,6 @@ def home():
 <p><strong>Is there a rebate for removing a pool?</strong><br>No statewide programme exists. <a href="{SRC["valley_water"]}">Valley Water in Santa Clara County</a> pays $2 a square foot, up to $3,000, when a pool becomes low-water landscape.</p>
 <p>The <a href="/faq/">pool fill-in questions page</a> answers a dozen more from city and state sources.</p>
 {figure("after-landscape", "A former pool area planted as low-water landscape, the use most cities allow after a partial fill-in.")}
-{cta("Referral requests go to licensed contractors in the homeowner's city.")}
 {DISCLOSURE}
 </div>"""
     page("/", "Pool Removal California: Contractors, Costs and Permits",
@@ -527,7 +524,6 @@ def cost_page():
 <p>The compaction report from a soils engineer adds $1,500 to $4,000. San Diego requires a soils compaction report for any pool deeper than five feet under <a href="https://www.sandiego.gov/development-services/forms-publications/information-bulletins/710">Information Bulletin 710</a>, and Irvine requires a soils engineer to supervise the backfill under its <a href="https://cityofirvine.gov/building-permits-and-inspections/removing-single-family-residential-swimming-pool-or-spa">pool removal page</a>. A full removal without that report is rarely accepted as buildable ground.</p>
 <p>Utilities make up a smaller line. The pump, filter, heater, lighting and gas lines must be disconnected and capped, which is why Santa Ana requires building, electrical and plumbing permits under <a href="https://santa-ana.gov/documents/abandoned-pools-bld-16/">handout BLD-16</a>.</p>
 {figure("compaction", "Fill placed in layers and compacted to 90%, with the engineer's density test recorded for the report.")}
-{cta("Listed contractors include permits, fill and compaction in their written quotes on request.")}
 
 <h2>Permit fees by city</h2>
 <p>Permit fees are a small share of the total but vary widely between cities. Stockton charges $97.25 for fiscal year 2026-27 under <a href="https://www.stocktonca.gov/Documents/Business/Building%20%26%20Life%20Safety/Building%20Forms/BLDG-0014_SWIMMING%20POOL%20DEMOLITION%20REQUIREMENTS.pdf">form BLDG-0014</a>, while San Diego charges $360.36 for plan check plus $332.48 for inspection. San Bernardino bases its fee on the cubic yards of fill, since it treats pool removal as on-site grading. San Jose takes a refundable debris deposit instead of a set pool fee.</p>
@@ -553,7 +549,6 @@ def cost_page():
 <p>The engineering line should say whether a soils engineer's compaction report is included, and at what price. Disposal, deck removal, utility disconnection, fence panel removal and final grading each belong on their own line. The quote should also carry the contractor's licence number, which the <a href="{SRC["cslb_lookup"]}">state licence board lookup</a> confirms, and the workers' compensation policy where the firm has employees.</p>
 <p>Payment terms matter too. California limits the down payment on a home improvement contract to 10% of the price or $1,000, whichever is less, and the contract should tie later payments to completed stages such as demolition, fill and final inspection.</p>
 {figure("draining", "Draining comes first, to the sewer clean-out or a storm drain where the city allows it.")}
-{cta("Referrals are free to request and go to licensed contractors first.")}
 {DISCLOSURE}
 </div>"""
     page("/cost/", "Pool Removal Cost in California: Partial Fill-In and Full Removal",
@@ -639,7 +634,6 @@ def faq_page():
 
 <h3>How long does pool removal take?</h3>
 <p>One to four days for a partial fill-in and three to seven for a full removal. Permits add one to three weeks in most cities; San Jose's <a href="{SJ}">permit center</a> can issue in one visit. Oakland bars grading from 15 October to 15 April.</p>
-{cta("Listed contractors can quote both methods so the two can be compared side by side.")}
 
 <h2>Water, tax and selling</h2>
 
