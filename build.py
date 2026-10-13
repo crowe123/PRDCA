@@ -213,9 +213,9 @@ def load_listings():
     return listed, held
 
 
-def contractor_card(b, city):
+def contractor_card(b, city, link=True):
     name = html.escape(b["business"])
-    if LINK_CONTRACTOR_SITES and b.get("website"):
+    if link and LINK_CONTRACTOR_SITES and b.get("website"):
         name = a(html.escape(b["website"]), name)
     aka = ""
     if b["aliases"]:
@@ -276,7 +276,7 @@ def city_page(c, listings, held):
 
     # Contractors section
     if listed:
-        cards = "<div class=\"cards\">" + "".join(contractor_card(b, name) for b in listed) + "</div>"
+        cards = "<div class=\"cards\">" + "".join(contractor_card(b, name, c.get("link_contractors", True)) for b in listed) + "</div>"
         if held_n:
             cards += (f'<p>Another {held_n} {"business shows" if held_n == 1 else "businesses show"} no licence '
                       f'number or only a Google Maps listing for {name}. '
@@ -419,9 +419,20 @@ def city_page(c, listings, held):
                        for h, pars in c.get(key, []))
 
     def assemble(faq_html):
+        intro_html = f'<h1>Pool Removal Contractors Working in {name}</h1>{opening}{facts}'
+        if c.get("form_top"):
+            side = ('<aside class="side-form" aria-labelledby="side-form-title">'
+                    f'<h2 id="side-form-title">Request {name} contractor referrals</h2>'
+                    '<p>Requests go to listed contractors with an active licence first.</p>'
+                    + referral_form(slug, compact=True) + '</aside>')
+            rest = (f'{intro}{hero}' + contractors + permit + extra("extra_after_permit") + methods
+                    + cost + extra("extra_after_cost") + draining + after + nearby + map_html + faq_html + DISCLOSURE)
+            return ('<div class="content content-wide"><div class="city-grid">'
+                    f'<div class="city-intro">{intro_html}</div>{side}<div class="city-main">{rest}</div>'
+                    '</div></div>')
         return (
             '<div class="content">'
-            f'<h1>Pool Removal Contractors Working in {name}</h1>{opening}{facts}{intro}{hero}'
+            f'{intro_html}{intro}{hero}'
             + contractors
             # One call to action per city page: USEOU scores two or more sales CTAs negatively.
             + cta(f'{name} referrals go to contractors with an active licence first.')
@@ -721,24 +732,37 @@ def about_page():
          body, crumbs=[(None, "About This Site")])
 
 
+def referral_form(selected="", compact=False):
+    options = "".join(
+        f'<option value="{c["slug"]}"{" selected" if c["slug"] == selected else ""}>{c["name"]}</option>'
+        for c in sorted(CITIES, key=lambda c: c["name"]))
+    extra = "" if compact else (
+        '<label>Pool type<select name="pool_type"><option>Concrete or gunite</option><option>Fiberglass</option>'
+        '<option>Vinyl liner</option><option>Above-ground</option><option>Not sure</option></select></label>'
+        '<label>Method<select name="method"><option>Not sure yet</option><option>Partial fill-in</option>'
+        '<option>Full removal</option></select></label>')
+    rows = 3 if compact else 4
+    return (
+        f'<form class="quote" id="referral-form" method="POST" action="{FORMSPREE_URL}">'
+        '<input type="hidden" name="_subject" value="New pool removal referral request">'
+        '<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden>'
+        '<label>Name<input name="name" required autocomplete="name"></label>'
+        '<label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>'
+        '<label>Email<input name="email" type="email" autocomplete="email"></label>'
+        f'<label>City<select name="city" required><option value="">Choose a city</option>{options}'
+        '<option value="other">Other California city</option></select></label>'
+        + extra +
+        f'<label>Anything else contractors should know<textarea name="notes" rows="{rows}" '
+        'placeholder="Access width, deck, plans for the area afterwards"></textarea></label>'
+        '<button class="btn" type="submit">Send referral request</button>'
+        '<p class="form-status" role="status" hidden></p></form>')
+
+
 def contact_page():
-    options = "".join(f'<option value="{c["slug"]}">{c["name"]}</option>' for c in sorted(CITIES, key=lambda c: c["name"]))
     body = f"""<div class="content">
 <h1>Request Pool Removal Contractor Referrals</h1>
 <p class="lead">Referral requests go to listed contractors serving the city named below, with active-licence contractors first. Requests are free; contractors may pay {SITE_NAME} a referral fee, as the <a href="/about/">referral disclosure</a> explains.</p>
-<form class="quote" id="referral-form" method="POST" action="{FORMSPREE_URL}">
-<input type="hidden" name="_subject" value="New pool removal referral request">
-<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" hidden>
-<label>Name<input name="name" required autocomplete="name"></label>
-<label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
-<label>Email<input name="email" type="email" autocomplete="email"></label>
-<label>City<select name="city" required><option value="">Choose a city</option>{options}<option value="other">Other California city</option></select></label>
-<label>Pool type<select name="pool_type"><option>Concrete or gunite</option><option>Fiberglass</option><option>Vinyl liner</option><option>Above-ground</option><option>Not sure</option></select></label>
-<label>Method<select name="method"><option>Not sure yet</option><option>Partial fill-in</option><option>Full removal</option></select></label>
-<label>Anything else contractors should know<textarea name="notes" rows="4" placeholder="Access width, deck, plans for the area afterwards"></textarea></label>
-<button class="btn" type="submit">Send referral request</button>
-<p class="form-status" role="status" hidden></p>
-</form>
+{referral_form()}
 {DISCLOSURE}
 </div>"""
     page("/contact/", "Request Pool Removal Contractor Referrals in California",

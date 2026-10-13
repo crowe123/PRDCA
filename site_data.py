@@ -2501,3 +2501,9 @@ BATCH3 = {
 
 for _c in CITIES:
     _c.update(BATCH3.get(_c["slug"], {}))
+
+
+# Los Angeles: contractor names without outbound links, and the referral form top right (Chris, 13 Oct 2026).
+for _c in CITIES:
+    if _c["slug"] == "los-angeles":
+        _c.update({"link_contractors": False, "form_top": True})
