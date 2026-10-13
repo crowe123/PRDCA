@@ -2507,3 +2507,415 @@ for _c in CITIES:
 for _c in CITIES:
     if _c["slug"] == "los-angeles":
         _c.update({"link_contractors": False, "form_top": True})
+
+
+# ---- Batch 4 (research of 13 October 2026) --------------------------------
+SRC.update({
+    "lb_aff005": "https://longbeach.gov/globalassets/lbcd/media-library/documents/formsapplications/affidavits/aff-005-maintenance-of-uncertified-fill-v20201103-fillable",
+    "lb_fees": "https://www.longbeach.gov/globalassets/lbcd/media-library/documents/building--safety/fee-schedules/building-permit--plan-review-fees-october-1-2026",
+    "lb_cd": "https://longbeach.gov/lbcd/building/cd/",
+    "lb_pools": "https://www.longbeach.gov/globalassets/health/media-library/documents/inspections-and-reporting/inspections/bureau-of-environmental-health/tips-for-pool-maintenance_bmp",
+    "gl_cd": "https://glendaleca.gov/government/departments/community-development/licenses-permits-and-applications/construction-demolition-enclosures",
+    "gl_haulers": "https://glendaleca.gov/home/showpublisheddocument/75798/638579412378370000",
+    "gl_storm": "https://glendaleca.gov/government/departments/public-works/engineering/stormwater-and-urban-runoff-pollution-and-the-safe-clean-water-program",
+    "gl_table5": "https://www.glendaleca.gov/home/showpublisheddocument/68580/638627700495200000",
+    "gl_aqmd": "https://www.glendaleca.gov/home/showpublisheddocument/75810/638621621146800000",
+    "hb_fees": "https://www.huntingtonbeachca.gov/Community%20Development%202.pdf",
+    "hb_republic": "https://cms3.revize.com/revize/huntingtonbeachca/Documents/Departments/Community%20Development/Building%20Inspections/Inspection%20Services/Construction-and-Demolition-Solid-Waste-Disposal-for-Contractors.pdf",
+    "hb_storm": "https://ecode360.com/43800147",
+    "sj_bulletin": "https://www.sanjoseca.gov/home/showpublisheddocument/26025/638100872050800000",
+    "sj_fees": "https://www.sanjoseca.gov/home/showpublisheddocument/26047/638598545783230000",
+    "sj_cddd": "https://www.sanjoseca.gov/your-government/departments-offices/environmental-services/recycling-garbage/construction-demolition-debris/building-permit-holders/construction-and-demolition-diversion-deposit-cddd",
+    "sj_pools": "https://www.sanjoseca.gov/your-government/departments-offices/environmental-services/our-creeks-rivers-bay/preventing-water-pollution/pools",
+    "ox_grading": "https://codelibrary.amlegal.com/codes/oxnard/latest/oxnard_ca/0-0-0-73005",
+    "ox_cdplan": "https://www.oxnard.gov/wp-content/uploads/Construction-and-Demolition-Waste-Management-Plan.pdf",
+    "ox_bins": "https://www.oxnard.gov/public-works/environmental-resources/dumpsters-commercial-bin-rentals",
+    "ox_storm": "https://codelibrary.amlegal.com/codes/oxnard/latest/oxnard_ca/0-0-0-84640",
+    "ox_sewer": "https://codelibrary.amlegal.com/codes/oxnard/latest/oxnard_ca/0-0-0-82245",
+    "vcapcd": "https://www.vcapcd.org/asbestos/",
+    "stk_fees": "https://www.stocktonca.gov/Documents/Government/Budget%20And%20Financial%20Reports/Fee%20Schedule/2026-27/FY2627_CDD_Fees.pdf",
+    "stk_cd": "https://www.stocktonca.gov/services/garbage___recycling/commercial_recycling/construction_demolition___industrial_waste_hauling.php",
+    "stk_pools": "https://www.stocktonca.gov/Documents/Services/Water,%20Sewer%20%26%20Stormwater/Stormwater/Stormwater%20Outreach/Landscaping.pdf",
+})
+
+BATCH4 = {
+    "long-beach": {
+        "compact": True,
+        "doc": "Information Bulletin IB-008 (revised January 2025)",
+        "fee": "Grading permit by cubic yards: $104 up to 50, $208 for 51 to 100; plan review 75% (October 2026)",
+        "fee_short": "From $104",
+        "lead": ("Pool removal in Long Beach needs a grading permit from the city's Building and Safety Bureau whether "
+                 "the shell stays or goes, and Pool Removal California found {found} businesses offering in-ground pool "
+                 "removal there, {active} with an active state licence. Leaving the shell in place also needs a "
+                 "covenant recorded with the Los Angeles County Recorder before the permit is issued."),
+        "permit_html": (
+            "Long Beach's {doc} sets out two methods, and each needs a grading permit. The city's "
+            + _l("lb_fees", "building fee schedule") + " effective 1 October 2026 prices grading permits by volume: "
+            "$104 for 50 cubic yards or less, $208 for 51 to 100, and $209 plus $64 for each further 100 cubic yards up "
+            "to 1,000, with plan review at 75% of the permit fee. Under both methods the gas and plumbing lines are "
+            "capped and the electrical equipment removed."),
+        "method_html": (
+            "A structural fill removes the shell from the site and compacts the fill to 90% relative compaction under "
+            "ASTM D1557, tested by an agency the bureau approves, with a soils report when required; no foundation goes "
+            "in until the compaction report is approved. Leaving the shell in place is allowed only where the fill will "
+            "not support buildings, on ground sloping 10% or less. It needs two drainage holes at least 24 inches across, "
+            "no more than 8 ft apart with one at the deepest point, and clean soil or gravel moistened and tamped, and "
+            "the area is used for landscaping only."),
+        "extra_after_permit": [
+            ("The Long Beach covenant", [
+                "For a shell left in place, the owner signs the city's "
+                + _l("lb_aff005", "Covenant and Agreement for maintenance of uncertified fill") + ", agreeing to use the "
+                "area only as open space and not for any structural support. The bureau approves it, it is recorded "
+                "with the Los Angeles County Recorder, and a certified recorded copy is required before the grading "
+                "permit is issued. The covenant runs with the land, binds future owners and stays in force until the "
+                "Building Official releases it on request, for a fee.",
+                "Each method has two inspections:",
+                "<ol><li>A bottom inspection: of the drainage holes before any fill on a shell left in place, or of "
+                "the excavation before fill on a structural fill.</li><li>A final inspection once the fill is "
+                "complete.</li></ol>",
+            ]),
+        ],
+        "cost_html": [
+            "Long Beach has published Los Angeles County prices to work from: "
+            + _l("lapdc", "Los Angeles Pool Demolition Contractors") + " starts at $10,500 for a partial fill-in and "
+            "$17,500 for a full removal, and " + _l("angi", "Angi's Los Angeles figures") + " run from $2,850 to "
+            "$11,350 and $4,550 to $18,200. The city's own charges add the grading permit, priced by cubic yard, plan "
+            "review at 75% of it, and on a structural fill the compaction testing.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Long Beach", [
+                "Long Beach's " + _l("lb_cd", "construction and demolition recycling program") + " requires at least "
+                "65% of waste diverted and a management plan for all demolition projects of any valuation. Debris must "
+                "be self-hauled or carried by a city-permitted hauler, and using an unlisted hauler can forfeit the "
+                "deposit. Receipts and a final compliance report are due within 90 days of the final inspection. The "
+                "October 2026 fee schedule sets the residential administrative fee at $238 and the deposit at 3% of "
+                "valuation, with a $1,712 minimum. The program does not say whether a pool backfill counts as a "
+                "demolition project, so the bureau confirms it.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. The city's "
+            + _l("lb_pools", "Health Department pool guidance") + " allows dechlorinated pool water to the storm drain "
+            "only at 0.1 mg/L of chlorine or less, a pH of 6.5 to 8.5, with no colour, dirt, algae, filter media or acid "
+            "waste. An older Public Works pamphlet sends pool water to the sanitary sewer under a permit instead, so "
+            "Public Works Stormwater at (562) 570-6383 confirms the current route."),
+        "faqs": [
+            ("Does a Long Beach pool removal need a grading permit?",
+             "Yes, whether the shell stays or is removed."),
+            ("What does Long Beach require to leave a shell in place?",
+             "Two drainage holes at least 24 inches across, no more than 8 ft apart, a recorded covenant and landscaping "
+             "use only."),
+            ("Is the Long Beach covenant permanent?",
+             "It runs with the land and binds future owners until the Building Official releases it."),
+            ("What does a Long Beach grading permit cost?",
+             "$104 for up to 50 cubic yards or $208 for 51 to 100, plus plan review at 75%, on the October 2026 "
+             "schedule."),
+            ("Can a Long Beach pool area be built on later?",
+             "Only after a structural fill: shell removed and fill compacted to 90% with an approved compaction report."),
+        ],
+    },
+    "glendale": {
+        "compact": True,
+        "fee": "No pool demolition fee line found",
+        "fee_short": "Not published",
+        "permit_html": (
+            "Glendale publishes no pool-specific permit. The city's {doc} sends demolition through the \"Apply for "
+            "Building Demo\" link in the GlendalePermits portal, with a site plan, a "
+            + _l("gl_aqmd", "renovation and demolition acknowledgement form") + " for the South Coast air district's "
+            "asbestos rule, and a lead abatement acknowledgement. The same page says no sewer-cap plumbing permit is "
+            "needed when the demolition is a swimming pool. No fee line for pool demolition was found."),
+        "method_html": (
+            "Glendale's guidance says pool backfill projects require Design Review from Planning, and the backfill must "
+            "be maintained as landscaping under the State Model Water Efficient Landscape Ordinance, adopted in Glendale "
+            "Municipal Code 30.31. An owner who wants the area for something other than landscaping must show the "
+            "project meets every development standard of the zone. The city publishes no rules on holes, shell removal "
+            "or compaction, so Building and Safety confirms what it expects."),
+        "cost_html": [
+            "Glendale has published Los Angeles County prices to work from: "
+            + _l("lapdc", "Los Angeles Pool Demolition Contractors") + " starts at $10,500 for a partial fill-in and "
+            "$17,500 for a full removal, and " + _l("angi", "Angi's Los Angeles figures") + " run from $2,850 to "
+            "$11,350 and $4,550 to $18,200. Design Review and the landscaping work that follows are part of a Glendale "
+            "budget whichever method is chosen.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Glendale", [
+                "Glendale's " + _l("gl_cd", "construction and demolition recycling ordinance") + " refunds its deposit "
+                "when a project diverts 65% of its estimated debris, with original facility tags due within six months. "
+                "The deposit is 6% of valuation for demolition, up to $30,000, and is waived when it would be $200 or "
+                "less. Whether a pool removal falls under the ordinance is not stated, so Building and Safety confirms "
+                "it. The city keeps a " + _l("gl_haulers", "list of permitted haulers") + " for construction debris "
+                "and roll-off bins, including Athens Services and Waste Management.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Glendale's "
+            + _l("gl_storm", "stormwater rules") + " ban discharges to the storm drain except a few allowed "
+            "conditionally, such as pool dewatering, and the regional permit's "
+            + _l("gl_table5", "conditional exemption table") + " requires dechlorinated water at no more than 0.1 mg/L "
+            "of chlorine, a pH of 6.5 to 8.5, no copper algaecides and 72 hours' notice for 100,000 gallons or more. "
+            "Filter backwash needs a separate permit, and the city's fee schedule lists fines of $100 to $500 for "
+            "draining a pool onto another property or into the storm drain against the rules."),
+        "faqs": [
+            ("Does a Glendale pool backfill need Design Review?",
+             "Yes. The city's permit guidance says pool backfill projects require Design Review from Planning."),
+            ("What can a Glendale backfilled pool area be used for?",
+             "Landscaping under the water efficient landscape rules, or another use that meets every zoning development "
+             "standard."),
+            ("Does a Glendale pool demolition need a sewer-cap permit?",
+             "No. The guidance exempts swimming pools from the sewer-cap plumbing permit."),
+            ("Can Glendale pool water go to the storm drain?",
+             "Only dechlorinated to 0.1 mg/L or less at pH 6.5 to 8.5, with no copper algaecides."),
+        ],
+    },
+    "huntington-beach": {
+        "compact": True,
+        "dept": "Department of Community Development, Building Division",
+        "doc": "pool demolition guidelines",
+        "fee": "$41 processing plus valuation-based inspection, from $85 (July 2026)",
+        "fee_short": "$41 + inspection",
+        "permit_html": (
+            "Huntington Beach requires a demolition permit before any pool demolition work, and the Department of "
+            "Community Development's {doc} set the procedure. A homeowner, a B general contractor, a C-53 pool "
+            "contractor or a C-21 demolition contractor may apply, with a plot plan showing the pool and its setbacks "
+            "and a preliminary report from a licensed soils engineer describing how the pool will be demolished or "
+            "abandoned. The city's " + _l("hb_fees", "2026 fee schedule") + " charges a $41 processing fee plus an "
+            "inspection fee based on project valuation, starting at $85."),
+        "method_html": (
+            "The guidelines describe leaving the shell bottom in place. Crews break out or puncture holes in the bottom "
+            "so water drains, remove all decking and the bond beam to within 12 inches below grade, and remove all "
+            "electrical conduit and gas lines. At least 6 inches of 3/4-inch gravel goes across the bottom, then dirt "
+            "compacted in 12-inch lifts to finished grade, with a soils compaction report from a licensed soils engineer "
+            "showing at least 90%. The guidelines do not address building over the area later, so that question goes "
+            "to the Building Division before work starts."),
+        "extra_after_permit": [
+            ("Inspections on a Huntington Beach job", [
+                "The guidelines list three inspections, booked through the city's online portal or at (714) 536-5241:",
+                "<ol><li>Bottom and bond beam removal.</li><li>Disconnection and removal of the electrical lighting, "
+                "equipment feeds and gas line.</li><li>Final inspection of the finished grade, with the soils "
+                "compaction report submitted.</li></ol>",
+            ]),
+        ],
+        "cost_html": [
+            "No Huntington Beach contractor publishes prices, but Orange County firms do: "
+            + _l("frisch", "Frisch &amp; Sons") + " publishes $12,000 to $20,000 for a partial fill-in and $18,000 to "
+            "$30,000 or more for a full removal. Huntington Beach builds a soils engineer into every job, with the "
+            "preliminary report up front and the compaction report at the end, and that engineering typically runs "
+            "$1,500 to $4,000 on top of the permit.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Huntington Beach", [
+                "Republic Services is the only trash collector allowed to operate in Huntington Beach, and bins from "
+                "unauthorized haulers are cited or impounded, according to the city's "
+                + _l("hb_republic", "construction debris handout") + ". Republic offers 10-yard low-boy boxes for "
+                "concrete and dirt, at (714) 847-3581, and self-haul debris goes to Rainbow Environmental on Nichols "
+                "Lane, now part of Republic. The city applies CALGreen's construction debris rules through municipal "
+                "code chapter 17.52.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Huntington Beach's "
+            + _l("hb_storm", "stormwater ordinance") + " exempts swimming pool water dechlorinated to 0.1 ppm or less, "
+            "bans cleaning wastewater and filter backwash, and counts pool water containing chlorine or other chemicals "
+            "as a pollutant. The countywide " + _l("h2oc_pools", "H2OC brochure") + " asks for the sanitary sewer when "
+            "possible, a pH of 6.5 to 8.5, and saltwater pools kept off the storm drain."),
+        "faqs": [
+            ("Does a Huntington Beach pool removal need a soils engineer?",
+             "Yes. The guidelines require a preliminary soils report up front and a compaction report showing at least "
+             "90% at the end."),
+            ("How deep does Huntington Beach cut the pool walls?",
+             "Decking and the bond beam come off to within 12 inches below grade."),
+            ("How many inspections does a Huntington Beach pool removal need?",
+             "Three: bottom and bond beam removal, utility disconnection, and the final with the compaction report."),
+            ("Who hauls pool debris in Huntington Beach?",
+             "Republic Services, the only trash collector allowed in the city."),
+        ],
+    },
+    "san-jose": {
+        "compact": True,
+        "doc": "swimming pool demolition page",
+        "fee": "No pool demolition line; residential pool alteration $211 issuance, $325 plan review, $367 inspection (FY 2026-27)",
+        "fee_short": "$211 + review",
+        "permit_html": (
+            "San Jose requires a building permit before a pool or spa is removed or abandoned, and the city's {doc}, "
+            "updated April 2026, sets the steps. For qualifying properties the permit can be issued during a single "
+            "visit if the plans and documents are accurate, arriving before 3 pm. Before applying, the owner needs a job "
+            "number from the " + _l("baaqmd", "Bay Area Air Quality Management District") + ", whether or not "
+            "asbestos is involved. The city's " + _l("sj_fees", "2026-27 fee schedule") + " has no pool demolition "
+            "line; residential exterior and site alterations, which include pools, carry $211 for issuance, $325 for "
+            "plan review and $367 for inspection."),
+        "method_html": (
+            "San Jose asks the owner to choose up front. For an area that will not be built on, the plot plan marks the "
+            "non-buildable area with its dimensions and shows what replaces the pool, and the inspector collects the "
+            "plan. For a buildable area, a state-licensed engineer prepares and wet-stamps a demolition, drainage and "
+            "compaction plan and a plot plan, the whole shell and its rebar are removed, and the fill reaches at least "
+            "90% of maximum dry density, with a compaction report declaring the area buildable."),
+        "extra_after_permit": [
+            ("Paperwork on a San Jose job", [
+                "The city's " + _l("sj_bulletin", "Bulletin 289") + " requires the gas line and electrical wiring "
+                "capped, which the inspector verifies, with the breaker relabelled as a spare. A buildable-area job also "
+                "needs a special inspection form naming who will observe the compaction, unless the engineer of record "
+                "inspects continuously. A permit card lists the inspections, booked at SJPermits.org or 408-535-3555, "
+                "and a debris box kept on the sidewalk or street needs a revocable encroachment permit. Community pools "
+                "and properties on the Historic Resources Inventory need Planning clearance.",
+            ]),
+        ],
+        "cost_html": [
+            "No San Jose contractor publishes prices, but Bay Area firms do: " + _l("souza", "Souza &amp; Son's")
+            + " publishes $4,500 to $10,000 for a partial fill-in and $8,000 to $22,000 for a full removal, and "
+            + _l("walberg", "Walberg, Inc.") + " gives $5,000 to $12,000 and $12,000 to $30,000. San Jose's own "
+            "charges add the permit fees, the refundable debris deposit, and on a buildable area the engineer's plans and "
+            "compaction report.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in San Jose", [
+                "San Jose's " + _l("sj_cddd", "Construction and Demolition Diversion Deposit") + " applies to all "
+                "residential demolitions and is collected when the permit is issued, at $0.35 a square foot. The deposit "
+                "comes back when at least 50% of the debris is diverted at a city-certified facility, self-hauled or "
+                "carried by a franchised debris box company, with weight tickets showing the address or permit number "
+                "and a refund request through Waste Tracking San Jose within 365 days of the final inspection.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. San Jose's "
+            + _l("sj_pools", "pool guidance") + " says not to drain to a street, gutter or storm drain and to send the "
+            "water to a sanitary sewer clean-out, naming copper and chlorine as the pollutants of concern. Environmental "
+            "Services answers questions at (408) 945-3000."),
+        "faqs": [
+            ("Can a San Jose pool removal permit be issued in one visit?",
+             "Yes for qualifying properties, if the plans and documents are accurate and the owner arrives before 3 pm."),
+            ("Does a San Jose pool removal need an air district job number?",
+             "Yes. The city requires a Bay Area Air Quality Management District job number before applying."),
+            ("What makes a San Jose pool area buildable?",
+             "Engineer-stamped plans, full removal of the shell and rebar, and a compaction report at 90%."),
+            ("How much is the San Jose debris deposit?",
+             "$0.35 a square foot for residential demolition, refunded with 50% diversion."),
+            ("Does Valley Water pay to convert a pool to landscape?",
+             "Its landscape conversion rebate covers pools at $2 a square foot, up to $3,000 for most homes, but only "
+             "with written approval before removal starts."),
+        ],
+    },
+    "oxnard": {
+        "compact": True,
+        "fee": "$88.20 demolition inspection for swimming pools (July 2026)",
+        "fee_short": "$88.20",
+        "permit_html": (
+            "Oxnard publishes no pool demolition or abandonment handout, and demolition needs a permit from the Building "
+            "and Engineering Division of the Community Development Department. The city's {doc}, effective 18 July "
+            "2026, names swimming pools in its $88.20 demolition inspection line, alongside accessory structures, block "
+            "walls and signs, and sets plan review for demolitions at 85% of the building permit fee."),
+        "method_html": (
+            "No city document sets drainage holes, shell depth or compaction rules for pools, so the Building and "
+            "Engineering Division decides whether a partial fill-in is accepted. Oxnard's "
+            + _l("ox_grading", "grading code") + " exempts isolated, self-contained earthwork of up to 150 cubic yards "
+            "that does not affect neighbours, and requires a soils engineering report with any grading permit "
+            "application, so a full removal with a large fill volume may bring in the grading rules."),
+        "extra_after_permit": [
+            ("Air district notice in Oxnard", [
+                "The " + _l("vcapcd", "Ventura County Air Pollution Control District") + " says a building or home "
+                "must be surveyed for asbestos to obtain a demolition permit. Its notification form asks for notice and "
+                "a 10 working day wait on subject demolitions even without asbestos, while residential buildings of "
+                "four units or fewer skip the wait and fee. The district does not mention pools, so it confirms whether a "
+                "pool-only job counts.",
+            ]),
+        ],
+        "cost_html": [
+            "No Oxnard contractor publishes prices. Southern California firms set the range: "
+            + _l("lapdc", "Los Angeles Pool Demolition Contractors") + " starts at $10,500 for a partial fill-in and "
+            "$17,500 for a full removal. Oxnard's own charges are low by comparison: the $88.20 demolition inspection, "
+            "plan review at 85% of the permit fee, and city bin or disposal charges.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Oxnard", [
+                "Oxnard's " + _l("ox_cdplan", "construction and demolition waste plan") + " requires 65% of the debris "
+                "recycled or salvaged, approved by the Environmental Resources Division before work starts, with a "
+                "report and receipts before final inspection. The city rents its own "
+                + _l("ox_bins", "roll-off bins") + ", including a 10-yard bin for dirt and concrete only, and charges "
+                "$139.92 a ton for construction debris at the Del Norte Regional Recycling and Transfer Station, open "
+                "Monday to Saturday.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Oxnard's "
+            + _l("ox_storm", "stormwater code") + " allows dechlorinated pool water at no more than 0.1 mg/L of "
+            "chlorine or bromine, with no chemicals or algaecides and controlled volume and velocity, and bans filter "
+            "backwash from the storm drain. The city's " + _l("ox_sewer", "sewer code") + " bars swimming pool "
+            "drainage from the sewer unless the city manager specifically authorizes it."),
+        "faqs": [
+            ("What does an Oxnard pool demolition permit cost?",
+             "$88.20 for the demolition inspection, the line that names swimming pools, effective July 2026."),
+            ("Does Oxnard publish pool removal rules?",
+             "No. The Building and Engineering Division decides the method."),
+            ("Can Oxnard pool water go down the sewer?",
+             "Only with the city manager's specific authorization; dechlorinated water may go to the storm drain."),
+            ("Where does pool concrete go in Oxnard?",
+             "To the Del Norte Regional Recycling and Transfer Station, at $139.92 a ton for construction debris."),
+        ],
+    },
+    "stockton": {
+        "compact": True,
+        "doc": "Form BLDG-0014 (revised January 2026)",
+        "fee": "$97.25 pool demolition, plus technology and other surcharges (FY 2026-27)",
+        "fee_short": "$97.25 base",
+        "permit_html": (
+            "Stockton's Building and Life Safety Division on West Weber Avenue ((209) 937-8561) issues the permit, and "
+            "{doc} covers residential and commercial pools and spas. The city approves the backfill method based on "
+            "the area's intended future use. The " + _l("stk_fees", "2026-27 fee schedule") + " lists pool demolition "
+            "at $97.25, with a 7.5% technology fee, a 6% Community Rating System fee and valuation-based charges on "
+            "top. The application needs a site plan or aerial photo, a construction debris and recycling form and an "
+            "erosion control agreement."),
+        "method_html": (
+            "Option A is for open space or landscaping that will not support any structure, and the shell may stay. At "
+            "least four holes, each at least 1 ft across and 2 ft deep, go through the bottom with one at the deepest "
+            "point, at least 12 inches of crushed rock covers the bottom, and the top 2 ft of shell below finished grade "
+            "is demolished, with the top 24 inches filled with organic soil fit for planting. Option B applies whenever "
+            "the area will support a structure, including a patio cover or deck: the shell is removed entirely and "
+            "replaced with engineered fill under a geotechnical engineer's supervision."),
+        "extra_after_permit": [
+            ("Who may pull each Stockton option", [
+                "Option A permits go to an owner-builder with a completed form or a contractor holding an A, C-12 or "
+                "C-53 licence. Option B needs a California-licensed contractor, a geotechnical report from a licensed "
+                "engineer, a special inspection and testing agreement and a final compaction report. Either way, gas, "
+                "water and sewer lines are capped and all electrical pool equipment, including the breaker, is removed.",
+                "The job has at least two inspections:",
+                "<ol><li>An in-progress inspection before the pool is filled, covering the holes or the shell removal "
+                "and the erosion control.</li><li>A final inspection once backfill is complete, with signed compaction "
+                "reports on site.</li></ol>",
+            ]),
+        ],
+        "cost_html": [
+            "Stockton has nearby published prices: " + _l("norcal", "NorCal Earthworks in Sacramento") + " prices full "
+            "removal at $8,000 to $15,000 for a concrete pool, and " + _l("walberg", "Walberg, Inc.") + " publishes "
+            "$5,000 to $12,000 for a partial fill-in and $12,000 to $30,000 for a full removal across Northern "
+            "California. Option B adds the geotechnical report and compaction testing to the city's $97.25 base fee.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Stockton", [
+                "Stockton's " + _l("stk_cd", "construction and demolition page") + " requires a recycling plan with "
+                "every permit application and a recycling report with tags or receipts afterwards, and projects valued "
+                "at $20,000 or more meet a 65% recycling standard. Debris may be hauled only under a city-issued "
+                "industrial waste collector permit, held by California Waste Recovery Systems, Republic Services and "
+                "Waste Management.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Stockton's form and its "
+            + _l("stk_pools", "stormwater guidance") + " send pool water to the sanitary sewer clean-out and never to "
+            "the street, gutter or storm drain, and the city's Service Center at (209) 937-8341 helps find the "
+            "clean-out."),
+        "faqs": [
+            ("What is the difference between Stockton's Option A and Option B?",
+             "Option A leaves the shell for landscaping; Option B removes it for any future structure."),
+            ("Can a Stockton homeowner pull the permit?",
+             "Yes for Option A, with an owner-builder form; Option B needs a licensed contractor."),
+            ("How many holes does Stockton's Option A need?",
+             "At least four, each at least 1 ft across and 2 ft deep, with one at the deepest point."),
+            ("What does a Stockton pool demolition permit cost?",
+             "$97.25 base on the 2026-27 schedule, plus technology and other surcharges."),
+            ("Where can Stockton pool water be drained?",
+             "To the sanitary sewer clean-out only."),
+        ],
+    },
+}
+
+for _c in CITIES:
+    _c.update(BATCH4.get(_c["slug"], {}))
