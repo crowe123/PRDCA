@@ -29,7 +29,8 @@ SRC = {
     "sd_assessor": "https://www.sdarcc.gov/content/arcc/home/divisions/assessor/realty-assessment.html",
     "dre_re6": "https://www.dre.ca.gov/files/pdf/re6.pdf",
     "sd_pools": "https://www.sandiego.gov/sites/default/files/pools_and_spas_fact_sheet.pdf",
-    "la_storm": "https://www.lastormwater.org/take-action/practice-good-housekeeping/tips-for-pools-spas-and-fountain-owners/",
+    "la_storm": "https://sanitation.lacity.gov/san/faces/home/portal/s-lsh-wwd/s-lsh-wwd-wp/s-lsh-wwd-wp-gin/s-lsh-wwd-wp-gin-pgh/s-lsh-wwd-wp-gin-pgh-tpsfo",
+    "la_rwqcb": "https://www.waterboards.ca.gov/losangeles/",
     "valley_water": "https://www.valleywater.org/saving-water/rebates-surveys/landscape-rebates",
     "oc_pw": "https://pwds.oc.gov/sites/ocpwocds/files/2021-06/Swimming%20Pool%20Demolition%20Requirements.pdf",
     "dof_e1": "https://dof.ca.gov/Forecasting/Demographics/estimates-e1/",
@@ -151,7 +152,7 @@ CITIES = [
             ("Can a pool shell stay in the ground in Los Angeles?",
              "Only for landscaping use on ground sloping 10% or less, with 12-inch drainage holes every 8 ft across the bottom."),
             ("Where can Los Angeles pool water be drained?",
-             "Dechlorinated water within the set pH range may go to the storm drain under the LA Stormwater guidance; other water goes to the sewer clean-out."),
+             "Dechlorinated water within the set pH range may go to the storm drain between 8 pm and 6 am under LA Sanitation's guidance; residential pools may also drain to the sewer without a wastewater permit."),
             ("How much does pool removal cost in Los Angeles?",
              "Los Angeles Pool Demolition Contractors publishes prices from $10,500 for a partial fill-in and $17,500 for a full removal. Angi's Los Angeles figures run from $2,850 to $11,350 for a partial and $4,550 to $18,200 for a full removal."),
             ("How long does a Los Angeles pool removal take?",
@@ -182,7 +183,8 @@ CITIES = [
                 "fill cannot support a footing, so the area stays limited to planting.",
                 "A full removal asks for more paperwork. The grading permit states the total cubic yards of fill, the "
                 "shell leaves the site, and the excavation bottom is inspected before compacted fill goes in. All fill "
-                "must reach 90% relative compaction under the ASTM D1557 test, checked by a soil testing agency the "
+                "must reach 90% relative compaction under the "
+                '<a href="https://store.astm.org/d1557-12r21.html">ASTM D1557</a> laboratory compaction test, checked by a soil testing agency the '
                 "department approves, and the compaction report with its Certificate of Compliance goes to the Grading "
                 "Division for approval. No foundation work may start until that report is approved, which is the step "
                 "that clears the way for an accessory dwelling unit or an addition.",
@@ -190,7 +192,9 @@ CITIES = [
                 "Grading Pre-Inspection report, and the department can ask for a soil report from a licensed soils "
                 "engineer covering temporary excavation, grading specifications and allowable bearing pressures. Each "
                 "adds an engineer's fee and time to the schedule, so a quote for a Los Angeles hillside job should say "
-                "whether it includes them.",
+                "whether it includes them. The Department of City Planning's "
+                '<a href="https://zimas.lacity.org/">ZIMAS parcel map</a> shows whether a lot lies in a Hillside Area '
+                "and maps the Hillside Grading boundary, so an owner can check before asking for quotes.",
             ]),
         ],
         "cost_extra": (
@@ -2919,3 +2923,478 @@ BATCH4 = {
 
 for _c in CITIES:
     _c.update(BATCH4.get(_c["slug"], {}))
+
+
+# ---- Batch 5 (research of 13 October 2026) --------------------------------
+SRC.update({
+    "sd_cd": "https://www.sandiego.gov/environmental-services/recycling/cd",
+    "sd_cdfacts": "https://www.sandiego.gov/sites/default/files/legacy/development-services/pdf/industry/infobulletin/cd_fact_sheet_6_29_16.pdf",
+    "sd_facilities": "https://www.sandiego.gov/sites/default/files/certified-cd-recycling-facility-directory.pdf",
+    "fre_mfs": "https://www.fresno.gov/wp-content/uploads/2026/07/MFS-Planning_593_CPI_CPI-UGM_CPI-Parking-ED-2026.07.01-10w1657.pdf",
+    "fre_demo": "https://www.fresno.gov/wp-content/uploads/2026/04/Demolition-Packet-2.23.26-10w1471.pdf",
+    "fmfcd": "https://www.fresnofloodcontrol.org/illegal-dumping/",
+    "fre_drain": "https://www.fresno.gov/publicutilities/water-conservation-program/exemption-requests/",
+    "mv_fees": "https://moval.gov/departments/financial-mgmt-svcs/fin-pdf/FeeSchedule.pdf",
+    "mv_cd": "https://moval.gov/resident_services/waste/construction-waste.html",
+    "mv_storm": "https://ecode360.com/43226798",
+    "eg_fees": "https://elkgrove.gov/sites/default/files/city-files/Departments/Finance/fee-booklet.pdf",
+    "eg_encroach": "https://elkgrove.gov/public-works-permits/encroachment-permits",
+    "eg_cd": "https://elkgrove.gov/commercial-recycling-and-waste/construction-and-demolition-recycling",
+    "eg_haulers": "https://elkgrove.gov/commercial/authorized-haulers-and-self-hauling",
+    "eg_pools": "https://elkgrove.gov/sites/default/files/city-files/Departments/public-works/drainage/swimming-pools-handout.pdf",
+    "sacsewer": "https://www.sacsewer.com/discharging-to-the-sewer-system/",
+    "sr_fees": "https://www.srcity.org/DocumentCenter/View/16129",
+    "sr_drain": "https://www.srcity.org/DocumentCenter/View/42186",
+    "sr_cd": "https://ecode360.com/42956909",
+    "sr_haulers": "https://www.srcity.org/DocumentCenter/View/31986",
+    "rc_fees": "https://www.cityofrc.us/sites/default/files/2026-07/Master%20Fee%20Schedule%20Update%20July%201%202026.pdf",
+    "rc_cd": "https://www.cityofrc.us/construction-development/construction-and-demolition-diversion-program",
+    "gg_policy2020": "https://ggcity.org/sites/default/files/Pool-and-Spa-Demolition-Policy.pdf",
+    "gg_fees": "https://ggcity.org/sites/default/files/garden-grove-bldg-and-planning-fee-schedules-for-fy-2526.pdf",
+    "gg_cd": "https://ggcity.org/sites/default/files/cwmp-brochure-2023.pdf",
+    "gg_storm": "https://ecode360.com/42526662",
+})
+
+BATCH5 = {
+    "san-diego": {
+        "compact": True,
+        "doc": "Information Bulletin 710 (September 2026)",
+        "lead": ("Pool removal in San Diego needs a Demolition/Removal Permit from the city's Development Services "
+                 "Department, at $360.36 for plan check and $332.48 for inspection, and Pool Removal California found "
+                 "{found} businesses offering in-ground pool removal there, {active} with an active state licence."),
+        "permit_html": (
+            "San Diego's Development Services Department issues a Demolition/Removal Permit, set out in {doc}. The "
+            "bulletin lists $360.36 for plan check and $332.48 for inspection, plus small charges where they apply, such "
+            "as a $58 lead hazard fee for structures built before 1978. A contractor with an A or C-21 licence may pull "
+            "the permit, as may an owner-builder. For pools, the bulletin waives several building requirements: no "
+            "waste management form, no SDG&amp;E certificate of discontinuance, and in most cases no hazardous materials "
+            "questionnaire. A site plan is needed only for sites over an acre, historic sites, Downtown or wireless "
+            "sites."),
+        "method_html": (
+            "IB 710 sets no method for the shell, holes or fill, so the inspector settles those. Its one pool-specific "
+            "engineering rule turns on depth: a pool deeper than five feet needs a final soils compaction report from a "
+            "licensed geotechnical or civil engineer, handed to the inspector before the job is finaled. Filling a pool "
+            "does not trigger a separate grading permit, which the bulletin otherwise requires for fill deeper than "
+            "five feet."),
+        "extra_after_permit": [
+            ("Permit timing and inspections in San Diego", [
+                "The permit is void if work does not begin within 60 days and expires if the job is not finished within "
+                "120, with one 60-day extension available. A construction stormwater inspection is scheduled when the "
+                "permit is issued. Before the final, all gas and electric lines are disconnected and removed, open "
+                "plumbing and sewer lines are capped and all debris leaves the site.",
+            ]),
+        ],
+        "cost_html": [
+            "San Diego's two published price lists disagree widely: " + _l("demodiego", "Demo Diego") + " quotes "
+            "$5,000 to $9,000 for a partial fill-in and $9,000 to $15,000 for a full removal, while "
+            + _l("villa", "Villa Demolition") + " quotes $12,000 to $30,000 and $45,000 to $60,000. City charges add "
+            "about $693 in permit fees, and a pool deeper than five feet adds the soils compaction report.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in San Diego", [
+                "San Diego's " + _l("sd_cd", "construction and demolition deposit program") + " requires 65% "
+                "diversion on covered projects, but its " + _l("sd_cdfacts", "fact sheet") + " lists swimming pools "
+                "and spas among the exemptions, and IB 710 waives the waste management form for pool demolition. "
+                "Contractors still take concrete to recyclers on the city's "
+                + _l("sd_facilities", "certified facility directory") + ", such as Arcosa Crushed Concrete and Vulcan "
+                "Otay.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. The city's "
+            + _l("sd_pools", "pools, spas and fountains fact sheet") + " allows the storm drain only for dechlorinated "
+            "water at a pH of 7 to 8, at air temperature and free of algae and solids, and suggests checking the "
+            "chlorine over three to five days. The sanitary sewer is the other route, through a sink or lateral "
+            "cleanout with Public Utilities approval at (858) 654-4100, and plaster, gunite or cement reaching the "
+            "storm drain can bring fines of up to $10,000 a day."),
+        "faqs": [
+            ("What does a San Diego pool demolition permit cost?",
+             "$360.36 for plan check plus $332.48 for inspection on IB 710, about $693 before small extras."),
+            ("When does San Diego require a soils compaction report?",
+             "Only for a pool deeper than five feet."),
+            ("Can a San Diego homeowner pull the permit?",
+             "Yes. IB 710 allows an owner-builder, or a contractor with an A or C-21 licence."),
+            ("Does a San Diego pool removal need a debris deposit?",
+             "No. The city's fact sheet exempts swimming pools and spas, and IB 710 waives the waste management form."),
+            ("How long does a San Diego pool permit last?",
+             "Work must start within 60 days and finish within 120, with one 60-day extension."),
+        ],
+    },
+    "fresno": {
+        "compact": True,
+        "fee": "No pool line in FY 2026-27; residential demolition $102.72 plan check plus $192.92 inspection",
+        "fee_short": "Confirm",
+        "doc": "Bulletin 13-02 (January 2013)",
+        "permit_html": (
+            "Fresno issues a Swimming Pool Abandonment Permit through its Building and Safety Services Division, set "
+            "out in {doc}. The permit covers removing and backfilling the pool and abandoning its electrical and "
+            "plumbing systems, and the application needs a plot plan showing the structures, the pool and their "
+            "distances to property lines. A C-12 or A contractor may pull it, as may a B contractor doing two other "
+            "trades on the job, and a homeowner may abandon their own residential pool as an owner-builder. The "
+            "bulletin's $321 fee dates from 2013; the city's " + _l("fre_mfs", "2026 master fee schedule")
+            + " has no pool line, and its residential demolition line is $102.72 for plan check and $192.92 for "
+            "inspection, so the permit counter confirms the current amount."),
+        "method_html": (
+            "Fresno's bulletin requires the entire bottom of the pool broken out, while the walls and rim may stay, and "
+            "concrete pieces no larger than 12 inches may remain in the fill. All backfill is engineered fill, free of "
+            "organic material and compacted to at least 90%, tested by an approved laboratory. The bulletin presents "
+            "this as the standard method and aims to leave the site fit for future construction."),
+        "extra_after_permit": [
+            ("Inspections on a Fresno job", [
+                "Bulletin 13-02 sets two inspections:",
+                "<ol><li>The inspector checks the bottom removal before any backfill.</li><li>At final, full-depth "
+                "compaction reports must be approved, and the inspector checks the backfill and the site drainage."
+                "</li></ol>",
+                "Fresno's demolition permit packet also asks for a Demolition Release signed by the San Joaquin Valley "
+                "Air Pollution Control District. The release is written for structures, so the permit counter confirms "
+                "whether a pool abandonment needs it.",
+            ]),
+        ],
+        "cost_html": [
+            "Central Valley prices to work from come from Sacramento: " + _l("norcal", "NorCal Earthworks") + " prices "
+            "full removal at $8,000 to $15,000 for a concrete pool, and " + _l("walberg", "Walberg, Inc.") + " gives "
+            "$5,000 to $12,000 for a partial fill-in across Northern California. Because Fresno requires the whole "
+            "bottom out and every layer tested to 90%, even an abandonment carries laboratory testing that many cities "
+            "leave optional.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Fresno", [
+                "Fresno's " + _l("fre_demo", "demolition packet") + " requires a Waste Management Plan approved before "
+                "the permit, 65% of debris recycled under CALGreen and a diversion log with weight tickets before "
+                "final. Only the city's approved non-exclusive franchise haulers may be hired, a list of 25 that "
+                "includes Mid Valley Disposal and Waste Management of Fresno.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. The "
+            + _l("fmfcd", "Fresno Metropolitan Flood Control District") + " allows dechlorinated pool water to the "
+            "street only with permission from the city and the district, after waiting 24 to 48 hours from the last "
+            "chlorine treatment, at (559) 456-3292. Fresno's " + _l("fre_drain", "water conservation rules") + " also "
+            "limit draining a pool to once every three years, with an exemption process for draining off schedule."),
+        "faqs": [
+            ("What does Fresno require for pool abandonment?",
+             "The entire bottom broken out, and all backfill engineered and tested to at least 90% compaction."),
+            ("Can the walls stay in a Fresno pool abandonment?",
+             "Yes. Bulletin 13-02 allows the walls and rim to remain."),
+            ("Can a Fresno homeowner pull the permit?",
+             "Yes, as an owner-builder for their own residential pool."),
+            ("What does a Fresno pool abandonment permit cost?",
+             "The bulletin's $321 dates from 2013; the current schedule has no pool line, so the permit counter "
+             "confirms it."),
+            ("Can Fresno pool water go to the street?",
+             "Only dechlorinated, with permission from the city and the flood control district."),
+        ],
+    },
+    "moreno-valley": {
+        "compact": True,
+        "dept": "Community Development Department, Building and Safety",
+        "permit_html": (
+            "Moreno Valley requires a demolition permit before any pool or spa work, and the city's {doc} sets out two "
+            "options. A homeowner, a B general contractor, a C-53 pool contractor or a C-21 demolition contractor may "
+            "apply, with a site plan showing the parcel number, the pool's location and size, the chosen option, where "
+            "debris and backfill will be stored and the erosion controls. The city's "
+            + _l("mv_fees", "2026-27 fee schedule") + " has no pool demolition line; its general demolition line is "
+            "$153 for plan check and $347 for inspection."),
+        "method_html": (
+            "Option A leaves the shell: at least three holes, each at least 2 ft in diameter and equally spaced, go "
+            "through the pool bottom, with one more in a spa, at least 12 inches of #4 rock goes in, and the coping, "
+            "bond beam and rebar come off to at least 18 inches below grade. Backfill is self-compacting fill, sand, "
+            "clean dirt or as the soils report specifies, with 90% compaction observed and approved by a geotechnical "
+            "consultant. Option B is required if the area will support any structure, driveway, patio or deck: the "
+            "whole shell goes offsite and engineered fill goes in 8-inch lifts at 90%, under the project geotechnical "
+            "engineer, with a stamped geotechnical report at submittal."),
+        "extra_after_permit": [
+            ("Inspections and the Option A acknowledgement", [
+                "Before work, the gas line is capped at the meter and the equipment, the electrical subpanel and its "
+                "conductors are removed back to the service, and the above-ground plumbing, pumps and heaters come "
+                "out. The job has at least two inspections:",
+                "<ol><li>A first inspection of the drainage holes or the shell removal, the open excavation and the "
+                "erosion control.</li><li>A final inspection after backfill, with signed compaction reports on site."
+                "</li></ol>",
+                "Option A also needs a signed acknowledgement that the area will be used for open, garden or landscape "
+                "purposes only, that the owner will disclose on sale that the shell was not fully removed, and that the "
+                "owner will fix any hazards caused by settlement.",
+            ]),
+        ],
+        "cost_html": [
+            f"No contractor publishes Moreno Valley prices, so statewide figures apply: {STATEWIDE}. Moreno Valley's "
+            "own charges add the $153 and $347 demolition lines, and both options bring in a geotechnical consultant, "
+            "so the engineering cost sits in every job.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Moreno Valley", [
+                "Moreno Valley's " + _l("mv_cd", "construction waste page") + " applies CALGreen's 65% diversion "
+                "target and routes all disposal through the city's franchise hauler, Waste Management, at "
+                "866-445-8296. A diversion plan must be approved before building permits are issued, hauling is "
+                "allowed only by the franchise hauler's 10- or 40-yard roll-offs or by self-haul with certified weight "
+                "tickets, and non-franchised haulers are prohibited.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Moreno Valley's handout says dechlorinated pool "
+            "water is an allowable discharge to the storm drain, while chlorinated or contaminated water is taken "
+            "offsite to an approved facility, and the city's " + _l("mv_storm", "stormwater code") + " treats properly "
+            "managed pool discharges as no violation."),
+        "faqs": [
+            ("What are Moreno Valley's two pool removal options?",
+             "Option A leaves the shell for open space or landscape; Option B removes it for any structure, driveway, "
+             "patio or deck."),
+            ("How many holes does Moreno Valley's Option A need?",
+             "At least three, each at least 2 ft in diameter, plus one in a spa."),
+            ("Does a Moreno Valley Option A need a signed acknowledgement?",
+             "Yes: open, garden or landscape use only, and disclosure on sale."),
+            ("What does a Moreno Valley demolition permit cost?",
+             "$153 for plan check and $347 for inspection on the 2026-27 schedule."),
+            ("Who hauls pool debris in Moreno Valley?",
+             "Waste Management, the franchise hauler, or the owner self-hauling with certified weight tickets."),
+        ],
+    },
+    "elk-grove": {
+        "compact": True,
+        "permit_html": (
+            "Elk Grove's {doc} sets the rules for residential pool and spa demolition, and the city's "
+            + _l("eg_fees", "2026 development fee booklet") + " lists pool and spa demolition, including utility "
+            "capping, at $85. A Public Works " + _l("eg_encroach", "minor encroachment permit") + " at a flat $250 may "
+            "be needed before the building permit, to track debris in the city's right-of-way under its stormwater "
+            "pollution prevention plan."),
+        "method_html": (
+            "Full removal means taking out the entire pool and its utilities and backfilling under a qualified soils "
+            "engineer to at least 90% relative density, with a compaction report approved before final; any "
+            "alternative must come from the soils engineer and be approved before the permit. Abandoning in place "
+            "needs a dimensioned plot plan, the bond beam, gunite and all improvements removed to at least 18 inches "
+            "deep, two holes of at least 3 by 3 ft, and fill compacted in 6-inch layers under city inspection, with no "
+            "soils engineer required. The city then places a building restriction on the property against "
+            "construction in the pool area."),
+        "extra_after_permit": [
+            ("Inspections on an Elk Grove job", [
+                "For a pool abandoned in place, the holes are inspected before the pool is filled and the inspector is "
+                "notified when the fill operation starts. For a full removal, the compaction report must be approved "
+                "before the final. Construction over an abandoned pool stays barred unless the pool is re-abandoned to "
+                "the full-removal standard.",
+            ]),
+        ],
+        "cost_html": [
+            "Elk Grove has nearby published prices: " + _l("norcal", "NorCal Earthworks in Sacramento") + " prices "
+            "full removal at $8,000 to $15,000 for a concrete pool and $6,000 to $12,000 for fiberglass. Elk Grove's "
+            "own charges are low: the $85 demolition fee, the $250 encroachment permit where needed, and the debris "
+            "fee of $40 to $800.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Elk Grove", [
+                "Elk Grove's " + _l("eg_cd", "construction and demolition recycling program") + " covers all "
+                "demolition projects, which pay a fee of $0.40 per $1,000 of value, at least $40 and at most $800, "
+                "regardless of value. The job needs a Waste Management Plan and a Waste Log, and mixed loads go to a "
+                "certified sorting facility. C&amp;D hauling is open to the city's "
+                + _l("eg_haulers", "authorized haulers") + ", about a dozen companies including Republic Services.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Elk Grove's "
+            + _l("eg_pools", "pool draining handout") + " makes it illegal to send chlorinated pool water to the storm "
+            "drain, and allows the storm drain only below 0.01 parts per million of chlorine at a pH of 6.5 to 8.5 and "
+            "not heated; saltwater pools go to the sewer only. " + _l("sacsewer", "SacSewer") + " allows periodic "
+            "pool discharges to the sewer through a cleanout without advance permission or a permit, and the handout "
+            "warns never to open a manhole."),
+        "faqs": [
+            ("What does an Elk Grove pool demolition permit cost?",
+             "$85, including utility capping, on the 2026 fee booklet, plus a $250 encroachment permit where needed."),
+            ("Can a pool be abandoned in place in Elk Grove?",
+             "Yes, with the top 18 inches removed, two 3 by 3 ft holes and 6-inch compacted layers, followed by a "
+             "building restriction on the area."),
+            ("Does an Elk Grove full removal need a soils engineer?",
+             "Yes. The backfill is placed under a soils engineer to at least 90%, with a compaction report before final."),
+            ("Can Elk Grove pool water go down the sewer?",
+             "Yes. SacSewer allows periodic pool discharges through a cleanout without a permit."),
+        ],
+    },
+    "santa-rosa": {
+        "compact": True,
+        "fee": "Demolition minor $50.10 plus $200.38, major $50.10 plus $300.56, plus surcharges (July 2026)",
+        "permit_html": (
+            "Santa Rosa requires a building permit to demolish or remove a pool or spa, and {doc}, effective 20 April "
+            "2016, sets out two options. The application needs three sets of plans showing debris and backfill storage "
+            "and erosion controls, and backfill may not sit on the street without an encroachment permit. The city's "
+            + _l("sr_fees", "fee schedule") + " effective July 2026 lists minor demolition at $50.10 plus $200.38 and "
+            "major demolition at $50.10 plus $300.56, with technology and planning surcharges on top; it does not say "
+            "which category a pool falls under."),
+        "method_html": (
+            "Option A suits an area staying as open space, landscape or garden: the shell stays below grade, at least "
+            "three holes of 1 ft diameter go through the pool bottom, 15 inches of 3/4 to 1 1/2-inch drain rock goes in, "
+            "the upper 2 ft of shell below finished grade is demolished, and the top 24 inches of fill is clean soil fit "
+            "for planting. The owner signs an acknowledgement to use the area for open, landscape or garden purposes "
+            "only and to disclose it on sale. Option B, for any structure, driveway, patio or deck, removes the whole "
+            "shell and places engineered fill in 8-inch lifts at 90% under the project geotechnical engineer, with a "
+            "stamped geotechnical report and a special inspection and testing agreement."),
+        "extra_after_permit": [
+            ("Inspections on a Santa Rosa job", [
+                "Plumbing, electrical and gas lines are disconnected, capped and made safe at the source, which the "
+                "inspector checks at final. The policy sets at least two inspections:",
+                "<ol><li>A first inspection of the drainage holes or the shell removal, the open excavation and the "
+                "erosion control.</li><li>A final inspection, with signed compaction test reports on site where "
+                "testing is required.</li></ol>",
+            ]),
+        ],
+        "cost_html": [
+            "No Santa Rosa contractor publishes prices, but Bay Area firms do: " + _l("souza", "Souza &amp; Son's")
+            + " publishes $4,500 to $10,000 for a partial fill-in and $8,000 to $22,000 for a full removal, and "
+            + _l("walberg", "Walberg, Inc.") + " gives $5,000 to $12,000 and $12,000 to $30,000. Santa Rosa's own "
+            "charges are small next to those, and Option B adds the geotechnical report and testing agency.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Santa Rosa", [
+                "Santa Rosa's " + _l("sr_cd", "construction and demolition debris code") + " requires a city franchise "
+                "for debris box service and has franchisees recycle 65% of what they collect. Owners hauling their own "
+                "debris, and contractors hauling it themselves rather than through a subcontracted hauler, are exempt. "
+                "The city's " + _l("sr_haulers", "franchise list") + " names eight haulers, including Recology Sonoma "
+                "Marin and Republic Services of Sonoma County.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Santa Rosa's policy sends it to the sanitary "
+            "sewer, not the storm drain, and the city's " + _l("sr_drain", "draining guide") + " asks owners to pump "
+            "into the sewer cleanout or an indoor drain at 20 gallons a minute or less, and to call (707) 543-3369 "
+            "before draining more than 20,000 gallons. Saltwater pools may not go to the storm drain or the sewer and "
+            "need a licensed disposal contractor."),
+        "faqs": [
+            ("What are Santa Rosa's two pool removal options?",
+             "Option A leaves the shell for open space or landscape; Option B removes it for any structure, driveway, "
+             "patio or deck."),
+            ("How many holes does Santa Rosa's Option A need?",
+             "At least three holes of 1 ft diameter in a pool, or one in a spa."),
+            ("Where can Santa Rosa pool water be drained?",
+             "To the sanitary sewer at 20 gallons a minute or less; saltwater pools need a licensed disposal contractor."),
+            ("Does Santa Rosa's Option A need a signed acknowledgement?",
+             "Yes: open, landscape or garden use only, and disclosure on sale."),
+        ],
+    },
+    "rancho-cucamonga": {
+        "compact": True,
+        "doc": "form BSF-0027 (Revision C, January 2026)",
+        "fee": "$490 residential demolition (FY 2026-27)",
+        "permit_html": (
+            "Rancho Cucamonga's Building and Safety Services Department sets its pool procedure in {doc}, which starts "
+            "with a site plan showing the pool and its distances to structures and property lines. The city's "
+            + _l("rc_fees", "master fee schedule") + " effective July 2026 lists residential demolition at $490. The "
+            "form also requires dust control throughout the job and limits work to 7 am to 8 pm, Monday to Saturday, "
+            "with no Sunday work."),
+        "method_html": (
+            "The published method leaves the shell. The coping and 24 inches of wall come off all around, steel exposed "
+            "during the wall removal is cut off and hauled away, at least 40% of the bottom is removed throughout, and "
+            "the interior steps and any diving board slab come out. Backfill goes in 24-inch layers, levelled and "
+            "watered, with 90% compaction certified by a licensed geotechnical engineer, or clean washed sand or "
+            "3/8-inch pea gravel with documentation instead of the compaction report, then a final 12 inches of fill "
+            "raked level. The form does not address full removal or building over the area."),
+        "extra_after_permit": [
+            ("Inspections on a Rancho Cucamonga job", [
+                "BSF-0027 sets two inspections:",
+                "<ol><li>A preparation inspection, which the building inspector must approve before any backfill."
+                "</li><li>A final inspection, after the decking and driveway are broom-swept, with the soils compaction "
+                "report ready where one is required.</li></ol>",
+            ]),
+        ],
+        "cost_html": [
+            f"No contractor publishes Rancho Cucamonga prices, so statewide figures apply: {STATEWIDE}. The city's own "
+            "charge is the $490 demolition fee, and choosing sand or pea gravel over compacted soil removes the "
+            "geotechnical engineer's fee from the job.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Rancho Cucamonga", [
+                "Burrtec Waste Industries is the only business permitted to haul trash in Rancho Cucamonga, according "
+                "to the city's " + _l("rc_cd", "construction and demolition program") + ". The program, which requires "
+                "65% diversion and a deposit, exempts single-family homes of four units or fewer and projects under "
+                "$100,000, which covers most residential pool jobs.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Rancho Cucamonga's stormwater code bans pool water "
+            "containing chlorine, acids or other chemicals and allows dechlorinated pool water after a non-stormwater "
+            "discharge notification filed five days ahead with the Engineering Department. The "
+            + _l("sbc_storm", "San Bernardino County Stormwater Program") + " adds that chlorine is usually gone after "
+            "three to five days standing, and the pH should be 6.5 to 8.5."),
+        "faqs": [
+            ("How much of a Rancho Cucamonga pool bottom must come out?",
+             "At least 40%, removed throughout the bottom."),
+            ("Does Rancho Cucamonga need a compaction report?",
+             "Yes for compacted soil; clean washed sand or 3/8-inch pea gravel with documentation can replace it."),
+            ("What does a Rancho Cucamonga pool demolition permit cost?",
+             "$490 for residential demolition on the 2026-27 schedule."),
+            ("Can Rancho Cucamonga pool water go to the storm drain?",
+             "Only dechlorinated, after a notification filed five days ahead."),
+        ],
+    },
+    "garden-grove": {
+        "compact": True,
+        "doc": "Information Bulletin 26-012 (March 2026)",
+        "fee": "No demolition line; $81 pool electrical and plumbing lines plus $64 issuance (FY 2025-26)",
+        "permit_html": (
+            "Garden Grove requires a demolition permit for every pool and spa demolition, obtained through the "
+            "Development Access portal, and {doc} sets the method. The city's " + _l("gg_fees", "building fee schedule")
+            + " has no demolition line; it lists $81 for pool electrical work and $81 for pool plumbing, with a $64 "
+            "issuance fee. An older " + _l("gg_policy2020", "2020 pool demolition policy") + " is still online and is "
+            "stricter: it cut the walls 24 inches below grade and put a soils engineer on every job, so owners should "
+            "follow the 2026 bulletin."),
+        "method_html": (
+            "The bulletin leaves the shell with at least two drainage openings of at least 12 inches, one at the lowest "
+            "point, and the bottom passes inspection before any backfill. At least 12 inches of No. 4 rock goes in, "
+            "deck and coping rubble no larger than 3 inches may go on the rock, and clean fill sand goes in "
+            "moisture-conditioned lifts. Landscape-only areas need no compaction testing and may finish with 18 inches "
+            "of planting soil. Areas meant for future structures need 90% relative compaction and a geotechnical report "
+            "before final, and no structure may go on the fill without a geotechnical foundation investigation."),
+        "extra_after_permit": [
+            ("Inspections on a Garden Grove job", [
+                "IB 26-012 lists the inspections:",
+                "<ol><li>Electrical wiring, conduit and raceways disconnected and removed.</li><li>Gas lines "
+                "disconnected and capped at the meter and the equipment.</li><li>The drainage openings, before "
+                "backfill.</li><li>The rock and sand backfill, by city inspection or geotechnical observation.</li>"
+                "<li>A final grading inspection, with the grade set to prevent ponding.</li></ol>",
+            ]),
+        ],
+        "cost_html": [
+            "No Garden Grove contractor publishes prices, but Orange County firms do: "
+            + _l("frisch", "Frisch &amp; Sons") + " publishes $12,000 to $20,000 for a partial fill-in and $18,000 to "
+            "$30,000 or more for a full removal. Garden Grove's own permit charges are small, and a landscape-only "
+            "job avoids compaction testing altogether.",
+        ],
+        "extra_after_cost": [
+            ("Hauling the debris in Garden Grove", [
+                "Garden Grove's construction and demolition ordinance requires a waste reduction and recycling plan and "
+                "a security deposit, $1,000 on the city's form, before the permit, with a report within 60 days of "
+                "finishing. The city's " + _l("gg_cd", "program guide") + " sets 65% diversion, takes plans online "
+                "through Green Halo and names Republic Services as the exclusive franchisee for construction bins; "
+                "self-hauling to an approved facility is the alternative.",
+            ]),
+        ],
+        "drain_html": (
+            "Pool water has to go somewhere before demolition starts. Garden Grove's "
+            + _l("gg_storm", "stormwater code") + " lists dechlorinated swimming pool water among allowed discharges, "
+            "and the countywide " + _l("h2oc_pools", "H2OC brochure") + " asks for the sanitary sewer when possible, "
+            "with storm drain discharges limited to 0.1 mg/L of chlorine at a pH of 6.5 to 8.5 and saltwater pools "
+            "kept off the storm drain."),
+        "faqs": [
+            ("Does a Garden Grove landscape-only fill need compaction testing?",
+             "No. IB 26-012 allows tractor rolling or tamping with no compaction testing for landscape-only areas."),
+            ("Can a Garden Grove homeowner build over a filled pool?",
+             "Only with 90% compaction, a geotechnical report and a geotechnical foundation investigation."),
+            ("How many drainage openings does Garden Grove require?",
+             "At least two, each at least 12 inches, with one at the lowest point."),
+            ("Which Garden Grove pool rules apply, 2020 or 2026?",
+             "The 2026 bulletin, IB 26-012; the stricter 2020 policy is still online but older."),
+            ("Does a Garden Grove pool removal need a debris deposit?",
+             "The city's construction and demolition program takes a $1,000 deposit before the permit."),
+        ],
+    },
+}
+
+for _c in CITIES:
+    _c.update(BATCH5.get(_c["slug"], {}))
+
+for _c in CITIES:
+    if _c["slug"] == "los-angeles":
+        _c["drain_html"] = (
+            "Pool water has to go somewhere before demolition starts. "
+            + _l("la_storm", "LA Sanitation's pool guidance") + " allows the storm drain only for water dechlorinated "
+            "to 0.1 mg/L or less, at a pH of 6.5 to 8.5, and only between 8 pm and 6 am; letting the water stand a few "
+            "days without chlorine, or adding a dechlorinating agent such as sodium thiosulfate, gets it there. "
+            "Residential pools may drain to the sewer without a wastewater permit, and discharges that need a "
+            "stormwater permit go through the " + _l("la_rwqcb", "Los Angeles Regional Water Quality Control Board")
+            + ".")

@@ -352,14 +352,17 @@ def city_page(c, listings, held):
         + figure(f"city-{slug}-work", ALT.get(f"city-{slug}-work", "") + "."))
 
     if c["region"] == "la":
-        drain_src = (f'<a href="{SRC["la_storm"]}">LA Stormwater</a> allows the storm drain only for dechlorinated '
-                     'water within a set pH range')
+        drain_src = (f'<a href="{SRC["la_storm"]}">LA Sanitation\'s pool guidance</a> allows the storm drain only for '
+                     'water dechlorinated to 0.1 mg/L or less, at a pH of 6.5 to 8.5 and between 8 pm and 6 am. '
+                     'Residential pools may also drain to the sewer without a wastewater permit, and discharges that '
+                     'need a stormwater permit go through the '
+                     f'<a href="{SRC["la_rwqcb"]}">Los Angeles Regional Water Quality Control Board</a>')
     elif c["region"] == "sd":
         drain_src = (f'The <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> allows the storm drain '
                      'only for dechlorinated water within a set pH range')
     else:
         drain_src = (f'The <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and '
-                     f'<a href="{SRC["la_storm"]}">LA Stormwater</a> both allow the storm drain only for dechlorinated '
+                     f'<a href="{SRC["la_storm"]}">LA Sanitation</a> both allow the storm drain only for dechlorinated '
                      'water within a set pH range')
     if c.get("drain_html"):
         draining = f'<p>{fill(c["drain_html"], c)}</p>'
@@ -571,7 +574,7 @@ def cost_page():
 <p>Several cities, including Los Angeles, Long Beach, Irvine, Santa Clarita, Santa Ana and Garden Grove, publish rules but no fee line written for pool removal, and {NO_RULE_COUNT} cities publish nothing specific to pools. The city pages link each city's own document. Fees for Fresno and Chula Vista come from older schedules and should be confirmed with the city before budgeting.</p>
 
 <h2>Timeline from permit to finished grade</h2>
-<p>A partial fill-in takes one to four days on site and a full removal three to seven, once the permit is in hand. Draining the pool adds a day or two, and must follow local discharge rules: the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater</a> allow the storm drain only for dechlorinated water within a set pH range, and Stockton and Modesto allow the sewer only.</p>
+<p>A partial fill-in takes one to four days on site and a full removal three to seven, once the permit is in hand. Draining the pool adds a day or two, and must follow local discharge rules: the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Sanitation</a> allow the storm drain only for dechlorinated water within a set pH range, and Stockton and Modesto allow the sewer only.</p>
 <p>Permits add one to three weeks in most cities. San Jose can issue in a single visit, and Fremont's express permit needs no plan review. San Jose also asks for a job number from the <a href="{SRC["baaqmd"]}">Bay Area Air Quality Management District</a> before demolition, and Oakland bars grading from 15 October to 15 April, so jobs there need to be booked for the dry season.</p>
 {figure("cost-landscape", "Many owners keep part of the deck as a patio, which lowers both the price and the hauling volume.")}
 
@@ -617,7 +620,7 @@ def faq_page():
 <p>Yes, in every city whose handout was read. Los Angeles and Long Beach use a grading permit; San Diego, Riverside and Fontana a demolition permit; and San Jose, Irvine and Stockton a building permit. The Los Angeles Department of Building and Safety sets its backfill rules in <a href="{LA}">bulletin P/BC 2026-111</a>, and San Diego's Development Services Department in <a href="https://www.sandiego.gov/development-services/forms-publications/information-bulletins/710">Information Bulletin 710</a>. San Francisco publishes no pool rule, but its <a href="https://codelibrary.amlegal.com/codes/san_francisco/latest/sf_building/0-0-0-92027">Building Code section 106A</a> requires a permit to remove any regulated structure.</p>
 
 <h3>Who is licensed to remove a pool?</h3>
-<p>Cities differ on the licence classes they accept. San Diego names the A and C-21 classes, Stockton names A, C-12 or C-53, and Fresno names C-12 or A. The <a href="{SRC["cslb_classes"]}">state licence board's classification guide</a> describes each class. Because the work needs a permit, the state's $1,000 unlicensed-work exemption does not apply, as <a href="{SRC["cslb_2407"]}">Industry Bulletin 24-07</a> explains. The board's own <a href="{SRC["cslb_quiz"]}">2016 newsletter quiz</a> named C-53, the swimming pool class, which conflicts with what several cities accept, so a call to the city settles it for a given job.</p>
+<p>Cities differ on the licence classes they accept. San Diego names the A and C-21 classes, Stockton names A, C-12 or C-53 for its shell-in-place option, and Fresno names C-12 or A. The <a href="{SRC["cslb_classes"]}">state licence board's classification guide</a> describes each class. Because the work needs a permit, the state's $1,000 unlicensed-work exemption does not apply, as <a href="{SRC["cslb_2407"]}">Industry Bulletin 24-07</a> explains. Accepted classes differ from city to city, so the city's own handout or a call to its building department settles it for a given job.</p>
 
 <h3>Can a homeowner pull the permit?</h3>
 <p>Yes in San Diego, Fresno and Stockton, where an owner-builder may apply; in Stockton that covers Option A, the partial fill-in. An owner-builder takes on the contractor's responsibilities, including the inspections and, where required, hiring the soils engineer.</p>
@@ -650,7 +653,7 @@ def faq_page():
 <p>Not under most city rules. Filling a shell with dirt without breaking drainage holes through the bottom traps water in the old basin, which leads to soggy ground and settling. Every city handout read requires holes or removal of the bottom, and most require the top of the wall removed too: the top two feet in Stockton, San Bernardino and Fontana, and 12 inches below grade in Riverside.</p>
 
 <h3>Is partial pool removal allowed in every California city?</h3>
-<p>No. Ontario's <a href="https://ontarioca.gov/sites/default/files/Ontario-Files/Building/IB%20111%20%28demolition%20of%20swimming%20pool%20%26%20spa%20Requirements%29-eff%2010-16-2024.docx">bulletin IB 111</a> requires the entire shell removed, and Fresno requires the whole bottom broken out. Where partial removal is allowed, cities such as Los Angeles, Long Beach and Moreno Valley limit the area to landscaping or open space.</p>
+<p>No. Ontario's <a href="https://content.ontarioca.gov/sites/default/files/2025-01/IB%20111%20%28demolition%20of%20swimming%20pool%20%26%20spa%20Requirements%29-eff%2010-16-2024.docx">bulletin IB 111</a> requires the entire shell removed, and Fresno requires the whole bottom broken out. Where partial removal is allowed, cities such as Los Angeles, Long Beach and Moreno Valley limit the area to landscaping or open space.</p>
 
 <h3>What happens to the pool equipment and lines?</h3>
 <p>The pump, filter, heater and lights are removed, and the electrical circuit, gas line and water lines are disconnected and capped. Santa Ana requires separate building, electrical and plumbing permits for that reason under <a href="https://santa-ana.gov/documents/abandoned-pools-bld-16/">handout BLD-16</a>.</p>
@@ -678,7 +681,7 @@ def faq_page():
 <h2>Water, tax and selling</h2>
 
 <h3>Where can the pool water be drained?</h3>
-<p>The rule varies by city. Stockton allows the sewer clean-out only, and Modesto sends all pool water to the sewer, even when dechlorinated. Riverside prefers the sewer clean-out and allows the storm drain only below 0.1 mg/L of chlorine. San Diego and Los Angeles allow the storm drain if the water is dechlorinated and within a set pH range, as the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Stormwater's guidance for pool owners</a> explain.</p>
+<p>The rule varies by city. Stockton allows the sewer clean-out only, and Modesto sends all pool water to the sewer, even when dechlorinated. Riverside prefers the sewer clean-out and allows the storm drain only below 0.1 mg/L of chlorine. San Diego and Los Angeles allow the storm drain if the water is dechlorinated and within a set pH range, as the <a href="{SRC["sd_pools"]}">San Diego pools and spas fact sheet</a> and <a href="{SRC["la_storm"]}">LA Sanitation's guidance for pool owners</a> explain.</p>
 {figure("faq-draining", "Pool water must be drained to the sewer clean-out or, where allowed, dechlorinated before it reaches a storm drain.")}
 
 <h3>Does removing a pool lower property tax in California?</h3>

@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-13T11:30:48+00:00",
+ "generated": "2026-10-13T11:51:37+00:00",
  "siteName": "Pool Removal California",
  "pages": 36,
  "cities": [
@@ -11,7 +11,7 @@
    "confidence": "High",
    "listed": 6,
    "held": 9,
-   "words": 2282
+   "words": 2367
   },
   {
    "name": "San Diego",
@@ -21,7 +21,7 @@
    "confidence": "Medium-high",
    "listed": 10,
    "held": 4,
-   "words": 1653
+   "words": 1706
   },
   {
    "name": "San Jose",
@@ -51,7 +51,7 @@
    "confidence": "Medium-high",
    "listed": 2,
    "held": 0,
-   "words": 1122
+   "words": 1167
   },
   {
    "name": "Sacramento",
@@ -211,7 +211,7 @@
    "confidence": "High",
    "listed": 2,
    "held": 6,
-   "words": 1256
+   "words": 1258
   },
   {
    "name": "Oxnard",
@@ -251,7 +251,7 @@
    "confidence": "High",
    "listed": 4,
    "held": 3,
-   "words": 1291
+   "words": 1282
   },
   {
    "name": "Ontario",
@@ -271,7 +271,7 @@
    "confidence": "High",
    "listed": 4,
    "held": 1,
-   "words": 1322
+   "words": 1340
   },
   {
    "name": "Lancaster",
@@ -291,7 +291,7 @@
    "confidence": "High",
    "listed": 2,
    "held": 5,
-   "words": 1170
+   "words": 1088
   },
   {
    "name": "Oceanside",
@@ -311,7 +311,7 @@
    "confidence": "High",
    "listed": 8,
    "held": 6,
-   "words": 1485
+   "words": 1497
   },
   {
    "name": "Palmdale",
