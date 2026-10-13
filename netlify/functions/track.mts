@@ -2,7 +2,8 @@ import type { Config, Context } from "@netlify/functions"
 import { getStore } from "@netlify/blobs"
 
 // Records referral events from the public site: taps on a phone link and
-// referral form submissions. One blob per event (no read-modify-write).
+// referral form submissions (with the contact details the visitor typed).
+// One blob per event (no read-modify-write).
 const TYPES = new Set(["call", "form"])
 
 const clip = (v: unknown, n = 120) => (typeof v === "string" ? v.slice(0, n) : "")
@@ -26,9 +27,14 @@ export default async (req: Request, context: Context) => {
     // call: who was called (a listed contractor, or the site's own number)
     target: clip(body.target, 120),
     phone: clip(body.phone, 30),
-    // form: request details without the visitor's personal data
+    // form: request details, plus the visitor's contact details for the private
+    // lead table on /dashboard/ (readable only with DASHBOARD_KEY)
     poolType: clip(body.poolType, 40),
     method: clip(body.method, 40),
+    name: type === "form" ? clip(body.name, 80) : "",
+    email: type === "form" ? clip(body.email, 120) : "",
+    contactPhone: type === "form" ? clip(body.contactPhone, 30) : "",
+    notes: type === "form" ? clip(body.notes, 1000) : "",
     visitorRegion: context.geo?.subdivision?.code ?? "",
   }
   const key = `${at.slice(0, 10)}/${at}-${crypto.randomUUID().slice(0, 8)}`

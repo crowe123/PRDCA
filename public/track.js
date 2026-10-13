@@ -1,4 +1,5 @@
-// Referral tracking: phone-link taps and referral form submissions go to /api/track.
+// Referral tracking: phone-link taps and referral form submissions go to /api/track,
+// which keeps them for the private lead table on /dashboard/.
 (function () {
   var city = document.body.getAttribute("data-city") || "";
 
@@ -28,17 +29,24 @@
     button.disabled = true;
     var data = new FormData(form);
     var select = form.elements.city;
-    fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } })
-      .then(function (res) {
-        if (!res.ok) throw new Error("Form error " + res.status);
-        send({ type: "form", city: select.options[select.selectedIndex].text,
-               poolType: data.get("pool_type") || "", method: data.get("method") || "" });
-        setTimeout(function () { location.href = "/thanks/"; }, 150);
-      })
-      .catch(function () {
-        button.disabled = false;
-        status.hidden = false;
-        status.textContent = "The request could not be sent. Please try again in a moment.";
-      });
+    if (data.get("_gotcha")) { location.href = "/thanks/"; return; }
+    var lead = {
+      type: "form", page: location.pathname, city: select.options[select.selectedIndex].text,
+      poolType: data.get("pool_type") || "", method: data.get("method") || "",
+      name: data.get("name") || "", email: data.get("email") || "",
+      contactPhone: data.get("phone") || "", notes: data.get("notes") || ""
+    };
+    // Save the lead to the site's own store and email it through Formspree;
+    // the request counts as sent if either one succeeds.
+    var saved = fetch("/api/track", { method: "POST", body: JSON.stringify(lead),
+      headers: { "Content-Type": "application/json" } }).then(function (r) { return r.ok; }, function () { return false; });
+    var mailed = fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok; }, function () { return false; });
+    Promise.all([saved, mailed]).then(function (res) {
+      if (res[0] || res[1]) { location.href = "/thanks/"; return; }
+      button.disabled = false;
+      status.hidden = false;
+      status.textContent = "The request could not be sent. Please try again in a moment.";
+    });
   });
 })();

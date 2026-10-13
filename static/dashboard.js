@@ -3,7 +3,8 @@
   var KEY_NAME = "prc-dashboard-key";
   var PIPELINE = ["To call", "No answer", "Verified", "Not offering pool removal", "Listed", "Rejected"];
   var ITEM = ["Open", "Done"];
-  var state = { data: null, days: 30 };
+  var LEAD = ["New", "Contacted", "Converted", "Closed"];
+  var state = { data: null, days: 30, leadStatus: "", leadType: "", open: {} };
   var $ = function (id) { return document.getElementById(id); };
 
   function esc(v) {
@@ -64,6 +65,8 @@
     var calls = ev.filter(function (e) { return e.type === "call"; });
     var forms = ev.filter(function (e) { return e.type === "form"; });
 
+    renderLeads(ev, st);
+
     // KPI tiles
     $("kpis").innerHTML = [
       [ev.length, "referrals in the last " + d.days + " days"],
@@ -115,6 +118,66 @@
       return p + ": " + d.pipeline.filter(function (b) { return ((st["biz:" + b.business] || {}).status || "To call") === p; }).length;
     }).join(" · ");
   }
+
+  function renderLeads(ev, st) {
+    var all = ev.filter(function (e) { return e.key; }).sort(function (a, b) { return a.at < b.at ? 1 : -1; });
+    var statusOf = function (e) { return ((st["lead:" + e.key] || {}).status) || "New"; };
+    var rows = all.filter(function (e) {
+      return (!state.leadStatus || statusOf(e) === state.leadStatus) && (!state.leadType || e.type === state.leadType);
+    });
+    $("lead-period").textContent = rows.length + " of " + all.length + " leads in the last " + state.data.days + " days";
+    var chips = document.querySelectorAll("#lead-status-chips .chip");
+    Array.prototype.forEach.call(chips, function (c) {
+      var isType = c.classList.contains("type");
+      var val = isType ? c.getAttribute("data-type") : c.getAttribute("data-status");
+      c.classList.toggle("on", val === (isType ? state.leadType : state.leadStatus));
+      if (!isType && val) {
+        var n = all.filter(function (e) { return statusOf(e) === val; }).length;
+        c.textContent = val + " (" + n + ")";
+      }
+    });
+    if (!rows.length) {
+      $("leads").innerHTML = '<tr><td colspan="8" class="muted">' +
+        (all.length ? "No leads match this filter." : "No calls or form fills recorded in this period yet.") + "</td></tr>";
+      return;
+    }
+    $("leads").innerHTML = rows.map(function (e) {
+      var id = "lead:" + e.key, cur = statusOf(e), s = st[id] || {}, isForm = e.type === "form";
+      var d = new Date(e.at);
+      var date = d.toLocaleDateString("en-GB") + '<br><span class="muted">' +
+        d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) + "</span>";
+      var contact = isForm
+        ? [e.contactPhone ? '<a href="tel:' + esc(e.contactPhone.replace(/[^0-9+]/g, "")) + '">' + esc(e.contactPhone) + "</a>" : "",
+           e.email ? '<a href="mailto:' + esc(e.email) + '">' + esc(e.email) + "</a>" : ""].filter(Boolean).join("<br>") || "—"
+        : '<span class="muted">Tapped ' + esc(e.phone || "") + "</span>";
+      var name = isForm ? (esc(e.name) || '<span class="muted">Not given</span>') : '<span class="muted">Phone caller</span>';
+      var main = "<tr><td>" + date + '</td><td><span class="pill ' + (isForm ? "pill-form" : "pill-call") + '">' +
+        (isForm ? "Form" : "Call") + "</span></td><td>" + name + "</td><td>" + contact + "</td><td>" + esc(e.city || "—") +
+        "</td><td>" + esc(e.page || "—") + '</td><td><span class="badge badge-' + cur.toLowerCase() + '">' + esc(cur) +
+        '</span></td><td><button type="button" class="link-view" data-view="' + esc(e.key) + '">' +
+        (state.open[e.key] ? "Hide" : "View") + "</button></td></tr>";
+      if (!state.open[e.key]) return main;
+      var facts = isForm
+        ? [["Pool type", e.poolType], ["Method", e.method], ["Notes", e.notes]]
+        : [["Number tapped", e.phone], ["Listing", e.target]];
+      facts.push(["Visitor region", e.visitorRegion], ["Received", d.toLocaleString("en-GB")]);
+      return main + '<tr class="lead-detail"><td colspan="8"><dl>' + facts.filter(function (f) { return f[1]; }).map(function (f) {
+        return "<dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd>";
+      }).join("") + '</dl><label class="lead-edit">Status ' + statusSelect(id, LEAD, cur) + '</label>' +
+        '<input class="note" data-id="' + esc(id) + '" placeholder="Note, e.g. passed to contractor" value="' + esc(s.note || "") + '"></td></tr>';
+    }).join("");
+  }
+
+  document.addEventListener("click", function (e) {
+    var chip = e.target.closest && e.target.closest("#lead-status-chips .chip");
+    if (chip) {
+      if (chip.classList.contains("type")) state.leadType = chip.getAttribute("data-type");
+      else state.leadStatus = chip.getAttribute("data-status");
+      render(); return;
+    }
+    var view = e.target.closest && e.target.closest("[data-view]");
+    if (view) { var k = view.getAttribute("data-view"); state.open[k] = !state.open[k]; render(); }
+  });
 
   function save(id) {
     var sel = document.querySelector('select[data-id="' + CSS.escape(id) + '"]');

@@ -20,6 +20,15 @@
 </section>
 <p id="loading" class="muted" hidden>Loading…</p><p id="error" class="error"></p>
 <div id="app" hidden>
+<section><div class="dash-head"><h1>Lead management</h1><span id="lead-period" class="muted"></span></div>
+<div class="chips" role="group" aria-label="Filter leads by status" id="lead-status-chips">
+<button type="button" class="chip on" data-status="">All</button><button type="button" class="chip" data-status="New">New</button><button type="button" class="chip" data-status="Contacted">Contacted</button><button type="button" class="chip" data-status="Converted">Converted</button><button type="button" class="chip" data-status="Closed">Closed</button>
+<span class="chip-gap"></span>
+<button type="button" class="chip type on" data-type="">Calls and forms</button><button type="button" class="chip type" data-type="call">Calls</button><button type="button" class="chip type" data-type="form">Form fills</button>
+</div>
+<div class="panel lead-panel"><div class="table-wrap"><table class="leads"><thead><tr><th>Date</th><th>Type</th><th>Name</th><th>Contact</th><th>City</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead><tbody id="leads"></tbody></table></div>
+<p class="muted lead-note">Calls are taps on a phone number on the site; the call itself and the caller's number are not recorded. Form fills show the details the visitor typed.</p></div>
+</section>
 <section><div class="dash-head"><h1>Referrals</h1>
 <label>Period <select id="days"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option><option value="365">12 months</option></select></label></div>
 <div id="kpis" class="kpis"></div>

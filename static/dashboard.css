@@ -23,3 +23,32 @@
 .error { color: #b3261e; }
 .flag { font-size: .75rem; background: #fff3d6; color: var(--warn); border-radius: 4px; padding: 1px 5px; }
 tr.done td:first-child { text-decoration: line-through; color: var(--muted); }
+
+/* Lead management */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; align-items: center; }
+.chip { font: inherit; font-size: .88rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--ink, #1d2b26); cursor: pointer; }
+.chip:hover { border-color: var(--accent); }
+.chip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+.chip-gap { flex: 0 0 12px; }
+.lead-panel { padding: 0; overflow: hidden; }
+.lead-panel .table-wrap { margin: 0; }
+table.leads { width: 100%; border-collapse: collapse; font-size: .92rem; }
+table.leads th { text-align: left; font-size: .85rem; color: var(--muted); background: var(--soft); padding: 10px 12px; }
+table.leads td { padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+table.leads td a { word-break: break-word; }
+.lead-note { padding: 10px 14px; margin: 0; border-top: 1px solid var(--line); }
+.pill { font-size: .78rem; font-weight: 600; border-radius: 999px; padding: 2px 9px; }
+.pill-call { background: #e3eefc; color: #1f4f8f; }
+.pill-form { background: #e2f3ea; color: #1d6b47; }
+.badge { font-size: .78rem; font-weight: 600; border-radius: 999px; padding: 2px 9px; }
+.badge-new { background: #fff3d6; color: #8a5a00; }
+.badge-contacted { background: #e3eefc; color: #1f4f8f; }
+.badge-converted { background: #e2f3ea; color: #1d6b47; }
+.badge-closed { background: #ececec; color: #555; }
+.link-view { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; color: var(--accent); cursor: pointer; }
+.link-view:hover { text-decoration: underline; }
+tr.lead-detail td { background: #fbfcfb; }
+tr.lead-detail dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0 0 10px; }
+tr.lead-detail dt { color: var(--muted); font-size: .85rem; }
+tr.lead-detail dd { margin: 0; white-space: pre-wrap; }
+.lead-edit { font-size: .88rem; font-weight: 600; }

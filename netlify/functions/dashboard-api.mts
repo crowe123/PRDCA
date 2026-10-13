@@ -4,9 +4,10 @@ import siteData from "../../data/dashboard.json" with { type: "json" }
 
 // Private API behind the /dashboard/ page. Every request must carry the
 // DASHBOARD_KEY environment variable in the x-dashboard-key header.
-//   GET  -> site tracker, contractor pipeline (with saved statuses) and referral events
-//   POST -> save one pipeline status: { id, status, note }
-const STATUSES = new Set(["Open", "Done", "To call", "No answer", "Verified", "Not offering pool removal", "Listed", "Rejected"])
+//   GET  -> site tracker, contractor pipeline (with saved statuses) and referral events (leads)
+//   POST -> save one status: { id, status, note } (pipeline items, or leads as "lead:<event key>")
+const STATUSES = new Set(["Open", "Done", "To call", "No answer", "Verified", "Not offering pool removal", "Listed", "Rejected",
+  "New", "Contacted", "Converted", "Closed"])
 
 function authorised(req: Request) {
   const key = Netlify.env.get("DASHBOARD_KEY")
@@ -32,7 +33,10 @@ export default async (req: Request) => {
   const events = getStore("referral-events")
   const { blobs } = await events.list()
   const recent = blobs.filter((b) => b.key.slice(0, 10) >= since)
-  const eventData = (await Promise.all(recent.map((b) => events.get(b.key, { type: "json" })))).filter(Boolean)
+  const eventData = (await Promise.all(recent.map(async (b) => {
+    const e = await events.get(b.key, { type: "json" })
+    return e ? { ...e, key: b.key } : null
+  }))).filter(Boolean)
 
   const { blobs: saved } = await pipeline.list()
   const statuses: Record<string, unknown> = {}
