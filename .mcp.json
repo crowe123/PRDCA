@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "useou-factors": {
+      "type": "http",
+      "url": "https://underground-seo-university.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${USEOU_MCP_KEY}"
+      }
+    }
+  }
+}
