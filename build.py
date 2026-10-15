@@ -428,15 +428,15 @@ def city_page(c, listings, held):
                     f'<h2 id="side-form-title">Request {name} contractor referrals</h2>'
                     '<p>Requests go to listed contractors with an active licence first.</p>'
                     + referral_form(slug, compact=True) + '</aside>')
-            rest = (f'{intro}{hero}' + contractors + permit + extra("extra_after_permit") + methods
+            rest = (f'{intro}{hero}' + contractors + extra("extra_after_contractors") + permit + extra("extra_after_permit") + methods
                     + cost + extra("extra_after_cost") + draining + after + nearby + map_html + faq_html + DISCLOSURE)
             return ('<div class="content content-wide"><div class="city-grid">'
-                    f'<div class="city-intro">{intro_html}</div>{side}<div class="city-main">{rest}</div>'
+                    f'<div class="city-intro">{intro_html}</div><div class="city-main">{rest}</div>{side}'
                     '</div></div>')
         return (
             '<div class="content">'
             f'{intro_html}{intro}{hero}'
-            + contractors
+            + contractors + extra("extra_after_contractors")
             # One call to action per city page: USEOU scores two or more sales CTAs negatively.
             + cta(f'{name} referrals go to contractors with an active licence first.')
             + permit + extra("extra_after_permit") + methods

@@ -8,7 +8,7 @@ workbook's Businesses and By city tabs.
 
 SITE_NAME = "Pool Removal California"
 # Set to the live domain before deploying; used for canonical URLs and the sitemap.
-SITE_URL = "https://pool-removal-california.netlify.app"
+SITE_URL = "https://poolremovaldirectoryca.com"
 
 # Business contact details shown in the footer of every page.
 BUSINESS_ADDRESS = "1150 S Olive St, Los Angeles, CA 90015"
@@ -3398,3 +3398,43 @@ for _c in CITIES:
             "Residential pools may drain to the sewer without a wastewater permit, and discharges that need a "
             "stormwater permit go through the " + _l("la_rwqcb", "Los Angeles Regional Water Quality Control Board")
             + ".")
+
+
+# Los Angeles: a section on choosing among the listed contractors, answering the
+# "what should I look for ... and which local companies meet those criteria" prompt
+# (RAIZ Visibility, Sept 2026). Facts from the workbook's Businesses and Licence check tabs.
+for _c in CITIES:
+    if _c["slug"] == "los-angeles":
+        _c["extra_after_contractors"] = [
+            ("Choosing among the Los Angeles contractors", [
+                "Four checks separate a contractor ready for a Los Angeles pool job from one that is not: a licence "
+                "that is current and active, a licence class that covers the work, workers' compensation on file, and "
+                f'a written quote that names the grading permit and the compaction report. The <a href="{SRC["cslb_lookup"]}">'
+                "Contractors State License Board lookup</a> answers the first three in a minute.",
+                "<ul><li><strong>Licence class.</strong> California cities name the A (general engineering), "
+                "C-12 (earthwork), C-21 (demolition) or C-53 (swimming pool) classes for pool removal, and a few also "
+                "accept B (general building); the department confirms which it accepts for the permit.</li>"
+                "<li><strong>Workers' compensation.</strong> A crew with employees must carry it, and the board's record "
+                "shows the policy and its end date.</li>"
+                "<li><strong>Los Angeles experience.</strong> A firm whose own website names Los Angeles is telling "
+                "customers it takes work in the city; asking how many Los Angeles grading permits it has pulled "
+                "settles the rest.</li>"
+                "<li><strong>A written scope.</strong> The quote should state the method, the permit, the cubic yards "
+                "of fill and whether the 90% compaction report is included.</li></ul>",
+                "All six listed contractors hold an active licence in at least one of the A, C-12 or C-21 classes, with workers' compensation on file, as the board's records showed on 11 October 2026:",
+                '<div class="table-wrap"><table><thead><tr><th>Contractor</th><th>Accepted class held</th>'
+                "<th>Workers' comp policy to</th><th>Names Los Angeles on its site</th><th>Publishes prices</th></tr></thead><tbody>"
+                "<tr><td>Demo Leaders</td><td>A, C-21</td><td>Nov 2026</td><td>Yes</td><td>No</td></tr>"
+                "<tr><td>Frisch &amp; Sons</td><td>A</td><td>Jan 2027</td><td>Yes</td><td>Orange County guide</td></tr>"
+                "<tr><td>Los Angeles Pool Demolition Contractors</td><td>C-21</td><td>Apr 2027</td><td>Yes</td><td>From $10,500 partial, $17,500 full</td></tr>"
+                "<tr><td>Shoemaker Demolition</td><td>A, C-12, C-21</td><td>Mar 2027</td><td>Yes</td><td>No</td></tr>"
+                "<tr><td>Suncore Engineering and Construction</td><td>A, C-21</td><td>Jan 2027</td><td>Yes</td><td>No</td></tr>"
+                "<tr><td>Clean Slate Demolition</td><td>C-21</td><td>Aug 2027</td><td>Listed on Google Maps for the city</td><td>No</td></tr>"
+                "</tbody></table></div>",
+                "Demo Leaders' workers' compensation policy runs to 30 November 2026, so a job starting after that date "
+                "should wait for the renewal to show on the board's record. Shoemaker Demolition holds all three of the "
+                "A, C-12 and C-21 classes, the widest cover on the list. Los Angeles Pool Demolition Contractors is the "
+                "only listed firm that publishes Los Angeles prices, which makes it the reference point for comparing "
+                "the others' written quotes.",
+            ]),
+        ]

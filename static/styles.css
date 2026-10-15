@@ -141,6 +141,10 @@ form.quote button { justify-self: start; border: 0; cursor: pointer; font: inher
 /* City page with the referral form top right */
 .content-wide { max-width: none; }
 .city-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 32px; }
+/* The form follows the main content in the page source (answer first for crawlers) but shows after the opening. */
+.city-intro { order: 1; }
+.side-form { order: 2; }
+.city-main { order: 3; }
 .city-main, .city-intro { max-width: 780px; min-width: 0; }
 .side-form { background: var(--soft); border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: var(--radius); padding: 18px 20px; margin: 8px 0 24px; }
 .side-form h2 { font-size: 1.15rem; margin: 0 0 6px; }
