@@ -132,6 +132,7 @@ def page(path, title, description, body, crumbs=None, schema=None, index=True, c
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="136n3mnkn3OYeKbI_1FHEBbetPylY7tj17Wz8oCXSAI" />
 <title>{title}</title>
 <meta name="description" content="{html.escape(description)}">
 {"" if index else '<meta name="robots" content="noindex">'}
