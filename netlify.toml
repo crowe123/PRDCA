@@ -16,3 +16,11 @@
   for = "/dashboard/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# The Netlify subdomain must not compete with the live domain in search results:
+# send every netlify.app URL to the same path on poolremovaldirectoryca.com.
+[[redirects]]
+  from = "https://pool-removal-california.netlify.app/*"
+  to = "https://poolremovaldirectoryca.com/:splat"
+  status = 301
+  force = true
