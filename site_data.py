@@ -3438,3 +3438,16 @@ for _c in CITIES:
                 "the others' written quotes.",
             ]),
         ]
+
+
+# Los Angeles: the article is written as a whole in data/articles/los-angeles.html
+# (Pool Removal Los Angeles v4, 25 Oct 2026). build.py keeps the referral form,
+# hero and work photos, methods diagram and map around it.
+for _c in CITIES:
+    if _c["slug"] == "los-angeles":
+        _c["article"] = {
+            "title": "Pool Removal Los Angeles: CSLB-Checked Contractors and Permit Rules",
+            "description": ("Pool Removal Directory CA lists six CSLB-checked Los Angeles pool removal contractors, "
+                            "LADBS grading permit rules under Bulletin P/BC 2026-111, and published partial and "
+                            "full removal prices."),
+        }

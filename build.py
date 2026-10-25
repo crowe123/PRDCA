@@ -239,7 +239,57 @@ def contractor_card(b, city, link=True):
 
 # ---------------------------------------------------------------- city pages
 
+def article_city_page(c, listings):
+    """A city page whose article is written as a whole in data/articles/{slug}.html.
+
+    The fragment holds the H1 and every section in page order. Comment markers
+    place the site's own pieces: <!-- hero -->, <!-- diagram -->, <!-- work -->
+    (the city work photo), <!-- map --> and <!-- call --> (the phone button). The
+    referral form stays top right, as on the other city pages that use it.
+    """
+    name, slug = c["name"], c["slug"]
+    listed = listings.get(slug, [])
+    article = (ROOT / "data" / "articles" / f"{slug}.html").read_text(encoding="utf-8")
+    map_html = (f'<figure><iframe class="map" title="Map of {name}, California" loading="lazy" '
+                f'referrerpolicy="no-referrer-when-downgrade" '
+                f'src="https://maps.google.com/maps?q={name.replace(" ", "+")},+CA&amp;z=11&amp;output=embed"></iframe>'
+                f'<figcaption>{name}, California. Listings cover the city and named neighbouring areas.</figcaption>'
+                '</figure>')
+    call = (f'<p class="call"><a class="btn" href="tel:{BUSINESS_PHONE_TEL}" data-track-call="{SITE_NAME}">'
+            f'Call {BUSINESS_PHONE}</a></p>')
+    article = (article.replace("<!-- hero -->", img_tag(f"city-{slug}-hero", "hero-img", eager=True))
+               .replace("<!-- diagram -->", diagram())
+               .replace("<!-- work -->", figure(f"city-{slug}-work", ALT.get(f"city-{slug}-work", "") + "."))
+               .replace("<!-- map -->", map_html)
+               .replace("<!-- call -->", call))
+    # The H1 and the opening answer line sit above the form; everything else follows it.
+    m = re.search(r"</p>\s*", article[:article.index("<h2")])
+    cut = m.end() if m else article.index("<h2")
+    intro_html, rest = article[:cut], article[cut:]
+    side = ('<aside class="side-form" aria-labelledby="side-form-title">'
+            f'<h2 id="side-form-title">Request {name} contractor referrals</h2>'
+            '<p>Requests go to listed contractors with an active licence first.</p>'
+            + referral_form(slug, compact=True) + '</aside>')
+    body = ('<div class="content content-wide"><div class="city-grid">'
+            f'<div class="city-intro">{intro_html}</div><div class="city-main">{rest}</div>{side}'
+            '</div></div>')
+    schema = None
+    if listed:
+        schema = {"@context": "https://schema.org", "@type": "ItemList",
+                  "name": f"Pool removal contractors serving {name}",
+                  "itemListElement": [
+                      {"@type": "ListItem", "position": i + 1,
+                       "item": {"@type": "LocalBusiness", "name": b["business"],
+                                "areaServed": f"{name}, CA"}}
+                      for i, b in enumerate(listed)]}
+    page(f"/{slug}/", c["article"]["title"], c["article"]["description"],
+         body, crumbs=[(None, name)], schema=schema, city=name)
+    return word_count(body)
+
+
 def city_page(c, listings, held):
+    if c.get("article"):
+        return article_city_page(c, listings)
     name, slug = c["name"], c["slug"]
     listed = listings.get(slug, [])
     held_n = held.get(slug, 0)
