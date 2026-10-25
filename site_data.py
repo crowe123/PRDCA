@@ -1,4 +1,4 @@
-"""Content and facts for the Pool Removal California site.
+"""Content and facts for the Pool Removal Directory CA site.
 
 Every fact here comes from the site structure document of 10 October 2026
 (permit table, cost table, FAQ notes and city table). Contractor listings are
@@ -6,7 +6,7 @@ not stored here: they load from data/businesses.csv, exported from the
 workbook's Businesses and By city tabs.
 """
 
-SITE_NAME = "Pool Removal California"
+SITE_NAME = "Pool Removal Directory CA"
 # Set to the live domain before deploying; used for canonical URLs and the sitemap.
 SITE_URL = "https://poolremovaldirectoryca.com"
 
@@ -1226,7 +1226,7 @@ CITY_DEPTH = {
         "fee_short": "$125 + $41",
         "doc": "pool demolition handout (revised October 2015)",
         "lead": ("Pool removal in Riverside needs a demolition permit from the city's Building and Safety Division, "
-                 "and Pool Removal California found 7 businesses offering in-ground pool removal there, 2 with an "
+                 "and Pool Removal Directory CA found 7 businesses offering in-ground pool removal there, 2 with an "
                  "active state licence. The city's handout leaves the shell in place, with two 2 ft square holes in "
                  "the floor, the top cut 12 inches below grade and fill compacted to 90%."),
         "permit_html": (
@@ -1371,7 +1371,7 @@ CITY_DEPTH = {
         "fee_short": "By cubic yard",
         "doc": "pool demolition handout (revised September 2017)",
         "lead": ("Pool removal in San Bernardino is a Land Development activity handled by the Public Works "
-                 "Department's Land Development Division, and Pool Removal California found 9 businesses offering "
+                 "Department's Land Development Division, and Pool Removal Directory CA found 9 businesses offering "
                  "in-ground pool removal there, 3 with an active state licence. The city's handout leaves the shell "
                  "in place, with 12-inch holes 6 ft apart each way and the top cut at least 2 ft below the surface."),
         "permit_html": (
@@ -1759,7 +1759,7 @@ BATCH2 = {
         "doc": "fee schedule (amended January 2026)",
         "doc_url": SRC["fre_fees"],
         "lead": ("Pool removal in Fremont runs on an express building permit at a flat $266, with no plan review, and "
-                 "Pool Removal California found {found} businesses offering in-ground pool removal there, {active} "
+                 "Pool Removal Directory CA found {found} businesses offering in-ground pool removal there, {active} "
                  "with an active state licence."),
         "permit_html": (
             "Fremont's {doc} lists residential swimming pool demolition and removal as an express permit at a flat "
@@ -1885,7 +1885,7 @@ BATCH2 = {
         "fee": "$38 issuance plus $95 for valuation up to $5,000 (FY 2026-27)",
         "fee_short": "$38 + $95",
         "lead": ("Pool removal in Santa Clarita needs a building permit from the city's Building and Safety Division, "
-                 "whether the pool is filled in place or removed, and Pool Removal California found {found} businesses "
+                 "whether the pool is filled in place or removed, and Pool Removal Directory CA found {found} businesses "
                  "offering in-ground pool removal there, {active} with an active state licence. A pool filled in place "
                  "leaves the property permanently recorded as having an abandoned structure."),
         "permit_html": (
@@ -2017,7 +2017,7 @@ BATCH2 = {
         "fee": "Hourly: $294.06 demolition plan check, $212.11 inspection (FY 2026-27)",
         "fee_short": "Hourly",
         "lead": ("Pool removal in Santa Ana needs building, electrical and plumbing permits from the city's Planning and "
-                 "Building Agency, and Pool Removal California found {found} businesses offering in-ground pool "
+                 "Building Agency, and Pool Removal Directory CA found {found} businesses offering in-ground pool "
                  "removal there, {active} with an active state licence. Handout BLD-16 calls for five 3 ft by 3 ft "
                  "holes in the floor and the bond beam removed."),
         "permit_html": (
@@ -2131,7 +2131,7 @@ BATCH3 = {
         "doc": "Pool/Spa Permit Application B712 (August 2025)",
         "doc_url": "https://www.anaheim.net/DocumentCenter/View/39707",
         "lead": ("Pool removal in Anaheim runs on the city's Swimming Pool/Spa Permit, which covers demolition, at a "
-                 "$182 demolition fee that includes capping the utilities, and Pool Removal California found {found} "
+                 "$182 demolition fee that includes capping the utilities, and Pool Removal Directory CA found {found} "
                  "businesses offering in-ground pool removal there, {active} with an active state licence."),
         "permit_html": (
             "Anaheim's {doc} covers the construction, alteration, demolition and repair of a pool or spa, and its "
@@ -2253,7 +2253,7 @@ BATCH3 = {
         "doc": "Bulletin 217 (revised January 2015)",
         "doc_url": "https://cityofirvine.gov/sites/default/files/legacy-documents/civica-13890-bulletin-217-revised-1-12-15.pdf",
         "lead": ("Pool removal in Irvine needs a building permit, plan check and planning approval from the city's "
-                 "Building and Safety division, and Pool Removal California found {found} businesses offering "
+                 "Building and Safety division, and Pool Removal Directory CA found {found} businesses offering "
                  "in-ground pool removal there, {active} with an active state licence. Irvine's Bulletin 217 asks the "
                  "owner to choose up front whether the fill will carry landscaping or a future building pad."),
         "permit_html": (
@@ -2549,7 +2549,7 @@ BATCH4 = {
         "fee": "Grading permit by cubic yards: $104 up to 50, $208 for 51 to 100; plan review 75% (October 2026)",
         "fee_short": "From $104",
         "lead": ("Pool removal in Long Beach needs a grading permit from the city's Building and Safety Bureau whether "
-                 "the shell stays or goes, and Pool Removal California found {found} businesses offering in-ground pool "
+                 "the shell stays or goes, and Pool Removal Directory CA found {found} businesses offering in-ground pool "
                  "removal there, {active} with an active state licence. Leaving the shell in place also needs a "
                  "covenant recorded with the Los Angeles County Recorder before the permit is issued."),
         "permit_html": (
@@ -2960,7 +2960,7 @@ BATCH5 = {
         "compact": True,
         "doc": "Information Bulletin 710 (September 2026)",
         "lead": ("Pool removal in San Diego needs a Demolition/Removal Permit from the city's Development Services "
-                 "Department, at $360.36 for plan check and $332.48 for inspection, and Pool Removal California found "
+                 "Department, at $360.36 for plan check and $332.48 for inspection, and Pool Removal Directory CA found "
                  "{found} businesses offering in-ground pool removal there, {active} with an active state licence."),
         "permit_html": (
             "San Diego's Development Services Department issues a Demolition/Removal Permit, set out in {doc}. The "

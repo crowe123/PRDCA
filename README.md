@@ -1,6 +1,6 @@
-# Pool Removal California
+# Pool Removal Directory CA
 
-A static referral-directory site built from the *Pool Removal California: Site Structure* plan (10 Oct 2026):
+A static referral-directory site built from the *Pool Removal Directory CA: Site Structure* plan (10 Oct 2026):
 a state hub, 32 city pages (the plan's 20 plus the fourth wave of cities 21 to 32), a cost guide, an FAQ and an About This Site page, plus a separate contact page for referral requests.
 
 ## Build

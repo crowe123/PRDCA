@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-25T19:30:08+00:00",
- "siteName": "Pool Removal California",
+ "generated": "2026-10-25T19:41:26+00:00",
+ "siteName": "Pool Removal Directory CA",
  "pages": 36,
  "cities": [
   {
@@ -21,7 +21,7 @@
    "confidence": "Medium-high",
    "listed": 10,
    "held": 4,
-   "words": 1706
+   "words": 1708
   },
   {
    "name": "San Jose",
@@ -31,7 +31,7 @@
    "confidence": "High",
    "listed": 17,
    "held": 13,
-   "words": 2092
+   "words": 2094
   },
   {
    "name": "San Francisco",
@@ -41,7 +41,7 @@
    "confidence": "Low",
    "listed": 17,
    "held": 11,
-   "words": 2114
+   "words": 2116
   },
   {
    "name": "Fresno",
@@ -51,7 +51,7 @@
    "confidence": "Medium-high",
    "listed": 2,
    "held": 0,
-   "words": 1167
+   "words": 1169
   },
   {
    "name": "Sacramento",
@@ -61,7 +61,7 @@
    "confidence": "Low",
    "listed": 5,
    "held": 3,
-   "words": 1393
+   "words": 1395
   },
   {
    "name": "Long Beach",
@@ -71,7 +71,7 @@
    "confidence": "High",
    "listed": 5,
    "held": 12,
-   "words": 1538
+   "words": 1540
   },
   {
    "name": "Oakland",
@@ -81,7 +81,7 @@
    "confidence": "Low",
    "listed": 16,
    "held": 13,
-   "words": 2089
+   "words": 2091
   },
   {
    "name": "Bakersfield",
@@ -91,7 +91,7 @@
    "confidence": "Low",
    "listed": 2,
    "held": 3,
-   "words": 1241
+   "words": 1243
   },
   {
    "name": "Anaheim",
@@ -101,7 +101,7 @@
    "confidence": "Low-medium",
    "listed": 8,
    "held": 8,
-   "words": 1393
+   "words": 1395
   },
   {
    "name": "Stockton",
@@ -111,7 +111,7 @@
    "confidence": "High",
    "listed": 10,
    "held": 0,
-   "words": 1578
+   "words": 1580
   },
   {
    "name": "Riverside",
@@ -121,7 +121,7 @@
    "confidence": "Medium",
    "listed": 2,
    "held": 5,
-   "words": 1312
+   "words": 1314
   },
   {
    "name": "Irvine",
@@ -131,7 +131,7 @@
    "confidence": "High",
    "listed": 8,
    "held": 8,
-   "words": 1539
+   "words": 1541
   },
   {
    "name": "Santa Ana",
@@ -141,7 +141,7 @@
    "confidence": "High",
    "listed": 8,
    "held": 7,
-   "words": 1581
+   "words": 1583
   },
   {
    "name": "Chula Vista",
@@ -151,7 +151,7 @@
    "confidence": "Medium",
    "listed": 9,
    "held": 4,
-   "words": 1621
+   "words": 1623
   },
   {
    "name": "Fremont",
@@ -161,7 +161,7 @@
    "confidence": "Medium",
    "listed": 17,
    "held": 12,
-   "words": 2012
+   "words": 2014
   },
   {
    "name": "Santa Clarita",
@@ -171,7 +171,7 @@
    "confidence": "High",
    "listed": 4,
    "held": 6,
-   "words": 1430
+   "words": 1432
   },
   {
    "name": "San Bernardino",
@@ -181,7 +181,7 @@
    "confidence": "Medium",
    "listed": 3,
    "held": 5,
-   "words": 1367
+   "words": 1369
   },
   {
    "name": "Modesto",
@@ -191,7 +191,7 @@
    "confidence": "Low",
    "listed": 8,
    "held": 1,
-   "words": 1582
+   "words": 1584
   },
   {
    "name": "Fontana",
@@ -201,7 +201,7 @@
    "confidence": "High",
    "listed": 3,
    "held": 6,
-   "words": 1300
+   "words": 1302
   },
   {
    "name": "Moreno Valley",
@@ -211,7 +211,7 @@
    "confidence": "High",
    "listed": 2,
    "held": 6,
-   "words": 1258
+   "words": 1260
   },
   {
    "name": "Oxnard",
@@ -221,7 +221,7 @@
    "confidence": "Low",
    "listed": 4,
    "held": 0,
-   "words": 1246
+   "words": 1248
   },
   {
    "name": "Glendale",
@@ -231,7 +231,7 @@
    "confidence": "Low",
    "listed": 4,
    "held": 7,
-   "words": 1289
+   "words": 1291
   },
   {
    "name": "Huntington Beach",
@@ -241,7 +241,7 @@
    "confidence": "High",
    "listed": 8,
    "held": 6,
-   "words": 1486
+   "words": 1488
   },
   {
    "name": "Elk Grove",
@@ -251,7 +251,7 @@
    "confidence": "High",
    "listed": 4,
    "held": 3,
-   "words": 1282
+   "words": 1284
   },
   {
    "name": "Ontario",
@@ -261,7 +261,7 @@
    "confidence": "Medium",
    "listed": 2,
    "held": 7,
-   "words": 1259
+   "words": 1261
   },
   {
    "name": "Santa Rosa",
@@ -271,7 +271,7 @@
    "confidence": "High",
    "listed": 4,
    "held": 1,
-   "words": 1340
+   "words": 1342
   },
   {
    "name": "Lancaster",
@@ -281,7 +281,7 @@
    "confidence": "Low",
    "listed": 4,
    "held": 5,
-   "words": 1324
+   "words": 1326
   },
   {
    "name": "Rancho Cucamonga",
@@ -291,7 +291,7 @@
    "confidence": "High",
    "listed": 2,
    "held": 5,
-   "words": 1088
+   "words": 1090
   },
   {
    "name": "Oceanside",
@@ -301,7 +301,7 @@
    "confidence": "Low",
    "listed": 9,
    "held": 4,
-   "words": 1619
+   "words": 1621
   },
   {
    "name": "Garden Grove",
@@ -311,7 +311,7 @@
    "confidence": "High",
    "listed": 8,
    "held": 6,
-   "words": 1497
+   "words": 1499
   },
   {
    "name": "Palmdale",
@@ -321,7 +321,7 @@
    "confidence": "Low",
    "listed": 4,
    "held": 6,
-   "words": 1296
+   "words": 1298
   }
  ],
  "openItems": [

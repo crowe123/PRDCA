@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Pool Removal California static site into public/.
+"""Build the Pool Removal Directory CA static site into public/.
 
     python3 build.py
 
@@ -149,7 +149,7 @@ def page(path, title, description, body, crumbs=None, schema=None, index=True, c
 <body data-city="{html.escape(city)}">
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap">
-<a class="logo" href="/">Pool Removal <span>California</span></a>
+<a class="logo" href="/">Pool Removal <span>Directory CA</span></a>
 {header_nav(path)}
 </div></header>
 {crumb_html}
@@ -569,7 +569,7 @@ def home():
 {figure("after-landscape", "A former pool area planted as low-water landscape, the use most cities allow after a partial fill-in.")}
 {DISCLOSURE}
 </div>"""
-    page("/", "Pool Removal California: Contractors, Costs and Permits",
+    page("/", "Pool Removal Directory CA: Contractors, Costs and Permits",
          "A directory of pool removal and demolition contractors across California's 32 largest cities, with local "
          "permit rules and published price ranges.", body)
     return word_count(body)
@@ -782,7 +782,7 @@ def about_page():
 <p>Contractors and city staff can ask for a correction through the <a href="/contact/">contact page</a>. Licence statuses are re-checked before each page is updated.</p>
 </div>"""
     page("/about/", "About This Site: Referral Disclosure and Listing Criteria",
-         "How Pool Removal California finds and checks pool removal contractors, and how referrals work.",
+         "How Pool Removal Directory CA finds and checks pool removal contractors, and how referrals work.",
          body, crumbs=[(None, "About This Site")])
 
 
@@ -831,7 +831,7 @@ def contact_page():
 def not_found():
     body = ('<div class="content"><h1>Page Not Found</h1><p>The page may have moved. The '
             '<a href="/">California pool removal directory</a> links every city page.</p></div>')
-    page("/404.html", "Page Not Found | Pool Removal California", "Page not found.", body, index=False)
+    page("/404.html", "Page Not Found | Pool Removal Directory CA", "Page not found.", body, index=False)
 
 
 def sitemap():
@@ -899,7 +899,7 @@ def dashboard_page():
 <link rel="stylesheet" href="/dashboard.css">
 </head>
 <body class="dash">
-<header class="site-header"><div class="wrap"><span class="logo">Pool Removal <span>California</span> · Dashboard</span>
+<header class="site-header"><div class="wrap"><span class="logo">Pool Removal <span>Directory CA</span> · Dashboard</span>
 <nav class="nav"><button id="refresh" class="link-btn" type="button">Refresh</button><button id="logout" class="link-btn" type="button">Sign out</button></nav></div></header>
 <main class="wrap">
 <section id="login" hidden>
